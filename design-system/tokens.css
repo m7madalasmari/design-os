@@ -1,0 +1,73 @@
+/* =============================================================================
+   design-system/tokens.css — EXECUTABLE token source (single runtime source).
+   Documentation lives in foundations/tokens.md; THIS file (or the project's
+   Tailwind theme) is what ships. Tailwind v4 style (@theme).
+
+   Projects on Tailwind config (v3): mirror these into theme.extend instead —
+   same names, same values. Either way there must be ONE executable source.
+
+   Spacing/radius scale: use Tailwind's default 4px scale (= the system's 4px base).
+   ============================================================================= */
+@theme {
+  /* ---- neutrals (primitives) ---- */
+  --color-neutral-1:  #FCFCFD;
+  --color-neutral-2:  #F9F9FB;
+  --color-neutral-3:  #F0F0F3;
+  --color-neutral-4:  #E8E8EC;
+  --color-neutral-5:  #E0E0E6;
+  --color-neutral-6:  #D8D8DF;
+  --color-neutral-7:  #CECED6;
+  --color-neutral-8:  #B9B9C3;
+  --color-neutral-9:  #8B8B96;
+  --color-neutral-10: #6E6E79;
+  --color-neutral-11: #50505B;
+  --color-neutral-12: #1C1C24;
+
+  /* ---- surfaces / text / border  (→ bg-*, text-*, border-*) ---- */
+  --color-background:       var(--color-neutral-1);
+  --color-foreground:       var(--color-neutral-12);
+  --color-card:             #FFFFFF;
+  --color-popover:          #FFFFFF;
+  --color-muted:            var(--color-neutral-2);
+  --color-muted-foreground: var(--color-neutral-10); /* AA on background */
+  --color-border:           var(--color-neutral-6);
+  --color-input:            var(--color-neutral-6);
+
+  /* ---- action color (= shadcn "primary"). Placeholder; a brand theme overrides ---- */
+  --color-primary:            #3B5BDB;
+  --color-primary-foreground: #FFFFFF;
+
+  /* ---- interaction colors — DECOUPLED from primary (v1.1) ----
+     Do NOT set these equal to a light brand accent. They must pass contrast
+     (link text ≥ 4.5:1, focus ring ≥ 3:1) on the background, independently. */
+  --color-link: #3B5BDB;  /* readable link; override to a dark variant if accent is light */
+  --color-ring: #3B5BDB;  /* focus ring; override to a dark variant if accent is light */
+
+  /* ---- status (functional, non-brand) ---- */
+  --color-success:     #1A7F4B;
+  --color-warning:     #9A6700;
+  --color-destructive: #C12A2A;
+  --color-info:        #15609E;
+
+  /* ---- brand fill (optional; for light brand colors used as SURFACE only) ---- */
+  /* --color-brand: <light brand>; --color-brand-foreground: <dark>;  (set per theme) */
+
+  /* ---- radius (brandable) ---- */
+  --radius-md: 0.625rem;  /* ~10px */
+  --radius-lg: 1rem;      /* ~16px */
+}
+
+/* -----------------------------------------------------------------------------
+   THEME EXAMPLE — light brand accent (e.g. Moonli lime): action stays on a dark
+   color, brand lime is a SURFACE, and link/ring stay dark & readable.
+   [data-theme="moonli"] {
+     --color-primary:#1C1C24; --color-primary-foreground:#FFFFFF;
+     --color-brand:#C6F24E;   --color-brand-foreground:#15161A;
+     --color-link:#1C1C24;    --color-ring:#1C1C24;   // decoupled, dark, readable
+   }
+   THEME EXAMPLE — dark brand accent (Tuwaiq purple): primary may also serve link/ring.
+   [data-theme="tuwaiq"] {
+     --color-primary:#4F29B7; --color-primary-foreground:#FFFFFF;
+     --color-link:#4F29B7;    --color-ring:#4F29B7;   // verified ~9:1, OK
+   }
+   ----------------------------------------------------------------------------- */
