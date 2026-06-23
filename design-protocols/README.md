@@ -19,7 +19,7 @@ Agent operating contract. Entry point: root `AGENTS.md`. This set is **stable**;
 - **examples/golden-qa-report.md** — worked QA report (pairs with `page-manifests/_GOLDEN_EXAMPLE.md`).
 
 ## Modes
-Pixel Clone · System Fidelity (default) · Strict SSOT · Improved · Greenfield/System-First (no reference). Announce before building.
+Auto (meta) · Pixel Clone · System Fidelity (default) · Strict SSOT · Improved · Greenfield/System-First (no reference). Announce before building. **Auto** resolves from the inputs — see [`../RUNBOOK.md`](../RUNBOOK.md).
 
 ## Companions
 - `design-system/` — tokens, components, rules, themes (the values & specs).
@@ -29,6 +29,7 @@ Pixel Clone · System Fidelity (default) · Strict SSOT · Improved · Greenfiel
 v1.1 is stable. To change a protocol: edit the file + add a Changelog line (date + what + why). Breaking changes bump the major version. Design-system changes are logged in `design-system/CHANGELOG.md`.
 
 ## Changelog
+- **v1.1.4** (2026-06-23) — run layer for one-shot usage: root **`RUNBOOK.md`** (request→delivery flow) + **`REQUEST.md`** + **`OUTPUT.md`**, and **Auto Mode** (meta-mode resolving to a concrete mode from inputs) wired into `AGENTS.md` + `00`. No core protocol behavior changed; no tooling/deps.
 - **v1.1.3** (2026-06-23) — added **`09-spa-build-standards`** (conditional engineering layer: pinned stack — React 19/TS strict/Vite 6/Router 6/TanStack Query v5/Zustand 5/RHF 7+Zod/Axios 1/Tailwind 4/i18next/Vitest/ESLint+Prettier — folder structure, routing/HTTP/state/forms/error/i18n-RTL/auth/env/quality/alias/Tailwind/commits/deliverables/rejection list + Engineering Self-check); wired into `AGENTS.md` (trigger rules) and `07` (**Engineering Definition of Done**); `README`/`PROJECT-INSTALL` task-type split. No new design protocols, no product pages, no tooling, no deps. System version: **v1.1.3**.
 - **v1.1.2** (2026-06-23) — close runtime-testing gaps from the invoices live-test: **Greenfield/System-First mode** (no-reference build; System Fidelity collapses into it; Pixel QA skipped); **Demo Data rule** (synthetic, PII-free, labeled); **template-vs-consumer** boundary (no product manifests inside design-os; outputs → `examples/`/`playground/`/`scratch/`); **Preview Strategy** (real Tailwind vs documented shim) + **Preview runtime** in QA; **Token Var Exceptions** (sanctioned `style`+`var()` for z/duration/easing/size); Pagination classification fixed in `INDEX`; **QA-report location** rule. No new protocols, no product pages, no tooling. System version: **v1.1.2**.
 - **v1.1.1** (2026-06-23) — `tokens.css` completed to mirror `tokens.md` 1:1 (status triplets, shadows, motion, z, sizing, typography) + IBM Plex Sans Arabic as permanent default (all weights); `components/INDEX.md` strengthened (status/states/RTL-a11y/Tailwind usage); **Manual Self-check** added to `07`. System version: **v1.1.1**.

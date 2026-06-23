@@ -4,6 +4,14 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v1.1.4 — 2026-06-23 — add one-shot run layer (RUNBOOK + Auto Mode)
+Organizational/additive patch enabling "use design-os from GitHub and run end-to-end". **No CLI, no npm package, no GitHub Actions, no dependencies; no core protocol behavior changed; design-system untouched.**
+- **New `RUNBOOK.md`** — the full request→delivery pipeline (intake → detect task type → resolve Mode → read protocols → ask-vs-assume gate → manifest → component mapping → implement → QA → manual self-check → Definition of Done → deliver) + the copy-paste **one-shot prompt**.
+- **New `REQUEST.md`** — intake template (Task · Mode · Direction · Reference image · Output type · Notes · Constraints).
+- **New `OUTPUT.md`** — handover template (What was built · Files changed · Preview/runtime · Manifest location · QA report location · Definition of Done result · Known limitations · Next actions).
+- **Auto Mode** — a meta-mode: when `Mode: Auto` (or unspecified), resolve from inputs → Pixel Clone / System Fidelity / Greenfield / Strict-SSOT-Review / Improved / SPA-Build+Greenfield. Wired into `AGENTS.md` (modes table + resolution) and `00` (pick-a-mode). Re-states the Ask-vs-Assume rule (ask only when a gap blocks execution or changes a core decision; else proceed with documented assumptions).
+- **`README.md`** — **One-shot usage** section + `RUNBOOK`/`REQUEST`/`OUTPUT`/`playground` added to "What's inside".
+
 ## v1.1.3 — 2026-06-23 — add SPA build standards protocol
 Adds a **conditional engineering layer** (separate from the design protocols). No new design protocols, no product pages, no Vite project, no dependencies, no CLI/npm package, no token/component changes.
 - **New: `design-protocols/09-spa-build-standards.md`** — SPA Build Brief as mandatory standards: pinned stack (React 19 · TS strict · Vite 6 · React Router 6 · TanStack Query v5 · Zustand 5 · RHF 7 + Zod · Axios 1 · Tailwind 4 · i18next/react-i18next · Vitest · ESLint + Prettier), folder structure, naming, routing (`app.paths.ts`, lazy pages), HTTP (centralized Axios + TanStack Query), state (Zustand client-only), forms (RHF+Zod), error handling, i18n+RTL, auth abstraction, env handling, code quality, path alias `@/`, Tailwind conventions, commits, deliverables, rejection list, **Engineering Self-check**.

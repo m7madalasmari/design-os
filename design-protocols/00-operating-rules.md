@@ -19,8 +19,8 @@ Visual references + `design-system/` + `page-manifests/` are source-of-truth. Ne
 11. `page-manifests/<page>.md`
 
 ## Pick a mode (announce it before building)
-**Pixel Clone · System Fidelity (default) · Strict SSOT · Improved · Greenfield/System-First.**
-Detection phrases and per-mode behavior for the first four: see [`01-image-to-ui-replication.md`](01-image-to-ui-replication.md). Default is **System Fidelity** unless the user signals otherwise.
+**Auto (meta) · Pixel Clone · System Fidelity (default) · Strict SSOT · Improved · Greenfield/System-First.**
+Detection phrases and per-mode behavior for the first four: see [`01-image-to-ui-replication.md`](01-image-to-ui-replication.md). Default is **System Fidelity** unless the user signals otherwise. **Auto** resolves to one of the concrete modes from the inputs — resolution table + the request→delivery flow are in [`../RUNBOOK.md`](../RUNBOOK.md) and [`../AGENTS.md`](../AGENTS.md).
 
 **Greenfield / System-First** (defined here — there is no reference image, so it is *not* an image-replication mode):
 - **Use when:** no visual reference, no prior design, the task is built from a description only — "build a UI from inside the system."

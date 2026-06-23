@@ -7,6 +7,24 @@ Reusable, Tailwind-first **operating template** for building UI: an agent contra
 
 ---
 
+## One-shot usage
+Point an agent at this repo and let it run end-to-end — no need to re-explain the protocols:
+
+```txt
+Use design-os.
+Read RUNBOOK.md.
+Execute the request below end-to-end.
+
+Task:
+[اكتب المطلوب]
+
+Mode: Auto
+Direction: RTL Arabic
+Output: Working preview + manifest + QA
+```
+
+The agent detects the task type, resolves the **Mode** (`Auto`), reads the right protocols, writes a manifest, builds, runs QA, and **only finishes after Definition of Done** — then hands over per [`OUTPUT.md`](OUTPUT.md). Full flow: [`RUNBOOK.md`](RUNBOOK.md) · intake template: [`REQUEST.md`](REQUEST.md).
+
 ## Quick usage
 
 ```txt
@@ -44,9 +62,11 @@ Each project only needs to:
 ## What's inside
 ```
 AGENTS.md                 entry contract (read first)
-design-protocols/         00 rules · 01 image→ui · 02 ssot · 03 qa · 04 rtl · 05 polish · 07 done · 08 app-shell · examples/
+RUNBOOK.md                one-shot flow (request → delivery) · REQUEST.md (intake) · OUTPUT.md (handover)
+design-protocols/         00 rules · 01 image→ui · 02 ssot · 03 qa · 04 rtl · 05 polish · 07 done · 08 app-shell · 09 spa-build (conditional) · examples/
 design-system/            tokens.css (executable) · foundations/ · components/ (+INDEX) · rules/ · themes/ · VERSION · CHANGELOG
 page-manifests/           _TEMPLATE.md · _GOLDEN_EXAMPLE.md
+playground/               test fixtures (not product pages)
 ```
 
 ## The loop (every UI task)

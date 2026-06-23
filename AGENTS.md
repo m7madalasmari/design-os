@@ -44,6 +44,7 @@ Full rules: `00-operating-rules.md`. Arbitrary-value exception (Pixel Clone only
 
 | Mode | Priority on conflict | Use when |
 |------|----------------------|----------|
+| **Auto** *(meta)* | resolves to one of the below | you don't want to pick; the agent decides from the inputs (see *Auto Mode*) |
 | **Pixel Clone** | reference image **>** system | user wants an exact copy of the image |
 | **System Fidelity** *(default)* | match reference **within** the system | "implement / build this design" |
 | **Strict SSOT** | system **>** reference | system consistency matters most |
@@ -52,6 +53,20 @@ Full rules: `00-operating-rules.md`. Arbitrary-value exception (Pixel Clone only
 
 Default is **System Fidelity** unless the user says otherwise. Announce the chosen mode before building.
 **No visual reference?** System Fidelity *collapses into* **Greenfield / System-First**: the design system, component inventory, and UX clarity become the contract — priority **user intent → design system → component inventory → UX clarity → visual-polish rules**. **Pixel QA does not apply unless a reference image exists.**
+
+### Auto Mode (default for one-shot runs)
+If the request says `Mode: Auto` (or doesn't specify a mode), resolve it from the inputs:
+
+| Inputs | Resolved mode |
+|---|---|
+| Image **+** "match / copy exactly" | **Pixel Clone** |
+| Image **+** "apply within the system" | **System Fidelity** |
+| No image **+** description only | **Greenfield / System-First** |
+| Review only (no build) | **Strict SSOT — Review** (audit; list every conflict) |
+| "Improve / enhance" an existing design | **Improved** |
+| Build a full app | **SPA Build Standards (`09`) + Greenfield** |
+
+Announce the resolved mode before building. **Ask only when a gap blocks implementation or changes a core decision; otherwise proceed with documented assumptions** (Ask-vs-Assume, [`00`](design-protocols/00-operating-rules.md)). For the full request→delivery flow and the one-shot prompt, see [`RUNBOOK.md`](RUNBOOK.md) (intake [`REQUEST.md`](REQUEST.md) · delivery [`OUTPUT.md`](OUTPUT.md)).
 
 ## Default Workflow
 
