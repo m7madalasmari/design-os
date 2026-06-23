@@ -56,6 +56,14 @@ body{background:var(--color-bg-base);color:var(--color-text-primary);
   font-family:var(--font-family-base);line-height:var(--line-height-base);
   -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 
+/* native-control reset (v1.1.6 rule: no native/black borders, no inner native input border).
+   element selectors stay below utility classes, so .border/.bg-*/.text-* still win. */
+button,input,select,textarea{appearance:none;-webkit-appearance:none;font:inherit;color:inherit;background:none}
+button{border:0;margin:0;padding:0}
+input,select,textarea{border:0}
+::placeholder{color:var(--color-text-tertiary);opacity:1}
+input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+
 /* layout */
 .mx-auto{margin-inline:auto}.max-w-5xl{max-width:64rem}
 .flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.block{display:block}.hidden{display:none}
@@ -262,7 +270,7 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
       <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-primary-foreground font-medium text-sm transition-colors hover:bg-primary-hover focus-visible:ring cursor-pointer">إجراء أساسي</button><span class="cap">primary</span></div>
       <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-card border border-border text-foreground font-medium text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">ثانوي</button><span class="cap">secondary</span></div>
       <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-transparent text-foreground font-medium text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">ثالثي</button><span class="cap">tertiary</span></div>
-      <div class="cell"><button type="button" aria-label="إعدادات" class="inline-flex items-center justify-center size-10 min-h-11 rounded-md bg-card border border-border text-foreground transition-colors hover:bg-hover focus-visible:ring cursor-pointer"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="2.5"/><path d="M10 3v2M10 15v2M3 10h2M15 10h2" stroke-linecap="round"/></svg></button><span class="cap">icon button</span></div>
+      <div class="cell"><button type="button" aria-label="المزيد" class="inline-flex items-center justify-center size-10 min-h-11 rounded-md bg-card border border-border text-foreground transition-colors hover:bg-hover focus-visible:ring cursor-pointer"><svg class="size-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button><span class="cap">icon button</span></div>
     </div>
     <div class="row">
       <div class="cell"><button type="button" disabled class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-disabled text-disabled font-medium text-sm cursor-not-allowed">معطّل</button><span class="cap">disabled</span></div>
