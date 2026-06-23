@@ -25,7 +25,7 @@ A request may come as: the one-shot prompt above, a filled [`REQUEST.md`](REQUES
 2. **Detect task type:** Design (page/component/redesign) · SPA build (Vite/React app/handover/Nx) · Review · Playground/demo. SPA triggers: "build app", "create SPA", "Vite React", "production-ready", "handover", "Nx monorepo", "team standards", "implement as real app".
 3. **Resolve the Mode** (if `Auto`, use the table below). Announce it.
 4. **Read the right protocols:**
-   - Design: `00 → 01 → 02 → 03 → 04 → 05 → 07 → 08` → `design-system/` → manifest.
+   - Design: `00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08` → `design-system/` → manifest.
    - SPA build: the above **+ `09-spa-build-standards.md`** (pinned stack + structure).
 5. **Ask-vs-Assume gate** (`00`): ask **only** when a gap *blocks* implementation or changes a *core* decision (unreadable core text, cropped critical area, low-quality image under Pixel Clone, mode genuinely ambiguous, a core component/state that can't be reasonably assumed). Otherwise **proceed with documented assumptions** (label each `observed / inferred / approximate / unknown`).
 6. **Write the manifest** from `page-manifests/_TEMPLATE.md`, **before** implementing.
@@ -33,7 +33,7 @@ A request may come as: the one-shot prompt above, a filled [`REQUEST.md`](REQUES
    - **Inside the design-os template repo:** `playground/<name>/manifest.md` (fixtures only — never product manifests here).
 7. **Map components** to `design-system/components/INDEX.md`. A missing component/token is documented in `design-system/` **first**, then used. No new component without checking INDEX.
 8. **Implement** — Tailwind-first, semantic token classes, logical RTL utilities, WCAG AA. No arbitrary values (Pixel Clone excepted, documented); token-only `var()` exceptions documented (`02`). SPA tasks also obey `09`.
-9. **QA** (`03`): System QA + RTL QA (`04`) + Visual-Polish QA (`05`). **Pixel QA only if a reference image exists.** SPA tasks also run the **Engineering DoD** gates (`07`).
+9. **QA** (`03`): System QA + RTL QA (`04`) + **Accessibility QA (`06`, every interface)** + Visual-Polish QA (`05`). **Pixel QA only if a reference image exists.** SPA tasks also run the **Engineering DoD** gates (`07`).
 10. **Manual self-check** (`07`): arbitrary values · directional RTL utilities · `text-left/right` · undocumented components · out-of-scope edits · manifest+QA present · token-var exceptions documented.
 11. **Definition of Done gate** (`07`): the task is **not done** until every box passes. Report any unchecked box and why — never present partial work as complete.
 12. **Deliver** per [`OUTPUT.md`](OUTPUT.md): what was built · files changed · preview/runtime · manifest location · QA location · DoD result · known limitations · next actions.

@@ -10,11 +10,12 @@ You are working on a UI project where **visual references, design-system rules, 
 4. `design-protocols/03-pixel-qa.md`
 5. `design-protocols/04-arabic-rtl-ux.md`
 6. `design-protocols/05-visual-polish-and-motion.md`
-7. `design-protocols/07-definition-of-done.md`
-8. `design-protocols/08-app-shell-and-routing-consistency.md`
-9. `design-protocols/09-spa-build-standards.md` — **conditional: SPA build tasks only** (see *Engineering layer* below)
-10. `design-system/` (README → foundations → components → rules → themes)
-11. `page-manifests/` (the contract for the specific page)
+7. `design-protocols/06-accessibility.md` — a11y baseline (WCAG AA), runs on every task
+8. `design-protocols/07-definition-of-done.md`
+9. `design-protocols/08-app-shell-and-routing-consistency.md`
+10. `design-protocols/09-spa-build-standards.md` — **conditional: SPA build tasks only** (see *Engineering layer* below)
+11. `design-system/` (README → foundations → components → rules → themes)
+12. `page-manifests/` (the contract for the specific page)
 
 If a referenced file is missing, say so — do not guess its contents.
 

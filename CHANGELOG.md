@@ -4,6 +4,14 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v1.1.7 — 2026-06-23 — local stability and accessibility baseline
+Make design-os stable and usable locally before any GitHub publish. No remote/push; no product pages; no tooling/deps.
+- **New `design-protocols/06-accessibility.md`** — WCAG-AA baseline (semantic HTML · keyboard/focus order/focus-visible/focus-management · focus-trap for modal/drawer · ARIA roles/names/states · form validation & errors · contrast · reduced motion · screen-reader · accessible loading · alerts/toasts · accessible tables · RTL & icon a11y · do/don't · QA checklist). **Fills the protocol-sequence gap → `00–09` now complete.** Runs on **every** task.
+- **Linked `06`** into `AGENTS.md` (read order), `RUNBOOK.md` (read + QA steps), `00` (read order), `07` (Accessibility QA in Definition of Done), `design-protocols/README.md` (read order + files + changelog).
+- **New `playground/design-system-preview/coverage.md`** — gallery coverage audit: 13/27 displayed · 3 partial · 14 missing · 2 deferred + expansion priorities.
+- **New `design-system/components/BACKLOG.md`** — 12 missing components (switch · radio · textarea · action-menu · breadcrumb · chip · progress · avatar · accordion · tooltip/popover · date-picker · data-viz) with why / priority / standalone-vs-within / dependencies / gallery.
+- **New `LOCAL-STABILITY.md`** — definition + checklist for "locally ready"; current verdict: **locally ready** with one tracked caveat (partial gallery coverage).
+
 ## v1.1.6 — 2026-06-23 — visual foundation + icon system
 Strengthen the visual foundation the gallery surfaced. No general protocols changed beyond a light `09` icon link; no product pages; **no real deps** (Lucide standardized for real projects only; preview uses an inline-SVG Lucide-style shim); no OCR/screenshot/GitHub/CLI/npm.
 - **Font** — standard IBM Plex Sans Arabic fallback chain in tokens + `typography.md` rules (Arabic must use Plex; `system-ui` first only in preview, documented; no unlicensed fonts committed).

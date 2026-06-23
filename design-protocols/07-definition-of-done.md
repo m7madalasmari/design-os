@@ -13,6 +13,7 @@
   - **Pixel QA** — when there is a reference image.
   - **Design System QA** — System Fidelity / Strict SSOT.
   - **RTL QA** — Arabic / bilingual interfaces ([`04`](04-arabic-rtl-ux.md)).
+  - **Accessibility QA** — **every interface** (the [`06`](06-accessibility.md) checklist; WCAG AA).
   - **Visual Polish QA** — any interactive interface ([`05`](05-visual-polish-and-motion.md) table in [`03`](03-pixel-qa.md)).
   - **Greenfield / System-First** (no reference) → **skip Pixel QA**; run Design-System + RTL + Visual-Polish QA.
 - [ ] **Deviations / assumptions** documented and labeled.

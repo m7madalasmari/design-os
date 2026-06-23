@@ -12,11 +12,12 @@ Visual references + `design-system/` + `page-manifests/` are source-of-truth. Ne
 4. `03-pixel-qa.md`
 5. `04-arabic-rtl-ux.md`
 6. `05-visual-polish-and-motion.md`
-7. `07-definition-of-done.md`
-8. `08-app-shell-and-routing-consistency.md`
-9. `09-spa-build-standards.md` — **conditional: SPA build tasks only** (Vite/React/handover/Nx; see `AGENTS.md` triggers)
-10. `design-system/README.md` → foundations → components → rules → themes
-11. `page-manifests/<page>.md`
+7. `06-accessibility.md` — a11y baseline (WCAG AA), every task
+8. `07-definition-of-done.md`
+9. `08-app-shell-and-routing-consistency.md`
+10. `09-spa-build-standards.md` — **conditional: SPA build tasks only** (Vite/React/handover/Nx; see `AGENTS.md` triggers)
+11. `design-system/README.md` → foundations → components → rules → themes
+12. `page-manifests/<page>.md`
 
 ## Pick a mode (announce it before building)
 **Auto (meta) · Pixel Clone · System Fidelity (default) · Strict SSOT · Improved · Greenfield/System-First.**
