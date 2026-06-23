@@ -15,12 +15,15 @@
 ## Sections
 Foundations · Buttons · Inputs · Filter Bar · Status Badges · Table · Empty States · Feedback/Polish · RTL Examples.
 
-## Issues surfaced (see manifest for detail)
-- **Spinner**, **inline Alert**, **Skeleton** are used but **not documented as standalone components** → flagged for a future spec pass.
-- **Pagination** = composition-pattern needing a spec; **Tooltip/Popover** & **Data-viz** = known INDEX gaps (not renderable here).
-- **Select** open-menu + keyboard contract is thin.
+## Issues surfaced → closed in v1.1.5
+The 5 component gaps this gallery surfaced are now resolved (the gallery renders their states):
+- **Spinner · Skeleton · Alert** — now documented standalone components.
+- **Pagination** — graduated from composition → documented component.
+- **Select** — strengthened (open/option-list/keyboard/loading/empty-options + close behavior).
+
+Still deferred (not renderable here): **Tooltip/Popover** & **Data-viz** (INDEX "Known gaps").
 
 ## Test result
 - **Test:** Design System Preview — Greenfield · **Result:** ✅ Passed (gallery renders; gaps documented)
 - **DoD:** ✅ Passed (Pixel QA N/A) · **Arbitrary values:** Zero (component markup) · **RTL:** ✅ Passed · **Manual self-check:** ✅ Passed
-- **Design-system updates:** None made (issues logged only, per the fixture's purpose).
+- **Design-system updates:** the 5 surfaced gaps were closed in **v1.1.5** (specs added/strengthened); gallery updated to render the new states.

@@ -4,6 +4,15 @@
 
 ---
 
+## v1.1.5 — 2026-06-23
+Strengthen core component specs (spec pass closing the gaps the Design System Preview fixture surfaced). No protocols (00–09) changed, no product pages, no tooling/deps; no tokens changed.
+- **New components:** `spinner.md`, `skeleton.md`, `alert.md` — *what:* full standalone specs (Purpose · When to/not · Anatomy · Variants · Sizes · States · RTL · a11y · Tailwind · Tokens · Visual acceptance · Anti-patterns · Examples). *why:* gallery surfaced them as undocumented primitives. *re-QA:* none (additive; spec-only, no code).
+- **`pagination.md` — graduated** from composition-pattern → documented component (prev/next · numbered · current · disabled · result summary · RTL chevron mirroring · vs infinite-scroll/load-more).
+- **`select.md` — strengthened:** trigger · open · option list · selected · keyboard · disabled · error · loading · empty-options · close behavior · RTL icon placement · focus/ring.
+- **`components/INDEX.md`:** new *Feedback & loading* table (Spinner/Skeleton/Alert); Pagination added to *Data*; Select states expanded; Pagination removed from Compositions/Known-gaps. Tooltip/Popover & Data-viz marked **deferred**.
+- **`README.md`:** component count 15 → 19; added Feedback & loading + Pagination.
+- *re-QA:* none required for existing pages (additive specs). Playground `design-system-preview` gallery+manifest updated to render the new states (fixture only).
+
 ## v1.1.2 — 2026-06-23
 Patch (docs/clarification). No tokens/components changed behaviorally; no product pages.
 - **components/INDEX.md** — *what:* resolved the Pagination double-listing → single `composition-pattern` (`needs: component-spec`). *why:* the same item was listed as both a composition and a gap (found in the invoices test). *re-QA:* none.

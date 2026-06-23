@@ -4,6 +4,15 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v1.1.5 — 2026-06-23 — strengthen core component specs
+Design-system spec pass closing the gaps the Design System Preview fixture surfaced. No protocols (00–09) changed, no product pages, no fixtures changed except the preview, no tooling/deps. Tooltip/Popover & Data-viz intentionally **deferred**.
+- **New specs:** **Spinner · Skeleton · Alert** — standalone, 14-section (Purpose → Examples).
+- **Pagination** — graduated from composition → documented component.
+- **Select** — strengthened (open · option list · keyboard · disabled · error · loading · empty-options · close behavior · RTL).
+- **`components/INDEX.md` + `design-system/README.md`** — new *Feedback & loading* group; Pagination moved to *Data*; count 15 → 19.
+- **`playground/design-system-preview`** — gallery + manifest updated to render the new states and mark the 5 gaps **closed**.
+- design-system version → **v1.1.5**. Detail: [`design-system/CHANGELOG.md`](design-system/CHANGELOG.md).
+
 ## v1.1.4 — 2026-06-23 — add one-shot run layer (RUNBOOK + Auto Mode)
 Organizational/additive patch enabling "use design-os from GitHub and run end-to-end". **No CLI, no npm package, no GitHub Actions, no dependencies; no core protocol behavior changed; design-system untouched.**
 - **New `RUNBOOK.md`** — the full request→delivery pipeline (intake → detect task type → resolve Mode → read protocols → ask-vs-assume gate → manifest → component mapping → implement → QA → manual self-check → Definition of Done → deliver) + the copy-paste **one-shot prompt**.

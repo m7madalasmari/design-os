@@ -1,6 +1,6 @@
 # Design System — Version
 
-**Current: v1.1.2** (2026-06-23)
+**Current: v1.1.5** (2026-06-23)
 
 Covers the design system (`foundations/`, `components/`, `rules/`, `themes/`, `tokens.css`) and the agent protocol layer (`design-protocols/` v1.1).
 

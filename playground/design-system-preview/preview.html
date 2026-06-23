@@ -97,6 +97,7 @@ body{background:var(--color-bg-base);color:var(--color-text-primary);
 .border-t{border-block-start-width:1px;border-style:solid;border-color:var(--color-border-subtle)}
 .border-border{border-color:var(--color-border-default)}.border-strong{border-color:var(--color-border-strong)}
 .border-danger{border-color:var(--color-danger-border)}.border-focus{border-color:var(--color-focus-ring)}
+.border-info{border-color:var(--color-info-border)}.border-success{border-color:var(--color-success-border)}.border-warning{border-color:var(--color-warning-border)}.border-destructive{border-color:var(--color-danger-border)}
 
 /* radius / shadow */
 .rounded-none{border-radius:0}.rounded-sm{border-radius:var(--radius-sm)}.rounded-md{border-radius:var(--radius-md)}
@@ -119,7 +120,7 @@ body{background:var(--color-bg-base);color:var(--color-text-primary);
 .focus-visible\:ring:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
 .focus-within\:ring:focus-within{box-shadow:var(--shadow-focus)}
 .ring{box-shadow:var(--shadow-focus)}        /* forced-focus demo */
-.z-sticky{z-index:var(--z-sticky)}.sticky{position:sticky}.top-0{inset-block-start:0}
+.z-sticky{z-index:var(--z-sticky)}.sticky{position:sticky}.top-0{inset-block-start:0}.rtl-flip{transform:scaleX(-1)}
 
 /* table */
 table{border-collapse:collapse}
@@ -242,7 +243,7 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
       <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-primary-foreground font-medium text-sm transition-colors hover:bg-primary-hover focus-visible:ring cursor-pointer">متوسط</button><span class="cap">md (h-10)</span></div>
       <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-primary-foreground font-medium text-sm transition-colors hover:bg-primary-hover focus-visible:ring cursor-pointer"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke-linecap="round"/></svg>أضف عنصرًا</button><span class="cap">icon+label (icon at inline-start → right)</span></div>
     </div>
-    <span class="note">* Loading + Spinner: لا يوجد spec مستقل لـSpinner في INDEX — معروض من التوكنز، موثّق كفجوة.</span>
+    <span class="cap">Loading + Spinner: موثّقان الآن — spinner.md (v1.1.5). عرض ثابت للزر، يحترم reduced-motion.</span>
   </section>
 
   <!-- ============ 3. INPUTS ============ -->
@@ -370,7 +371,19 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
           </div>
         </div>
       </div>
-      <span class="cap">Pagination = composition موثّقة (counter + prev/next)، ليست مكوّنًا مستقلًا.</span>
+      <span class="cap">Pagination = مكوّن موثّق الآن (pagination.md · v1.1.5) — counter + prev/next + numbered + current.</span>
+    </div>
+    <div class="grp"><h3>Pagination — مرقّم (numbered) + current + chevrons معكوسة RTL</h3>
+      <nav class="flex items-center gap-2" aria-label="ترقيم الصفحات">
+        <button type="button" aria-disabled="true" class="inline-flex items-center gap-1 h-8 px-3 rounded-md bg-card border border-border text-sm text-disabled cursor-not-allowed"><svg class="size-4 rtl-flip" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 4-4 4 4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>السابق</button>
+        <button type="button" aria-current="page" class="inline-flex items-center justify-center h-8 px-3 rounded-md bg-primary-subtle text-primary text-sm font-medium focus-visible:ring cursor-pointer"><bdi class="tabular-nums">1</bdi></button>
+        <button type="button" class="inline-flex items-center justify-center h-8 px-3 rounded-md bg-card border border-border text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer"><bdi class="tabular-nums">2</bdi></button>
+        <button type="button" class="inline-flex items-center justify-center h-8 px-3 rounded-md bg-card border border-border text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer"><bdi class="tabular-nums">3</bdi></button>
+        <span class="text-muted-foreground" aria-hidden="true">…</span>
+        <button type="button" class="inline-flex items-center justify-center h-8 px-3 rounded-md bg-card border border-border text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer"><bdi class="tabular-nums">12</bdi></button>
+        <button type="button" class="inline-flex items-center gap-1 h-8 px-3 rounded-md bg-card border border-border text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">التالي<svg class="size-4 rtl-flip" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 4 4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </nav>
+      <span class="cap">current = aria-current=page + accent-subtle · «السابق» معطّل في الصفحة الأولى · chevrons معكوسة (rtl-flip) · أرقام tabular bidi</span>
     </div>
     <div class="grp"><h3>صف تحميل (loading skeleton)</h3>
       <div class="bg-card border border-border rounded-lg shadow-sm p-4 flex flex-col gap-3" aria-hidden="true">
@@ -422,13 +435,26 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
     <div class="row">
       <div class="cell"><button type="button" class="inline-flex items-center h-10 px-4 rounded-md bg-card border border-focus text-foreground font-medium text-sm ring">حلقة تركيز</button><span class="cap">focus ring (forced)</span></div>
       <div class="cell"><button type="button" class="inline-flex items-center h-10 px-4 rounded-md bg-card border border-border text-foreground font-medium text-sm transition-colors hover:bg-hover cursor-pointer">مرّر فوقي</button><span class="cap">hover state</span></div>
-      <div class="cell" style="min-width:180px"><div class="flex flex-col gap-2 w-full"><span class="skeleton animate-pulse" style="width:90%"></span><span class="skeleton animate-pulse" style="width:60%"></span></div><span class="cap">skeleton*</span></div>
+      <div class="cell"><div class="flex items-center gap-3 text-foreground"><span class="spinner animate-spin size-4" aria-hidden="true"></span><span class="spinner animate-spin size-5" aria-hidden="true"></span><span class="spinner animate-spin size-6" aria-hidden="true"></span></div><span class="cap">spinner sm/md/lg</span></div>
     </div>
-    <div class="flex items-start gap-2 p-3 rounded-md bg-info-soft text-info" style="border:1px solid var(--color-info-border)" role="status">
-      <svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 9v4M10 6.5h.01" stroke-linecap="round"/><circle cx="10" cy="10" r="7"/></svg>
-      <p class="text-sm">تنبيه معلوماتي مضمّن (inline alert).</p>
+
+    <div class="grp"><h3>Skeleton — الأنواع</h3>
+      <div class="row">
+        <div class="cell" style="min-width:160px"><div class="flex flex-col gap-2 w-full"><span class="skeleton animate-pulse" style="width:90%"></span><span class="skeleton animate-pulse" style="width:60%"></span></div><span class="cap">text-line</span></div>
+        <div class="cell"><span class="skeleton animate-pulse rounded-full size-10"></span><span class="cap">avatar</span></div>
+        <div class="cell"><div class="flex items-center gap-2" style="width:200px"><span class="skeleton animate-pulse rounded-full size-10"></span><div class="flex flex-col gap-2 flex-1"><span class="skeleton animate-pulse" style="width:80%"></span><span class="skeleton animate-pulse" style="width:50%"></span></div></div><span class="cap">card (avatar + lines)</span></div>
+      </div>
     </div>
-    <span class="note">* Skeleton + Alert المضمّن: لا spec مستقل لهما في INDEX (الموثّق: Toast + empty-state error) — معروضان من التوكنز، موثّقان كفجوة.</span>
+
+    <div class="grp"><h3>Alert — الأنواع (info / success / warning / danger)</h3>
+      <div class="flex flex-col gap-2">
+        <div class="flex items-start gap-2 p-3 rounded-md border bg-info-soft text-info border-info" role="status"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 9v4M10 6.5h.01" stroke-linecap="round"/><circle cx="10" cy="10" r="7"/></svg><p class="text-sm flex-1">معلومة: حسابك قيد المراجعة.</p></div>
+        <div class="flex items-start gap-2 p-3 rounded-md border bg-success-soft text-success border-success" role="status"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 10 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="10" r="7"/></svg><p class="text-sm flex-1">نجاح: حُفظت الإعدادات.</p></div>
+        <div class="flex items-start gap-2 p-3 rounded-md border bg-warning-soft text-warning border-warning" role="status"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 7v4M10 14h.01M10 3 3 16h14L10 3Z" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="text-sm flex-1">تحذير: بعض الحقول تحتاج مراجعة.</p></div>
+        <div class="flex items-start gap-2 p-3 rounded-md border bg-destructive-soft text-destructive border-destructive" role="alert"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 6v4.5M10 13.5h.01" stroke-linecap="round"/><circle cx="10" cy="10" r="6.5"/></svg><p class="text-sm flex-1">خطأ: تعذّر حفظ التغييرات.</p><button type="button" class="text-sm font-medium hover:underline focus-visible:ring cursor-pointer">أعد المحاولة</button></div>
+      </div>
+      <span class="cap">Alert ثابت inline (≠ Toast المؤقّت) · الحرج داخل role=alert · أيقونة+نص لا لون وحده · موثّق في alert.md</span>
+    </div>
     <div class="grp"><h3>عمق الأسطح — Surface depth</h3>
       <div class="row">
         <div class="cell"><div class="box bg-card border border-border rounded-md"></div><span class="cap">surface + border</span></div>

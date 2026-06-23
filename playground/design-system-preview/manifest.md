@@ -41,20 +41,23 @@ Some states can't show statically without interaction, so they are **forced** fo
 ## Gallery scaffolding (not component values)
 The gallery chrome uses a scaffolding style block + a few inline `style=` for layout only: swatch backgrounds via `var(--token)`, `grid-template-columns`, `max-height` (sticky demo), `min-width`/example widths, skeleton/bar widths. **These are preview layout, not component styling** — component examples themselves use semantic token classes only (zero arbitrary Tailwind values; verified by grep).
 
-## Component issues found  *(documented, NOT fixed — per task)*
-1. **Spinner — undocumented.** Button/Select `loading` states reference "دوّار" but there is **no Spinner spec** in INDEX. Rendered from tokens here. → needs a spec (or graduate from a primitive).
-2. **Inline Alert/banner — undocumented.** Feedback "Alert" has no standalone spec; only **Toast** (`z-toast`) and **empty-state `error`** (`role=alert`) exist. Rendered inline here as `role=status`. → decide: is inline alert a Toast variant or its own component?
-3. **Skeleton — not a standalone component.** Described only inside `table.md` loading; reused for inputs/cards here. → consider a documented Skeleton primitive.
-4. **Pagination — composition only.** Already flagged `composition-pattern · needs: component-spec` (v1.1.2); the gallery confirms it behaves like a component (counter + prev/next) and would benefit from a real spec.
-5. **Tooltip / Popover & Data-viz — known INDEX gaps.** Not renderable in the gallery (Select/Table reference tooltip-on-hover). Out of this fixture's scope; tracked in INDEX "Known gaps".
-6. **Select open-menu / keyboard.** Spec describes states but the open-menu structure + keyboard contract are light; the gallery's open menu is an inferred rendering → spec could be stronger (focus order, type-ahead, checkmark placement).
+## Component gaps — found here → CLOSED in v1.1.5
+The 5 gaps this fixture surfaced are now resolved by documented specs (the gallery renders their states):
+1. **Spinner** — ✅ documented ([`spinner.md`](../../design-system/components/spinner.md)); gallery shows sizes sm/md/lg + in-button.
+2. **Inline Alert** — ✅ documented ([`alert.md`](../../design-system/components/alert.md)) with Alert-vs-Toast distinction; gallery shows info/success/warning/danger (+ critical `role=alert`).
+3. **Skeleton** — ✅ documented ([`skeleton.md`](../../design-system/components/skeleton.md)); gallery shows text-line / avatar / card.
+4. **Pagination** — ✅ graduated from composition → component ([`pagination.md`](../../design-system/components/pagination.md)); gallery shows numbered + current + disabled + RTL-mirrored chevrons.
+5. **Select** — ✅ strengthened ([`select.md`](../../design-system/components/select.md)): open/option-list/selected/keyboard/disabled/error/loading/empty-options + close behavior + RTL icon placement.
+
+## Deferred gaps (still open, intentionally)
+- **Tooltip / Popover** — referenced by Select/Table; no spec yet (INDEX "Known gaps").
+- **Data visualization** — chart/sparkline/legend/axis; out of scope for now.
 
 ## Are component states sufficient?
-- **Sufficient:** Button, Input, Checkbox, Status Badge, Empty State, Filter Bar, Table — each has the states the gallery needed and they render coherently.
-- **Thin / needs more:** Select (open-menu + keyboard + loading), and the **undocumented** Spinner/Alert/Skeleton primitives.
+**Yes** for the documented set — Button, Input, Checkbox, Status Badge, Empty State, Filter Bar, Table, **Spinner, Skeleton, Alert, Pagination, Select** all render their required states coherently in the gallery. No component now has a missing/thin spec among those shown. Remaining work is the two deferred gaps above (Tooltip/Popover, Data-viz), which the gallery cannot render.
 
-## Which components need a stronger spec?
-Priority: **Spinner** (missing), **Alert vs Toast** (overlap/missing), **Skeleton** (implicit), **Pagination** (composition→spec), **Select** (open/keyboard detail). None blocked this fixture; logged for a future, separate spec pass — **not changed now**.
+## Which components still need a stronger spec?
+None among those rendered (all closed in v1.1.5). Future spec passes: **Tooltip/Popover** and **Data-viz** (deferred).
 
 ## Out of Scope
 Fixing any spec/token/component; Tooltip/Popover/Data-viz; real Tailwind build; brand theme; interactions/keyboard logic.
@@ -64,5 +67,5 @@ Fixing any spec/token/component; Tooltip/Popover/Data-viz; real Tailwind build; 
 - RTL QA (`04`): `dir=rtl` ✅ · logical utilities only (`ms/me/ps/pe`, `text-start/end`) ✅ · numerals/ids in `<bdi>` ✅ · icons inline-start ✅ · zero directional utilities ✅.
 - Tailwind: semantic classes only · **zero arbitrary values in component markup** (grep ✅) · scaffolding isolated · token-var exceptions documented.
 - Visual polish: focus ring / hover / skeleton / surface depth present; motion respects `prefers-reduced-motion`.
-- **Design-system update required? No** (gaps documented, nothing changed — per task).
+- **Design-system update:** the 5 gaps this gallery surfaced were **closed in v1.1.5** (Spinner/Skeleton/Alert documented, Pagination graduated, Select strengthened); the gallery was then updated to render their states.
 - **DoD:** all boxes ✅ (Pixel QA N/A).

@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Button](button.md) | ✅ / ✗ | hover · focus · active · disabled · loading | one primary; real `<button>`; 44px target; `aria-label` if icon-only | `inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-primary-foreground focus-visible:ring-2` |
 | [Input](input.md) | ✅ / ✗ | default · hover · focus · filled · error · disabled · readonly | label above; `dir=ltr` for email/url/number; icon `inline-end` | `h-10 px-3 bg-card border border-border rounded-md focus-visible:ring-2` |
-| [Select](select.md) | ✅ / ✗ | open · selected · error · disabled · loading | arrow `inline-end`; menu `z=var(--z-dropdown)`; keyboard | trigger like Input; menu `bg-popover shadow-md` |
+| [Select](select.md) | ✅ / ✗ | default · hover · focus · open · selected · option-hover · disabled · error · loading · **empty-options** | arrow `inline-end`, check `inline-start`; `role=combobox`+`listbox`; full keyboard (↑↓/Home/End/type-ahead/Esc); returns focus on close | trigger like Input; menu `bg-popover shadow-md z=var(--z-dropdown)`; selected `bg-primary-subtle` |
 | [Checkbox](checkbox.md) | ✅ / ✗ | checked · indeterminate · focus · error · disabled | box `inline-start`; 44px hit; check not mirrored | `size-5 rounded-sm border-border-strong`; checked `bg-primary` |
 | [Rating](rating.md) | ✅ / ✗ | empty · hover · selected · focus · readonly · error | fills from `inline-start` (right); `aria-valuenow` | `inline-flex gap-1`; filled `text-primary`, empty `text-border-strong` |
 | [Scale](scale.md) | ✅ / ✗ | default · selected · hover · focus · error · disabled | 1→N from right; Latin numerals; `role=radiogroup` | `inline-flex gap-1`; item `size-8 rounded-sm`; selected `bg-primary text-primary-foreground` |
@@ -31,6 +31,14 @@
 | [Empty State](empty-state.md) | ✅ / ✗ | first-use · no-results · error · no-permission | **title is a heading** (not `<p>`); icon by context | `flex flex-col items-center text-center gap-2 py-12` |
 | [Filter Bar](filter-bar.md) | ✅ / ✗ | default · active · loading · no-results | search `inline-start`; clear `inline-end` | `flex flex-wrap gap-2`; chips `rounded-sm` |
 | [Status Badge](status-badge.md) | ✅ / ✗ | success · warning · danger · info · neutral | dot + text (not color alone); not mirrored | `inline-flex gap-1 px-2 py-0.5 rounded-md text-xs`; `text-success bg-success-soft` |
+| [Pagination](pagination.md) | ✅ / ✗ | default · current · disabled · hover · focus · ellipsis | `nav aria-label`; `aria-current=page`; chevron **mirrored** in RTL; numbers tabular+bidi | `flex items-center gap-2`; btn `h-8 px-3 rounded-md border`; current `bg-primary-subtle text-primary` |
+
+## Feedback & loading
+| Component | Spec / Impl | Required states | RTL / a11y | Expected Tailwind usage |
+|---|---|---|---|---|
+| [Spinner](spinner.md) | ✅ / ✗ | spinning (reduced-motion → static) | `aria-hidden` if decorative, `role=status`+label if meaningful; not mirrored | `size-5 border-2 rounded-full animate-spin motion-reduce:animate-none` |
+| [Skeleton](skeleton.md) | ✅ / ✗ | loading (pulse); variants: text-line · avatar · card · table-row · block | placeholders `aria-hidden` + parent `aria-busy`; not final content | `bg-muted rounded-sm animate-pulse motion-reduce:animate-none` |
+| [Alert](alert.md) | ✅ / ✗ | info · success · warning · danger; static · dismissible · with-action | `role=alert` (critical) / `role=status`; icon+text (not color alone); close `inline-end` | `flex items-start gap-2 p-3 rounded-md border bg-info-soft text-info border-info-border` |
 
 ## Layers & navigation
 | Component | Spec / Impl | Required states | RTL / a11y | Expected Tailwind usage |
@@ -51,9 +59,9 @@
 - **Description list (`<dl>`)** inside Card — key/value facts.
 - **Brand highlight mark** — brand background behind text (themes).
 - **Numbered feature list** (01/02 …) — section-header + grid.
-- **Pagination** — `status: composition-pattern` · `needs: component-spec`. Built from Button as counter + prev/next (e.g. «عرض 1–20 من 240»). Until a spec exists, use the composition; do **not** treat it as a documented component.
+- *(Pagination graduated to a documented component in v1.1.5 — see Data above.)*
 
 ## Known gaps (missing entirely — `Spec ✗`)
-- **Data visualization** (chart · sparkline · legend · axis · tooltip-on-hover) — not in the library.
-- **Tooltip / Popover** — referenced by Select/Table, no spec yet.
-> Pagination is **not** listed here — it is a `composition-pattern` (`needs: component-spec`) tracked under **Compositions** above, to avoid double-listing.
+- **Data visualization** (chart · sparkline · legend · axis · tooltip-on-hover) — not in the library. *(deferred)*
+- **Tooltip / Popover** — referenced by Select/Table, no spec yet. *(deferred)*
+> Closed in v1.1.5: **Spinner · Skeleton · Alert** (now documented) and **Pagination** (graduated from composition → component). Remaining gaps above are intentionally deferred.
