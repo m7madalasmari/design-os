@@ -4,6 +4,15 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v1.1.9 — 2026-06-23 — docs consistency (full-review fixes)
+Documentation-consistency pass from a full review. No spec/token/protocol behavior changed; no design-system version bump (specs unchanged at v1.1.6).
+- **Component count fixed 20 → 27** — `design-system/README.md` (count + added the 7 missing from its list: rating · scale · stepper · form · nav-bar · hero · site-footer) and root `VERSION.md` bundle line. Now matches INDEX / coverage / gallery / CHANGELOG.
+- **`LOCAL-STABILITY.md`** — "core components covered" flipped to `[x]` **27/27** (was a stale `[~]` 13/27 after v1.1.8); verdict + note updated (no partial-coverage caveat).
+- **`design-system/README.md`** — removed stale "v0.1 / no brand identity yet" note → points to VERSION/CHANGELOG + notes real themes exist.
+- **`design-system/VERSION.md`** — protocol-layer label `v1.1` → `00–09`; clarified it tracks design-system changes and may lag the OS release (by design).
+- **Gallery `preview.html`** — renumbered sections **1–14 with Latin numerals** (was inconsistent: unnumbered new sections + Arabic-Indic numerals mixing with Latin data — also fixes a one-numeral-system violation).
+- Verified clean: 0 broken links, read-order consistent (06 present, 1–12), tokens.css↔tokens.md font match, all 27 specs linked in INDEX, no TODO/stale refs.
+
 ## v1.1.8 — 2026-06-23 — complete component gallery coverage
 Make `playground/design-system-preview/preview.html` a full mirror of `components/INDEX.md`: **27/27** documented components now render with core states. **Playground/docs only — no new specs, no Backlog, no React impl, no deps, no SPA starter, no GitHub, no dark mode, no Data-viz, no Tooltip/Popover, no token changes.**
 - **Added 14 components to the gallery:** rating · scale · stepper · form · card · page-header · section-header · modal (preview-open) · drawer (preview-open) · toast · tabs · nav-bar · hero · site-footer.

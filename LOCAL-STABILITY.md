@@ -10,7 +10,7 @@ design-os is **locally ready** when an agent can take a real request, run it end
 - [x] **`06` Accessibility exists** — baseline a11y protocol + QA, wired into AGENTS/RUNBOOK/07.
 - [x] **Premium Visual Baseline active** — font (IBM Plex Sans Arabic chain), icon-system (Lucide), native-control prevention, visual-acceptance criteria (v1.1.6).
 - [x] **Component Gallery usable** — renders cleanly, RTL, token-based, no native-control chrome.
-- [~] **Core components covered** — specs exist for the core set (20+); **gallery coverage is partial** (13/27 rendered — see [`playground/design-system-preview/coverage.md`](playground/design-system-preview/coverage.md)). Specs ✅; gallery expansion is the open item.
+- [x] **Core components covered** — all **27/27** documented components render in the gallery (completed in v1.1.8 — see [`playground/design-system-preview/coverage.md`](playground/design-system-preview/coverage.md)).
 - [x] **No native/browser-looking controls in preview** — appearance reset in the gallery shim (v1.1.6 fix).
 - [x] **No arbitrary Tailwind values in examples** — verified by grep on every fixture.
 - [x] **RTL rules active** — logical utilities only; bidi-isolated numerals; mirrored directional icons.
@@ -20,7 +20,7 @@ design-os is **locally ready** when an agent can take a real request, run it end
 - [x] **No untracked files** — clean working tree.
 - [x] **Clean release tag** — `v1.1.7`.
 
-**Verdict:** **locally ready ✅**, with one tracked caveat: Component Gallery coverage is partial (core specs done; gallery + backlog expansion is the next work, not a blocker for daily use).
+**Verdict:** **locally ready ✅** — full gallery coverage (27/27) since v1.1.8. Remaining future work (backlog components, GitHub publish) is tracked, not blocking.
 
 ## What "locally ready" does NOT yet include (by design)
 - GitHub remote / push (deliberately deferred — local stability first).
@@ -29,4 +29,4 @@ design-os is **locally ready** when an agent can take a real request, run it end
 - The 12 backlog components (see [`design-system/components/BACKLOG.md`](design-system/components/BACKLOG.md)).
 
 ## Re-check cadence
-Run this checklist before every release tag. Any unchecked **blocking** line (sequence, 06, native-control, arbitrary values, RTL, untracked, tag) holds the release. The `[~]` gallery-coverage caveat is tracked, not blocking, until a release explicitly targets full coverage.
+Run this checklist before every release tag. Any unchecked **blocking** line (sequence, 06, native-control, arbitrary values, RTL, untracked, tag) holds the release.
