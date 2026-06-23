@@ -4,6 +4,14 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v1.1.8 — 2026-06-23 — complete component gallery coverage
+Make `playground/design-system-preview/preview.html` a full mirror of `components/INDEX.md`: **27/27** documented components now render with core states. **Playground/docs only — no new specs, no Backlog, no React impl, no deps, no SPA starter, no GitHub, no dark mode, no Data-viz, no Tooltip/Popover, no token changes.**
+- **Added 14 components to the gallery:** rating · scale · stepper · form · card · page-header · section-header · modal (preview-open) · drawer (preview-open) · toast · tabs · nav-bar · hero · site-footer.
+- **Completed 3 partials:** input (+filled/readonly) · select (+disabled/error/loading/empty-options) · table (+selected row/sorted-active; in-body empty/no-results/error via shared empty-state).
+- **Shim additions** for the new states (overlay/dark-fill/border-primary/border-b-2/size-8/stage/etc.) — still token-mirroring, **zero arbitrary values**, RTL-logical, no native-control chrome.
+- **`coverage.md`** rewritten: 27/27 displayed · 0 missing · 0 partial · 2 deferred (Tooltip/Popover, Data-viz — no spec). **`manifest.md`** updated: Visual Acceptance Gate now complete for documented components (shim mirror, not an impl gate).
+- No version change to `design-system` (no spec/token change) or protocols.
+
 ## v1.1.7 — 2026-06-23 — local stability and accessibility baseline
 Make design-os stable and usable locally before any GitHub publish. No remote/push; no product pages; no tooling/deps.
 - **New `design-protocols/06-accessibility.md`** — WCAG-AA baseline (semantic HTML · keyboard/focus order/focus-visible/focus-management · focus-trap for modal/drawer · ARIA roles/names/states · form validation & errors · contrast · reduced motion · screen-reader · accessible loading · alerts/toasts · accessible tables · RTL & icon a11y · do/don't · QA checklist). **Fills the protocol-sequence gap → `00–09` now complete.** Runs on **every** task.

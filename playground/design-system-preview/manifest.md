@@ -12,6 +12,13 @@
 ## Intent
 A single RTL page that renders every documented component and its states from `components/INDEX.md`, plus foundations, so components can be reviewed visually and gaps caught early.
 
+## v1.1.8 — full coverage (27/27)
+- **Added to gallery (14):** rating · scale · stepper · form · card · page-header · section-header · modal · drawer · toast · tabs · nav-bar · hero · site-footer.
+- **Partials completed (3):** input (+filled/readonly) · select (+disabled/error/loading/empty-options) · table (+selected row/sorted-active; in-body empty/no-results/error rendered via the shared empty-state in §7).
+- **Still partial:** none.
+- **Still deferred (2):** Tooltip/Popover · Data-viz — no spec (BACKLOG), not invented.
+- **Visual Acceptance Gate:** ✅ **complete for documented components** — every INDEX component is visible with core states, RTL-correct, token-only, zero arbitrary values, no native-control chrome. Caveat: it's a **shim mirror** (not a code/impl gate; library `impl: ✗`).
+
 ## Components shown  *(all from `components/INDEX.md`)*
 - **Foundations:** system colors · status colors · typography scale (xs→4xl) · radius · shadows · spacing · **Icon System (Lucide-style, v1.1.6)** · **IBM Plex Sans Arabic fallback note (v1.1.6)**.
 - **Button:** primary · secondary · tertiary · icon-button · disabled · loading · sm/md · icon+label (RTL placement).
