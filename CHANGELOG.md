@@ -4,6 +4,15 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v1.1.1 — 2026-06-23 — close critical protocol gaps
+No product pages changed. No Stylelint/CI, no libraries.
+- **`tokens.css` now covers `tokens.md`** — full token set (status triplets `-soft`/`-border`, shadows, motion, z-index, sizing, full radii, typography).
+- **Added `@theme inline`** — Tailwind mapping layer generating `bg-*`/`text-*`/`border-*`/`ring`/`rounded-*`/`shadow-*`/`font-*` from the `:root` values.
+- **Strengthened `components/INDEX.md`** — per component: spec/impl status · required states · RTL/a11y · expected Tailwind usage.
+- **Added Manual Self-check** to `07-definition-of-done` (arbitrary values · directional utilities · text-left/right · undocumented components · out-of-scope · manifest+QA).
+- **Decoupled `link`/`ring` from `accent`** — `--color-text-link` & `--color-focus-ring` are independent, contrast-verified tokens in the executable `tokens.css`.
+- (also) IBM Plex Sans Arabic set as the permanent default font (all weights). Detail: `design-system/CHANGELOG.md`.
+
 ## v1.1.0 — 2026-06-22
 Packaged the system + protocols into a reusable, Tailwind-first git template, and closed v1.0's critical gaps.
 

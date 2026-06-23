@@ -18,5 +18,16 @@
 - [ ] **Design-system updates** identified: needed? which files/components? **re-QA required?** — logged in [`CHANGELOG.md`](../design-system/CHANGELOG.md).
 - [ ] **Required Output** delivered (the `05` report + QA tables + scope/deviations).
 
+## Manual Self-check  (run before declaring done — no tooling required)
+A quick pass the agent performs by hand (these are the same as the `03` Lint-ready Rules):
+- [ ] **No undocumented arbitrary Tailwind values** (`bg-[#…]`, `p-[…]`, `w-[…]`, `rounded-[…]`…). Any used in Pixel Clone Mode are documented in the manifest.
+- [ ] **No `left-*` / `right-*` / `ml-*` / `mr-*` / `pl-*` / `pr-*`** in RTL — logical utilities only (`ms/me`, `ps/pe`, `start/end`).
+- [ ] **No `text-left` / `text-right`** — `text-start` / `text-end` instead.
+- [ ] **No undocumented component** — every block maps to `components/INDEX.md` (or was documented first).
+- [ ] **No out-of-scope changes** — only the files this task needed were touched.
+- [ ] **Manifest + QA report present** — `page-manifests/<page>.md` exists and a `03` QA report was produced.
+
+Any failed line blocks completion. (Grep helpers, e.g. `\b(ml|mr|pl|pr)-` and `(bg|text|p|m|w|h|rounded)-\[` — purely manual, no Stylelint/CI added.)
+
 ## Gate
 If any box is unchecked, the task is **in progress**, not done. Report which boxes remain and why. Never present partial work as complete.

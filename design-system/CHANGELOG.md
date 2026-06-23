@@ -4,6 +4,15 @@
 
 ---
 
+## v1.1.1 — 2026-06-23
+Patch: complete the executable token source and self-check. No product pages changed.
+
+- **tokens.css now covers the full token set** — *what:* added the missing tokens (status triplets `-soft`/`-border`, shadows, motion durations/eases, z-index, sizing, full radii, typography) so `tokens.css` mirrors `tokens.md` 1:1; structured as `:root` values + `@theme inline` Tailwind mapping. *why:* the proven gap (status `-soft` missing) meant the "single executable source" was partial. *affected:* `tokens.css`, `foundations/tokens.md` (+ sync table). *re-QA:* none (additive); fixes the badge gap surfaced in the users-list test.
+- **Default font = IBM Plex Sans Arabic (all weights 100–700)** — *what:* set as the permanent default in `tokens.css`/`tokens.md`; usage rule reframed (100–300 large-display only). *affected:* `tokens.css`, `tokens.md`, `typography.md`, `brand-foundation.md`. *re-QA:* visual only where pages load the font.
+- **tokens.md → documentation that mirrors tokens.css** + a tokens.md ⇆ tokens.css ⇆ Tailwind **sync/mapping table**.
+- **components/INDEX.md strengthened** — per component: spec/impl status, required states, RTL/a11y, expected Tailwind usage. (No code library built.)
+- **Manual Self-check** added to `07-definition-of-done.md` (arbitrary values · directional utilities · text-left/right · undocumented components · out-of-scope · manifest+QA). No Stylelint/CI.
+
 ## v1.1.0 — 2026-06-22
 Hardening pass: turn v1.0 guidance into a contract with an acceptance gate. No product pages changed.
 

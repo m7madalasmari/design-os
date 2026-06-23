@@ -1,9 +1,31 @@
-# التوكنز — Design Tokens (المرجع الأول لأي قيمة)
+# التوكنز — Design Tokens (التوثيق)
 
-> هذا القاموس هو **مصدر الحقيقة الوحيد للقيم**. أي لون/مسافة/زاوية/ظل/مدّة في أي مكوّن أو صفحة يأتي من هنا.
-> الصيغة CSS Custom Properties. الأسماء ثابتة؛ القيم وراء `--color-accent` و`--font-family-base` فقط هي القابلة للثيم (انظر [brand-foundation](brand-foundation.md)).
+> **المصدر التنفيذي الرسمي هو [`../tokens.css`](../tokens.css)** (Tailwind v4 `@theme`). هذا الملف **توثيق يطابقه 1:1** — أسماء/قيم متطابقة. أي تغيير يحدث في `tokens.css` أولًا ويُوثَّق هنا.
+> القيم وراء `--accent-*` و`--font-family-base` و`--color-focus-ring`/`--color-text-link` هي القابلة للثيم (انظر [brand-foundation](brand-foundation.md)).
 
-**قاعدة لا استثناء لها:** لا يُكتب لون hex أو px في مكوّن. إن احتجت قيمة غير موجودة، أضِفها هنا أولًا مع سببها.
+**قاعدة لا استثناء لها:** لا يُكتب لون hex أو px في مكوّن. تُستهلك التوكنز عبر أصناف Tailwind (انظر الجدول أدناه)؛ ما لا يولّد أصنافًا (z/sizing/duration) يُستهلك عبر `var()`.
+
+## جدول المزامنة — tokens.md ⇆ tokens.css ⇆ Tailwind
+| التوكن (tokens.md / :root) | صنف/مفتاح Tailwind | ملاحظة |
+|---|---|---|
+| `--color-bg-base` / `-surface` / `-raised` / `-subtle` | `bg-background` / `bg-card` / `bg-popover` / `bg-muted` | الأسطح |
+| `--color-bg-hover` / `-overlay` | `bg-hover` / `bg-overlay` | تمرير/طبقة |
+| `--color-text-primary` / `-secondary` / `-tertiary` | `text-foreground` / `text-muted-foreground` / `text-faint-foreground` | tertiary للكبير/الزخرفي فقط |
+| `--color-text-on-accent` / `-link` | `text-primary-foreground` / `text-link` | link مفصول عن accent |
+| `--color-border-default` / `-subtle` / `-strong` | `border-border` / `border-border-subtle` / `border-border-strong` | |
+| `--color-focus-ring` | `ring-ring` (+ `focus-visible:ring-2`) | مفصول عن accent |
+| `--color-accent` / `-hover` / `-subtle` | `bg-primary` / `bg-primary-hover` / `bg-primary-subtle` (+ `text-primary`) | لون الفعل |
+| `--color-{success\|warning\|danger\|info}-fg/bg/border` | `text-success`…/`bg-success-soft`…/`border-success-border`… (danger→`destructive`) | الحالات |
+| `--radius-sm/md/lg/full/none` | `rounded-sm/md/lg/full/none` | |
+| `--shadow-sm/md/lg` · `--shadow-focus` | `shadow-sm/md/lg` · `focus-visible:ring-2` | |
+| `--font-family-base` / `-mono` | `font-sans` / `font-mono` | افتراضي IBM Plex Sans Arabic |
+| `--font-size-xs…4xl` | `text-xs … text-4xl` | |
+| `--line-height-tight/snug/base` | `leading-tight/snug/relaxed` | |
+| `--font-weight-regular/medium/semibold/bold` | `font-normal/medium/semibold/bold` | |
+| `--space-*` (4px) | مقياس Tailwind: `space-md`=16=`p-4`/`gap-4` · `space-lg`=24=`p-6` | |
+| `--size-control-sm/md/lg` (32/40/48) | `h-8`/`h-10`/`h-12` · لمس `min-h-11`(44) | عبر utilities |
+| `--size-icon-sm/md/lg` (16/20/24) | `size-4`/`size-5`/`size-6` | |
+| `--z-*` · `--duration-*` · `--ease-*` | عبر `var()` في CSS المكوّن | لا تولّد أصنافًا |
 
 ---
 
@@ -140,7 +162,7 @@
 
 ```css
 :root {
-  --font-family-base: system-ui, "Segoe UI", Tahoma, sans-serif; /* قابل للثيم */
+  --font-family-base: "IBM Plex Sans Arabic", system-ui, "Segoe UI", Tahoma, sans-serif; /* الافتراضي الدائم — كل الأوزان 100–700؛ قابل للثيم */
   --font-family-mono: ui-monospace, "SF Mono", monospace;        /* أرقام/أكواد */
 
   --font-size-xs:   0.75rem;  /* 12px — الأرضية، لا أصغر */

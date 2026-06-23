@@ -27,5 +27,6 @@ Pixel Clone · System Fidelity (default) · Strict SSOT · Improved. Announce be
 v1.1 is stable. To change a protocol: edit the file + add a Changelog line (date + what + why). Breaking changes bump the major version. Design-system changes are logged in `design-system/CHANGELOG.md`.
 
 ## Changelog
+- **v1.1.1** (2026-06-23) — `tokens.css` completed to mirror `tokens.md` 1:1 (status triplets, shadows, motion, z, sizing, typography) + IBM Plex Sans Arabic as permanent default (all weights); `components/INDEX.md` strengthened (status/states/RTL-a11y/Tailwind usage); **Manual Self-check** added to `07`. System version: **v1.1.1**.
 - **v1.1** (2026-06-22) — added `07` Definition of Done (acceptance gate) + `08` app-shell/routing; focus/link decoupled from accent; executable token source (`tokens.css`); `VERSION.md` + `CHANGELOG.md`; golden example + QA report; `components/INDEX.md`; Ask-vs-Assume rule; Responsive Behavior manifest section; Lint-ready Rules (no enforcement yet). System design-system version: **v1.1.0**.
 - **v1.0** (2026-06-22) — initial stable set `00–05`; Tailwind-first; page-manifest `_TEMPLATE.md`; Empty-State illustration conflict resolved (context-aware).

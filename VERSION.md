@@ -1,6 +1,6 @@
 # design-os — Version
 
-**Current: v1.1.0** (2026-06-22)
+**Current: v1.1.1** (2026-06-23)
 
 Bundles:
 - `design-protocols/` — agent contract (v1.1: 00–05, 07, 08).
@@ -14,4 +14,4 @@ Bundles:
 
 OS-level history is in [`CHANGELOG.md`](CHANGELOG.md); design-system detail in [`design-system/CHANGELOG.md`](design-system/CHANGELOG.md). Every change records: what · why · affected · re-QA?
 
-Git tag for this release: **`v1.1.0`**.
+Git tag for this release: **`v1.1.1`**.
