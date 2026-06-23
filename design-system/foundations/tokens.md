@@ -162,7 +162,7 @@
 
 ```css
 :root {
-  --font-family-base: "IBM Plex Sans Arabic", system-ui, "Segoe UI", Tahoma, sans-serif; /* الافتراضي الدائم — كل الأوزان 100–700؛ قابل للثيم */
+  --font-family-base: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; /* الافتراضي الدائم — كل الأوزان 100–700؛ قابل للثيم. العربي يجب أن يحمّل Plex (typography.md) */
   --font-family-mono: ui-monospace, "SF Mono", monospace;        /* أرقام/أكواد */
 
   --font-size-xs:   0.75rem;  /* 12px — الأرضية، لا أصغر */

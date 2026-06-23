@@ -43,3 +43,8 @@
 - الوسوم: `--color-bg-subtle` · `--color-border-default` · `--radius-sm` · `--font-size-sm`.
 - المنسدلة: `--color-bg-raised` · `--shadow-md` · `--z-dropdown`.
 - العدّاد: `--color-text-secondary`. الفجوات: `--space-sm`/`-xs`.
+
+## 10. المحاذاة والبصري (Visual rules)
+- حقل البحث داخل الشريط هو [search-input](search-input.md): **بارتفاع control token نفسه** الذي للشرائح/الأزرار، فتتحاذى أفقيًا.
+- الأيقونات (بحث، فلتر، إغلاق وسم) من [icon-system](../foundations/icon-system.md)؛ أيقونة البحث `inline-start` غير معكوسة، «×» الوسم `inline-end`.
+- الحشو والفجوات بخصائص منطقية؛ الوسوم بحدّ/خلفية من التوكنز (لا حدّ أسود).

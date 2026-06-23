@@ -47,3 +47,9 @@
 - الخلفية: `--color-bg-surface` / `--color-bg-disabled`.
 - النصّ: `--color-text-primary` / `--color-text-tertiary` (مساعدة) / `--color-danger-fg` (خطأ).
 - القياس: `--size-control-*` · `--space-*` · `--radius-md` · `--shadow-focus`.
+
+## 10. منع التحكّم الأصلي + البصري (Native control prevention)
+- **لا تحكّم بمظهر المتصفّح الأصلي**: أعد ضبط المظهر عند اللزوم (`appearance:none`)؛ لا حدّ/تركيز افتراضي للنظام.
+- حالات `focus`/`hover`/`error` **من التوكنز** (`--shadow-focus`/`--color-border-strong`/`--color-danger-border`) — لا حلقة المتصفّح الزرقاء.
+- placeholder بلون `--color-text-tertiary` (muted) لا أسود.
+- أي أيقونة (حالة/مسح) من [icon-system](../foundations/icon-system.md)، في الجهة المنطقية (`inline-end`)؛ حقول البريد/الأرقام `dir="ltr"` مع بقاء التسمية RTL.

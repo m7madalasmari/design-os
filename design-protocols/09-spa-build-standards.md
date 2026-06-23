@@ -24,8 +24,11 @@ These are **mandatory** and version-pinned. Do not swap a library for an equival
 | HTTP | Axios | **1.x** |
 | Styling | Tailwind CSS | **4** (binds `design-system/tokens.css`) |
 | i18n | i18next + react-i18next | latest 23.x / 14.x |
+| Icons | **lucide-react** (primary) · react-icons (brand/social fallback only) | latest |
 | Testing | Vitest (+ Testing Library) | latest |
 | Quality | ESLint + Prettier | latest |
+
+**Icons:** use **`lucide-react`** for all UI icons per [`design-system/foundations/icon-system.md`](../design-system/foundations/icon-system.md) — one icon style only; sizes via `--size-icon-*`; decorative `aria-hidden`, meaningful icons labelled; directional icons mirror in RTL. `react-icons` only for brand/social or icons missing from Lucide.
 
 **Forbidden by default:** Redux/MobX/Recoil (use Zustand + TanStack Query), `fetch` scattered in components (use the Axios core), CRA/Webpack, Moment.js, CSS-in-JS runtime libs, `styled-components`, any UI kit that bypasses `design-system/`.
 
@@ -192,6 +195,7 @@ A completed SPA build hands over:
 - Raw `localStorage`/`sessionStorage` outside the storage wrapper.
 - Raw `import.meta.env` outside `core/config`.
 - Arbitrary Tailwind values / directional RTL utilities.
+- Mixed icon libraries / off-system UI icons / `react-icons` for a general UI icon available in Lucide.
 - Non-lazy pages; default exports outside `pages/`.
 - Build warnings, lint errors, failing tests, missing `.env.example`/README.
 

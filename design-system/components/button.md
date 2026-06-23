@@ -48,3 +48,13 @@
 - القياس: `--size-control-*` · `--space-*` · `--radius-md`.
 - التركيز: `--shadow-focus` · `--color-border-focus`.
 - الخط: `--font-size-*` · `--font-weight-semibold`.
+
+## 10. معايير القبول البصري (Visual acceptance criteria)
+- **لا مظهر زرّ أصلي للمتصفّح** (`appearance` مُعاد ضبطه عند اللزوم) — لا تدرّج/حدّ نظام التشغيل الافتراضي.
+- **لا حدّ/إطار أسود** إلا إذا جاء من توكن وعُرّف عمدًا (لا `border:1px solid black`).
+- **primary** يستخدم `--color-accent`/`--color-primary` + `--color-text-on-accent`.
+- **secondary/tertiary** يستخدمان `--color-border` + `--color-bg-surface` + `--color-text-primary` (tertiary شفّاف بلا حدّ).
+- **التركيز** عبر `--color-focus-ring`/`--shadow-focus` — لا حلقة المتصفّح الزرقاء.
+- **المعطّل لا يبدو نشطًا** (`--color-bg-disabled` + `--color-text-disabled`، بلا hover).
+- **أزرار إجراء الجدول**: نمط مدمج موثّق — `sm` (ارتفاع `--size-control-sm`/`h-8`، نصّ `--font-size-sm`) أو `tertiary`/رابط؛ متّسق عبر الصفوف.
+- **موضع الأيقونة يدعم RTL** (`inline-start`)، من [icon-system](../foundations/icon-system.md).

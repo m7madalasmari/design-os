@@ -4,6 +4,15 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v1.1.6 — 2026-06-23 — visual foundation + icon system
+Strengthen the visual foundation the gallery surfaced. No general protocols changed beyond a light `09` icon link; no product pages; **no real deps** (Lucide standardized for real projects only; preview uses an inline-SVG Lucide-style shim); no OCR/screenshot/GitHub/CLI/npm.
+- **Font** — standard IBM Plex Sans Arabic fallback chain in tokens + `typography.md` rules (Arabic must use Plex; `system-ui` first only in preview, documented; no unlicensed fonts committed).
+- **Icon system** — new `foundations/icon-system.md` (lucide-react primary, react-icons brand/social fallback, size tokens, RTL mirroring, a11y); wired into `09` + INDEX.
+- **Native-control prevention + visual acceptance** — added to button, table (incl. column sizing), filter-bar, select, input; new `search-input.md`.
+- **INDEX/README** — Search Input + icon-system; components 19 → 20.
+- **Gallery** — Icon System section (Lucide-style) + font fallback note.
+- design-system version → **v1.1.6**. Detail: [`design-system/CHANGELOG.md`](design-system/CHANGELOG.md).
+
 ## v1.1.5 — 2026-06-23 — strengthen core component specs
 Design-system spec pass closing the gaps the Design System Preview fixture surfaced. No protocols (00–09) changed, no product pages, no fixtures changed except the preview, no tooling/deps. Tooltip/Popover & Data-viz intentionally **deferred**.
 - **New specs:** **Spinner · Skeleton · Alert** — standalone, 14-section (Purpose → Examples).

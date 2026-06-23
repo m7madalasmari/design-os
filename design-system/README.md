@@ -28,12 +28,13 @@
 | [spacing.md](foundations/spacing.md) | شبكة 4px، سلّم المسافات، متى تُستخدم كل خطوة |
 | [layout.md](foundations/layout.md) | الشبكة، نقاط الكسر، هيكل التطبيق (app shell)، عرض المحتوى |
 | [rtl-guidelines.md](foundations/rtl-guidelines.md) | قواعد العربية أولًا — الخصائص المنطقية، الانعكاس، ثنائية الاتجاه (bidi) |
+| [icon-system.md](foundations/icon-system.md) | مكتبة الأيقونات (Lucide)، الأحجام عبر التوكنز، سلوك RTL، الوصول |
 | [ux-writing.md](foundations/ux-writing.md) | نبرة الكتابة، صياغة الأزرار والأخطاء والحالات الفارغة، المصطلحات |
 
 ### 2. المكوّنات — `/components`
-مكتبة المكوّنات المعتمدة (19 مكوّنًا). **لا يُستخدم أي مكوّن غير موجود هنا.** الجرد الكامل مع الحالات/Tailwind في [components/INDEX.md](components/INDEX.md).
+مكتبة المكوّنات المعتمدة (20 مكوّنًا). **لا يُستخدم أي مكوّن غير موجود هنا.** الجرد الكامل مع الحالات/Tailwind في [components/INDEX.md](components/INDEX.md).
 
-**حقول وأفعال:** [button](components/button.md) · [input](components/input.md) · [select](components/select.md) · [checkbox](components/checkbox.md)
+**حقول وأفعال:** [button](components/button.md) · [input](components/input.md) · [search-input](components/search-input.md) · [select](components/select.md) · [checkbox](components/checkbox.md)
 **حاويات وعناوين:** [card](components/card.md) · [page-header](components/page-header.md) · [section-header](components/section-header.md)
 **بيانات:** [table](components/table.md) · [empty-state](components/empty-state.md) · [filter-bar](components/filter-bar.md) · [status-badge](components/status-badge.md) · [pagination](components/pagination.md)
 **تغذية راجعة وتحميل:** [spinner](components/spinner.md) · [skeleton](components/skeleton.md) · [alert](components/alert.md)

@@ -28,7 +28,7 @@
   --color-info-fg:var(--blue-fg);--color-info-bg:var(--blue-bg);--color-info-border:var(--blue-border);
   --color-focus-ring:var(--accent-solid);
   --space-3xs:2px;--space-2xs:4px;--space-xs:8px;--space-sm:12px;--space-md:16px;--space-lg:24px;--space-xl:32px;--space-2xl:48px;--space-3xl:64px;
-  --font-family-base:"IBM Plex Sans Arabic",system-ui,"Segoe UI",Tahoma,sans-serif;
+  --font-family-base:"IBM Plex Sans Arabic","IBM Plex Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --font-family-mono:ui-monospace,"SF Mono",monospace;
   --font-size-xs:.75rem;--font-size-sm:.875rem;--font-size-md:1rem;--font-size-lg:1.125rem;
   --font-size-xl:1.25rem;--font-size-2xl:1.5rem;--font-size-3xl:1.875rem;--font-size-4xl:2.25rem;
@@ -157,6 +157,7 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
   <header class="grp">
     <h1 class="text-3xl font-bold leading-tight">معرض مكوّنات design-os</h1>
     <p class="text-sm text-muted-foreground">صفحة اختبار بصري للمكوّنات وحالاتها — <span class="font-medium">ليست صفحة منتج</span>. theme: neutral · RTL · Preview runtime: shim mirror · مبني على tokens.css + INDEX.</p>
+    <p class="note">ملاحظة الخط: الافتراضي <span class="font-medium">IBM Plex Sans Arabic</span> (السلسلة الكاملة في tokens.css/typography.md). هذه المعاينة قد تسقط إلى <code>system-ui</code> بسبب CSP أو عدم تحميل الخط — fallback موثّق، ليس الخيار الأول في المنتج.</p>
   </header>
 
   <!-- ============ 1. FOUNDATIONS ============ -->
@@ -223,6 +224,33 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
         <div class="flex items-center gap-2"><span class="bar" style="width:16px"></span><span class="cap">md 16</span></div>
         <div class="flex items-center gap-2"><span class="bar" style="width:24px"></span><span class="cap">lg 24</span></div>
         <div class="flex items-center gap-2"><span class="bar" style="width:32px"></span><span class="cap">xl 32</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 1.5 ICON SYSTEM ============ -->
+  <section class="section">
+    <h2>نظام الأيقونات — Icon System (Lucide-style)</h2>
+    <p class="cap">المكتبة الأساسية في المشروع الحقيقي: <span class="font-medium">lucide-react</span> (react-icons fallback للعلامات فقط). هنا inline SVG على نمط Lucide (viewBox 24 · stroke 2 · currentColor) كـshim موثّق. نمط واحد، لا خلط.</p>
+    <div class="row text-foreground">
+      <div class="cell"><svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><span class="cap">search</span></div>
+      <div class="cell"><svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg><span class="cap">download/export</span></div>
+      <div class="cell"><svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 9v5l-4 2v-7z"/></svg><span class="cap">filter</span></div>
+      <div class="cell"><svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg><span class="cap">chevron</span></div>
+      <div class="cell"><svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4v16m0-16L5 7m3-3 3 3"/><path d="M16 20V4m0 16 3-3m-3 3-3-3"/></svg><span class="cap">sort</span></div>
+      <div class="cell"><svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg><span class="cap">calendar</span></div>
+      <div class="cell"><svg class="size-6 text-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span class="cap">info</span></div>
+      <div class="cell"><svg class="size-6 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><span class="cap">success</span></div>
+      <div class="cell"><svg class="size-6 text-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 3 19h18z"/><path d="M12 10v4M12 17h.01"/></svg><span class="cap">warning</span></div>
+      <div class="cell"><svg class="size-6 text-destructive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></svg><span class="cap">error</span></div>
+      <div class="cell"><svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6 18 18M18 6 6 18"/></svg><span class="cap">close</span></div>
+      <div class="cell"><svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg><span class="cap">more</span></div>
+    </div>
+    <div class="grp"><h3>الأحجام عبر التوكنز + الاتجاه في RTL</h3>
+      <div class="row items-center text-foreground">
+        <div class="cell"><div class="flex items-center gap-3"><svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><span class="cap">sm 16 / md 20 / lg 24 (--size-icon-*)</span></div>
+        <div class="cell"><svg class="size-6 rtl-flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg><span class="cap">اتجاهي → معكوس في RTL</span></div>
+        <div class="cell"><svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><span class="cap">غير اتجاهي → لا يُعكَس</span></div>
       </div>
     </div>
   </section>

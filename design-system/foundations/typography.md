@@ -6,7 +6,17 @@
 
 ## الخط
 
-**الخط الافتراضي الدائم: IBM Plex Sans Arabic — بكل أوزانه (100–700).** يُحمَّل في المشروع (مثل `@fontsource/ibm-plex-sans-arabic`، أو `@font-face` محلّي بـ`font-display:swap`)؛ وفي المعاينات المقيّدة بـCSP يسقط إلى `system-ui`. القيمة في المصدر التنفيذي [`tokens.css`](../tokens.css) (`--font-family-base` / `--font-sans`).
+**الخط الافتراضي الدائم لكل الواجهة (عربي/لاتيني): IBM Plex Sans Arabic — بكل أوزانه (100–700).** يُحمَّل في المشروع (مثل `@fontsource/ibm-plex-sans-arabic`، أو `@font-face` محلّي بـ`font-display:swap`). القيمة في المصدر التنفيذي [`tokens.css`](../tokens.css) (`--font-family-base` / `--font-sans`).
+
+**سلسلة الـfallback القياسية:**
+```
+IBM Plex Sans Arabic, IBM Plex Sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+```
+
+**قواعد الخط:**
+- الواجهات العربية **يجب** أن تستخدم `IBM Plex Sans Arabic` (مُحمَّلًا) — هو الخيار الأول دائمًا.
+- **لا تجعل `system-ui` الخيار الأول في العربية** إلا في المعاينة (`playground/`) بسبب CSP أو عدم توفّر الخط؛ وأي fallback في المعاينة **يُوثَّق** صراحةً (ملاحظة ظاهرة في الصفحة).
+- **لا تُشارَك ملفات الخط داخل الريبو** إلا إذا كانت مرخّصة وأُضيفت **بقرار صريح** (لا تُلتزَم خطوط بلا ترخيص).
 
 `--font-family-base` يبقى **قابلًا للثيم** (يستطيع ثيم علامة تبديله)، لكن الافتراضي ثابت على Plex. اشتراطات أي خط بديل يُعتمد:
 - يدعم الأوزان 400/500/600/700 على الأقل (نعتمد عليها بالكامل).

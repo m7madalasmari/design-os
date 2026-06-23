@@ -4,6 +4,17 @@
 
 ---
 
+## v1.1.6 — 2026-06-23
+Visual foundation + icon system (from gallery findings). Light `09` link only; no general-protocol behavior changed; no product pages; no real deps (Lucide standardized for real projects; preview uses inline-SVG Lucide-style shim); no tokens’ values changed except the font fallback chain.
+- **Typography/Font** — standard fallback chain `IBM Plex Sans Arabic, IBM Plex Sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif` in `tokens.css`/`tokens.md`; `typography.md` rules: Arabic UI must use IBM Plex Sans Arabic; `system-ui` first only in preview (CSP, documented); no unlicensed font files committed. *re-QA:* visual only where the font loads.
+- **New foundation `icon-system.md`** — `lucide-react` primary (`react-icons` brand/social fallback only); one style; sizes via `--size-icon-*`; decorative `aria-hidden` / meaningful labelled; RTL mirroring; preview = inline-SVG Lucide-style shim.
+- **New component `search-input.md`** — control-height; RTL icon (`inline-start`, not mirrored); muted placeholder; **no inner native border**; token focus ring; optional clear; filter-bar alignment; disabled/error/loading.
+- **Button** — Visual Acceptance Criteria (no native/black borders; primary/secondary/tertiary token mapping; token focus; disabled not active; compact table-action style; RTL icon).
+- **Table** — Visual rules + **column sizing** (ID/name/status/date/action); sort header not native; sort icon from icon-system; tokenized sticky z; subtle token row hover; footer/pagination alignment.
+- **Filter Bar** — alignment with `search-input` + icon-system.
+- **Select / Input** — native-control prevention (appearance reset; token focus/hover/error; icons from icon-system; RTL placement).
+- **INDEX** — Search Input row + icon-system note; **README** components 19 → 20 + icon-system foundation. *re-QA:* none (additive).
+
 ## v1.1.5 — 2026-06-23
 Strengthen core component specs (spec pass closing the gaps the Design System Preview fixture surfaced). No protocols (00–09) changed, no product pages, no tooling/deps; no tokens changed.
 - **New components:** `spinner.md`, `skeleton.md`, `alert.md` — *what:* full standalone specs (Purpose · When to/not · Anatomy · Variants · Sizes · States · RTL · a11y · Tailwind · Tokens · Visual acceptance · Anti-patterns · Examples). *why:* gallery surfaced them as undocumented primitives. *re-QA:* none (additive; spec-only, no code).

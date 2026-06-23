@@ -3,13 +3,15 @@
 > **Before creating a new component, check this index first.** If a documented spec (or a composition of existing ones) fits, use it. New components are documented here **before** use (forbidden #2).
 
 **Implementation status:** the library is **spec-only** — every component has a documented `.md` contract but **no shipped code yet** (`impl: ✗`). Build per project against the spec + the executable tokens (`../tokens.css`). Tailwind usage column = the expected utility shape.
+**Icons:** all components follow [`foundations/icon-system.md`](../foundations/icon-system.md) — **`lucide-react`** primary (`react-icons` only as a brand/social fallback); sizes via `--size-icon-*`; directional icons mirror in RTL.
 **Spec:** ✅ full · 🟡 partial · ✗ missing entirely.
 
 ## Fields & actions
 | Component | Spec / Impl | Required states | RTL / a11y | Expected Tailwind usage |
 |---|---|---|---|---|
 | [Button](button.md) | ✅ / ✗ | hover · focus · active · disabled · loading | one primary; real `<button>`; 44px target; `aria-label` if icon-only | `inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-primary-foreground focus-visible:ring-2` |
-| [Input](input.md) | ✅ / ✗ | default · hover · focus · filled · error · disabled · readonly | label above; `dir=ltr` for email/url/number; icon `inline-end` | `h-10 px-3 bg-card border border-border rounded-md focus-visible:ring-2` |
+| [Input](input.md) | ✅ / ✗ | default · hover · focus · filled · error · disabled · readonly | label above; `dir=ltr` for email/url/number; icon `inline-end`; no native appearance | `h-10 px-3 bg-card border border-border rounded-md focus-visible:ring-2` |
+| [Search Input](search-input.md) | ✅ / ✗ | default · hover · focus · filled · disabled · loading | search icon `inline-start` (not mirrored), clear `inline-end`; `aria-label`; **no inner native border** | group `inline-flex items-center gap-2 h-10 ps-3 pe-3 border rounded-md focus-within:ring`; input `bg-transparent outline-none` |
 | [Select](select.md) | ✅ / ✗ | default · hover · focus · open · selected · option-hover · disabled · error · loading · **empty-options** | arrow `inline-end`, check `inline-start`; `role=combobox`+`listbox`; full keyboard (↑↓/Home/End/type-ahead/Esc); returns focus on close | trigger like Input; menu `bg-popover shadow-md z=var(--z-dropdown)`; selected `bg-primary-subtle` |
 | [Checkbox](checkbox.md) | ✅ / ✗ | checked · indeterminate · focus · error · disabled | box `inline-start`; 44px hit; check not mirrored | `size-5 rounded-sm border-border-strong`; checked `bg-primary` |
 | [Rating](rating.md) | ✅ / ✗ | empty · hover · selected · focus · readonly · error | fills from `inline-start` (right); `aria-valuenow` | `inline-flex gap-1`; filled `text-primary`, empty `text-border-strong` |

@@ -12,8 +12,8 @@
 ## Intent
 A single RTL page that renders every documented component and its states from `components/INDEX.md`, plus foundations, so components can be reviewed visually and gaps caught early.
 
-## Components shown  *(all from `components/INDEX.md` — no new components added)*
-- **Foundations:** system colors · status colors · typography scale (xs→4xl) · radius · shadows · spacing.
+## Components shown  *(all from `components/INDEX.md`)*
+- **Foundations:** system colors · status colors · typography scale (xs→4xl) · radius · shadows · spacing · **Icon System (Lucide-style, v1.1.6)** · **IBM Plex Sans Arabic fallback note (v1.1.6)**.
 - **Button:** primary · secondary · tertiary · icon-button · disabled · loading · sm/md · icon+label (RTL placement).
 - **Input:** text (default) · focus (forced) · disabled · error (+`aria-invalid`) · placeholder · search · select trigger · **select open menu** · checkbox (unchecked/checked/indeterminate/disabled/error).
 - **Filter Bar:** search + status chips · active chip · count badges · clear-filters.
