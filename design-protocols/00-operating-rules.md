@@ -14,8 +14,9 @@ Visual references + `design-system/` + `page-manifests/` are source-of-truth. Ne
 6. `05-visual-polish-and-motion.md`
 7. `07-definition-of-done.md`
 8. `08-app-shell-and-routing-consistency.md`
-9. `design-system/README.md` → foundations → components → rules → themes
-10. `page-manifests/<page>.md`
+9. `09-spa-build-standards.md` — **conditional: SPA build tasks only** (Vite/React/handover/Nx; see `AGENTS.md` triggers)
+10. `design-system/README.md` → foundations → components → rules → themes
+11. `page-manifests/<page>.md`
 
 ## Pick a mode (announce it before building)
 **Pixel Clone · System Fidelity (default) · Strict SSOT · Improved · Greenfield/System-First.**

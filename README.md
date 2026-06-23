@@ -52,6 +52,13 @@ page-manifests/           _TEMPLATE.md · _GOLDEN_EXAMPLE.md
 ## The loop (every UI task)
 read `AGENTS.md` → announce **Mode** → write manifest (`_TEMPLATE`) → map components (`INDEX`) → build with semantic Tailwind classes → run QA (`03`) → **done only when [`07` Definition of Done](design-protocols/07-definition-of-done.md) passes**.
 
+## Task types (which protocols apply)
+- **Design task** (a page, component, screenshot-to-UI, redesign): uses **`00–08`** (the design layer) — usually that's all. No build stack imposed.
+- **SPA build task** (new app, Vite + React, production, handover, Nx): uses **`00–09`** — the design layer **plus** [`09` SPA Build Standards](design-protocols/09-spa-build-standards.md), and must follow the pinned stack + technical structure. Completion adds the **Engineering Definition of Done** ([`07`](design-protocols/07-definition-of-done.md)).
+- **Playground task** (exploration/demo inside design-os): does **not** need the full SPA requirements enforced unless the user explicitly asks; keep outputs in `playground/`.
+
+Trigger phrases that activate `09`: "build app", "create SPA", "Vite React", "production-ready", "handover", "Nx monorepo", "team standards", "implement as real app".
+
 ## Template vs consumer project
 `design-os` is an **operating template, not a product**. Inside this repo: do **not** create real product `page-manifests/` or product pages — keep `page-manifests/` to `_TEMPLATE.md` + `_GOLDEN_EXAMPLE.md`. Worked outputs / artifacts from testing design-os itself go in `examples/`, `playground/`, or `scratch/`. In a **consumer project**, create `page-manifests/<page>.md` and build pages normally. (See [`07`](design-protocols/07-definition-of-done.md) · [`PROJECT-INSTALL.md`](PROJECT-INSTALL.md).)
 

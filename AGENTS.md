@@ -12,10 +12,25 @@ You are working on a UI project where **visual references, design-system rules, 
 6. `design-protocols/05-visual-polish-and-motion.md`
 7. `design-protocols/07-definition-of-done.md`
 8. `design-protocols/08-app-shell-and-routing-consistency.md`
-9. `design-system/` (README → foundations → components → rules → themes)
-10. `page-manifests/` (the contract for the specific page)
+9. `design-protocols/09-spa-build-standards.md` — **conditional: SPA build tasks only** (see *Engineering layer* below)
+10. `design-system/` (README → foundations → components → rules → themes)
+11. `page-manifests/` (the contract for the specific page)
 
 If a referenced file is missing, say so — do not guess its contents.
+
+## Engineering layer — `09` SPA Build Standards (conditional)
+`00–08` are the design layer. [`09-spa-build-standards.md`](design-protocols/09-spa-build-standards.md) is a **separate engineering layer** with a pinned stack and technical architecture.
+
+**Use `09` only when the task involves:**
+- creating a new SPA,
+- building a Vite + React app,
+- preparing code for team handover,
+- implementing production-ready pages inside a real app,
+- integrating with a future Nx monorepo.
+
+**Do not apply the full SPA build standards to lightweight design playgrounds unless explicitly requested.**
+
+**Trigger phrases → activate `09`:** "build app" · "create SPA" · "Vite React" · "production-ready" · "handover" · "Nx monorepo" · "team standards" · "implement as real app". When `09` is active, completion is gated by the **Engineering Definition of Done** in [`07`](design-protocols/07-definition-of-done.md).
 
 ## Stack: Tailwind-first
 This is a **Tailwind-first** project. Implement UI with Tailwind utility classes bound to the design tokens (Tailwind `theme` keys / CSS variables — per the project's setup). Do not build a separate CSS system.

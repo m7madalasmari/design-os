@@ -1,9 +1,9 @@
 # design-os — Version
 
-**Current: v1.1.2** (2026-06-23)
+**Current: v1.1.3** (2026-06-23)
 
 Bundles:
-- `design-protocols/` — agent contract (v1.1: 00–05, 07, 08; + Greenfield/System-First mode).
+- `design-protocols/` — agent contract (v1.1: 00–05, 07, 08; + Greenfield/System-First mode; + conditional engineering layer `09` SPA build standards).
 - `design-system/` — tokens.css (executable) + foundations + components (+INDEX) + rules + themes (v1.1.2).
 - `page-manifests/` — `_TEMPLATE.md` + `_GOLDEN_EXAMPLE.md`.
 - `playground/` — outputs from testing design-os itself (not product pages).
@@ -15,4 +15,4 @@ Bundles:
 
 OS-level history is in [`CHANGELOG.md`](CHANGELOG.md); design-system detail in [`design-system/CHANGELOG.md`](design-system/CHANGELOG.md). Every change records: what · why · affected · re-QA?
 
-Git tag for this release: **`v1.1.2`**.
+Git tag for this release: **`v1.1.3`**.

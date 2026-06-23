@@ -42,5 +42,25 @@ Any failed line blocks completion. (Grep helpers, e.g. `\b(ml|mr|pl|pr)-` and `(
 - **In a consumer project:** create `page-manifests/<page>.md`, build pages in the project, run QA on project pages — normally.
 - **Inside the design-os template repo itself:** do **not** create production page manifests or product pages. When **testing design-os**, put worked outputs in `examples/`, `playground/`, or `scratch/` — never as production output in `page-manifests/` (which holds only `_TEMPLATE.md` + `_GOLDEN_EXAMPLE.md`). See [`README.md`](../README.md).
 
+## Engineering Definition of Done  (SPA build tasks — gated by [`09`](09-spa-build-standards.md))
+Applies **only** when `09-spa-build-standards.md` is active (SPA / Vite React / production / handover / Nx). In addition to the design DoD above, an SPA task is **not** complete unless:
+- [ ] `npm install && npm run dev` works on **port 5173**.
+- [ ] `npm run build` succeeds with **no warnings**.
+- [ ] `npm run lint` passes with **no errors**.
+- [ ] `npm run typecheck` passes with **no errors**.
+- [ ] `npm run test` passes.
+- [ ] `README.md` updated (setup / scripts / structure / env).
+- [ ] `.env.example` present (every required var, no real values).
+- [ ] **No hardcoded user-facing strings** (i18n only).
+- [ ] **No route strings inside components** (use `app/app.paths.ts`).
+- [ ] **No direct `axios` outside `core/api`.**
+- [ ] **No `useEffect` for data fetching** (TanStack Query only).
+- [ ] **No `any` / `@ts-ignore`.**
+- [ ] **All pages lazy-loaded.**
+- [ ] **i18n and RTL applied.**
+- [ ] **Tailwind logical utilities used for RTL.**
+
+Run the **Engineering Self-check** in [`09`](09-spa-build-standards.md) before these gates.
+
 ## Gate
 If any box is unchecked, the task is **in progress**, not done. Report which boxes remain and why. Never present partial work as complete.

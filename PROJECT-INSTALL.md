@@ -80,6 +80,11 @@ Mode: System Fidelity
 | Improved | you explicitly want polish/UX improvements |
 Detail: `design-protocols/01-image-to-ui-replication.md`.
 
+## 6b. Task type — design vs SPA build vs playground
+- **Design task** (page/component/redesign): apply **`00–08`** only (usually). No build stack imposed.
+- **SPA build task** (new app / Vite React / production-ready / handover / Nx monorepo): apply **`00–09`**, follow the pinned stack + structure in [`09-spa-build-standards.md`](design-protocols/09-spa-build-standards.md), and pass the **Engineering Definition of Done** in `07`. Activated by phrases like "build app", "create SPA", "Vite React", "production-ready", "handover", "Nx monorepo", "team standards", "implement as real app".
+- **Playground task** (demo inside design-os): don't enforce the full SPA requirements unless explicitly requested; keep outputs in `playground/`.
+
 ## 7. How do I know the task is actually done?
 Open `design-protocols/07-definition-of-done.md` and check every box: Mode stated · manifest · reference capture (if image) · component mapping · visual polish decision · responsive behavior · QA run · deviations documented · design-system updates identified · Required Output delivered. **Any unchecked box = in progress, not done.**
 

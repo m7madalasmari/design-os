@@ -4,6 +4,14 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v1.1.3 — 2026-06-23 — add SPA build standards protocol
+Adds a **conditional engineering layer** (separate from the design protocols). No new design protocols, no product pages, no Vite project, no dependencies, no CLI/npm package, no token/component changes.
+- **New: `design-protocols/09-spa-build-standards.md`** — SPA Build Brief as mandatory standards: pinned stack (React 19 · TS strict · Vite 6 · React Router 6 · TanStack Query v5 · Zustand 5 · RHF 7 + Zod · Axios 1 · Tailwind 4 · i18next/react-i18next · Vitest · ESLint + Prettier), folder structure, naming, routing (`app.paths.ts`, lazy pages), HTTP (centralized Axios + TanStack Query), state (Zustand client-only), forms (RHF+Zod), error handling, i18n+RTL, auth abstraction, env handling, code quality, path alias `@/`, Tailwind conventions, commits, deliverables, rejection list, **Engineering Self-check**.
+- **`AGENTS.md`** — when-to-use rule + **trigger phrases** ("build app", "create SPA", "Vite React", "production-ready", "handover", "Nx monorepo", "team standards", "implement as real app"); `09` added to read order as conditional; playgrounds exempt unless requested.
+- **`07-definition-of-done.md`** — new **Engineering Definition of Done** (runnable gates: dev@5173 · build 0 warnings · lint 0 errors · typecheck 0 errors · test pass · README · `.env.example` · no hardcoded strings/routes · no direct axios · no fetch-in-useEffect · no `any`/`@ts-ignore` · lazy pages · i18n+RTL · logical Tailwind).
+- **`README.md` / `PROJECT-INSTALL.md`** — task-type split: **Design (00–08)** vs **SPA build (00–09)** vs **Playground** (not enforced unless asked).
+- **`00` + `design-protocols/README.md`** — read order / files index updated; `09` marked conditional.
+
 ## v1.1.2 — 2026-06-23 — close runtime testing gaps
 No new protocols, no product pages, no tooling (no OCR/Playwright/Stylelint/CI/npm). Closes the runtime frictions found by the invoices live-test.
 - **Greenfield / System-First mode** — for no-reference, description-only builds; *System Fidelity collapses into Greenfield when no visual reference exists*; Pixel QA skipped. *affected:* `AGENTS.md`, `00`, `07`, `design-protocols/README.md`.
