@@ -19,6 +19,7 @@ At the **repository root** (next to your app):
   page-manifests/
   src/ … (your app)
 ```
+> **Template vs consumer.** `design-os` is an operating template, not a product repo. You **copy** it into your project; real `page-manifests/<page>.md` and product pages live in **your** project, never inside the design-os template. (Testing design-os itself → use `examples/` / `playground/` / `scratch/`.) See [`07`](design-protocols/07-definition-of-done.md).
 
 ## 3. Wire tokens.css with Tailwind v4
 In your main stylesheet:

@@ -18,8 +18,14 @@ Visual references + `design-system/` + `page-manifests/` are source-of-truth. Ne
 10. `page-manifests/<page>.md`
 
 ## Pick a mode (announce it before building)
-**Pixel Clone · System Fidelity (default) · Strict SSOT · Improved.**
-Detection phrases and per-mode behavior: see [`01-image-to-ui-replication.md`](01-image-to-ui-replication.md). Default is **System Fidelity** unless the user signals otherwise.
+**Pixel Clone · System Fidelity (default) · Strict SSOT · Improved · Greenfield/System-First.**
+Detection phrases and per-mode behavior for the first four: see [`01-image-to-ui-replication.md`](01-image-to-ui-replication.md). Default is **System Fidelity** unless the user signals otherwise.
+
+**Greenfield / System-First** (defined here — there is no reference image, so it is *not* an image-replication mode):
+- **Use when:** no visual reference, no prior design, the task is built from a description only — "build a UI from inside the system."
+- **Rule:** *If no visual reference exists, System Fidelity collapses into Greenfield/System-First behavior.*
+- **Priority:** 1) user intent · 2) design system · 3) component inventory · 4) UX clarity · 5) visual-polish rules.
+- **QA:** run System / RTL / Visual-Polish QA. **Pixel QA does not apply** (no image to compare).
 
 ## Mandatory sequence
 1. Do not implement immediately.
@@ -53,6 +59,16 @@ Assume **and document** when:
 - Table data is incomplete — **never invent sensitive or fake data**.
 
 Every assumption is labeled: `observed / inferred / approximate / unknown`.
+
+## Demo data (no invented production data)
+**No invented production data.** Content comes from the user or the reference; never fabricate real records, metrics, or actions and present them as real (forbidden — fake data).
+Demo/sample data is allowed **only** when it is:
+- fully synthetic (not copied from real records),
+- free of PII (no real names, emails, phones, IDs, financials),
+- **labeled** `demo` / `sample`,
+- never presented as real data,
+- used only for preview, examples, or testing.
+Record the decision in the manifest's **Demo Data Policy** section ([`_TEMPLATE.md`](../page-manifests/_TEMPLATE.md)).
 
 ## Always report
 Assumptions · conflicts · what changed · visual mismatches (format in [`03-pixel-qa.md`](03-pixel-qa.md)).

@@ -4,6 +4,12 @@
 
 ---
 
+## v1.1.2 — 2026-06-23
+Patch (docs/clarification). No tokens/components changed behaviorally; no product pages.
+- **components/INDEX.md** — *what:* resolved the Pagination double-listing → single `composition-pattern` (`needs: component-spec`). *why:* the same item was listed as both a composition and a gap (found in the invoices test). *re-QA:* none.
+- **foundations/tokens.md** — *what:* documented the **Token Var Exception** rule for non-utility tokens (z-index/duration/easing/control sizes) consumed via `style`+`var()`, with conditions. *why:* the "no arbitrary values" rule had no sanctioned path for tokens Tailwind doesn't generate. *re-QA:* none.
+- Protocol-layer changes (Greenfield mode, demo-data, preview strategy, QA-report location) are logged in the OS-level [`CHANGELOG.md`](../CHANGELOG.md).
+
 ## v1.1.1 — 2026-06-23
 Patch: complete the executable token source and self-check. No product pages changed.
 

@@ -52,5 +52,12 @@ page-manifests/           _TEMPLATE.md · _GOLDEN_EXAMPLE.md
 ## The loop (every UI task)
 read `AGENTS.md` → announce **Mode** → write manifest (`_TEMPLATE`) → map components (`INDEX`) → build with semantic Tailwind classes → run QA (`03`) → **done only when [`07` Definition of Done](design-protocols/07-definition-of-done.md) passes**.
 
+## Template vs consumer project
+`design-os` is an **operating template, not a product**. Inside this repo: do **not** create real product `page-manifests/` or product pages — keep `page-manifests/` to `_TEMPLATE.md` + `_GOLDEN_EXAMPLE.md`. Worked outputs / artifacts from testing design-os itself go in `examples/`, `playground/`, or `scratch/`. In a **consumer project**, create `page-manifests/<page>.md` and build pages normally. (See [`07`](design-protocols/07-definition-of-done.md) · [`PROJECT-INSTALL.md`](PROJECT-INSTALL.md).)
+
+## Preview strategy (Tailwind)
+- **Consumer projects:** wire Tailwind normally — v3 config or v4 `@import`/`@theme` (see [`PROJECT-INSTALL.md`](PROJECT-INSTALL.md)). That is the production implementation.
+- **design-os demos / artifacts:** if a Tailwind build is unavailable, a **documented preview shim** may be used — it must mirror `tokens.css` + the semantic classes, and it is **not** the production implementation. The QA report states the **Preview runtime** (real Tailwind / shim mirror / static artifact / unknown). See [`02`](design-protocols/02-design-system-ssot.md) · [`03`](design-protocols/03-pixel-qa.md).
+
 ## Constraints (by design)
 No npm package / CLI / CI / Stylelint yet. This is a copyable template + git history, meant to be evolved.

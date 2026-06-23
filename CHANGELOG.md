@@ -4,6 +4,16 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v1.1.2 — 2026-06-23 — close runtime testing gaps
+No new protocols, no product pages, no tooling (no OCR/Playwright/Stylelint/CI/npm). Closes the runtime frictions found by the invoices live-test.
+- **Greenfield / System-First mode** — for no-reference, description-only builds; *System Fidelity collapses into Greenfield when no visual reference exists*; Pixel QA skipped. *affected:* `AGENTS.md`, `00`, `07`, `design-protocols/README.md`.
+- **Demo Data rule** — no invented production data; demo data allowed only if synthetic, PII-free, labeled, never shown as real, for preview/test. *affected:* `00`, `_TEMPLATE.md` (new *Demo Data Policy*).
+- **Template vs consumer** — design-os is an operating template: no product manifests/pages inside it; test outputs go to `examples/`/`playground/`/`scratch/`. *affected:* `README.md`, `PROJECT-INSTALL.md`, `07`. Moved the invoices live-test → `playground/`.
+- **Preview Strategy** — consumer = real Tailwind; design-os demos may use a documented shim mirroring `tokens.css` (not production). QA reports state the **Preview runtime**. *affected:* `02`, `03`, `README.md`.
+- **Token Var Exceptions** — sanctioned `style`+`var(--token)` for tokens with no utility (z-index/duration/easing/control sizes), with conditions; documented in a manifest table. *affected:* `02`, `tokens.md`, `07`, `_TEMPLATE.md`.
+- **Pagination classification fixed** — single `composition-pattern` (`needs: component-spec`); removed the double-listing in `components/INDEX.md`.
+- **QA report location** — embedded (small/medium) vs separate file (large); DoD must state where. *affected:* `07`, `_TEMPLATE.md`.
+
 ## v1.1.1 — 2026-06-23 — close critical protocol gaps
 No product pages changed. No Stylelint/CI, no libraries.
 - **`tokens.css` now covers `tokens.md`** — full token set (status triplets `-soft`/`-border`, shadows, motion, z-index, sizing, full radii, typography).

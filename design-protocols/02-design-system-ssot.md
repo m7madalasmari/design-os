@@ -44,3 +44,15 @@ Tokens are exposed to Tailwind as `theme` keys backed by CSS variables (per proj
 
 Rules: bind colors to tokens; use the Tailwind scale; new value → token or documented exception. Brand changes live in the theme (CSS variables / Tailwind theme), never hard-coded in components.
 
+## Token var exceptions (tokens with no Tailwind utility)
+Some tokens are **not** generated as utilities — z-index (`--z-*`), durations (`--duration-*`), easings (`--ease-*`), and fixed control sizes that fall off the spacing scale. For these:
+- **Preferred:** use a semantic Tailwind class whenever the token **is** mapped.
+- **Allowed exception:** `style` + CSS `var()` for a token that has no utility — e.g. `style={{ zIndex: 'var(--z-modal)' }}`, `style={{ transitionDuration: 'var(--duration-fast)' }}`.
+- **Conditions:** the value must come from `tokens.css`; **no raw values**; do **not** use an arbitrary Tailwind value when `var()` suffices; **document it** in the manifest's *Token Var Exceptions* table.
+This is **not** the same as an arbitrary value (`z-[999]`, `duration-[120ms]`) — those stay forbidden outside Pixel Clone.
+
+## Preview strategy (Tailwind-first, but build-aware)
+- **Consumer projects:** Tailwind must be wired normally (v3 config or v4 `@import`/`@theme`); utilities come from the real build. This is the production implementation.
+- **design-os demos / artifacts:** if a Tailwind build is unavailable, a **documented preview shim** may be used. The shim **must** mirror `tokens.css` + the semantic classes 1:1, and is **not** the production implementation.
+- The QA report ([`03`](03-pixel-qa.md)) must state the **Preview runtime** (real Tailwind / shim mirror / static artifact / unknown).
+

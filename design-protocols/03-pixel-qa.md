@@ -57,6 +57,14 @@ Ready to encode in a linter when the project already has one — until then, che
 - No edits to files outside the task scope.
 - No new component when a documented one exists (check [`components/INDEX.md`](../design-system/components/INDEX.md)).
 
+## Preview runtime  (state in every report)
+Say which runtime produced the preview / screenshots:
+- **Real Tailwind** — wired build (consumer project).
+- **Shim mirror** — documented shim mirroring `tokens.css` + semantic classes (design-os demos; see [`02`](02-design-system-ssot.md)).
+- **Static artifact** — exported HTML / image, no live build.
+- **Unknown.**
+A shim preview is acceptable for design-os demos but is **not** the production implementation — flag any class that must still be validated against a real Tailwind build.
+
 ## After reporting
 Fix **only** the mismatches. Do not redesign the page. If a mismatch's root cause is in the system (not the page), fix it in `design-system/` so every page benefits — then re-apply to the page.
 

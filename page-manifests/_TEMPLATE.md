@@ -4,7 +4,7 @@
 > Label every reference-derived detail: **observed / inferred / approximate / unknown**. Never silently invent an unknown.
 > Project is **Tailwind-first**: values map to tokens / Tailwind theme; no arbitrary values except Pixel Clone Mode (documented below).
 
-- **Mode:** Pixel Clone | System Fidelity | Strict SSOT | Improved
+- **Mode:** Pixel Clone | System Fidelity | Strict SSOT | Improved | Greenfield/System-First
 - **Direction:** RTL (ar) | LTR (en)
 - **Theme:** neutral | theme-<brand>
 - **Reference:** <image / link / none>
@@ -49,11 +49,26 @@
 - Error: 
 - No Permission: 
 
+## Demo Data Policy  *(if the page shows any sample rows / metrics)*
+- Uses demo data: Yes / No
+- Data type: 
+- PII risk: *(must be none)*
+- Labeling: *(how it is marked demo/sample)*
+- Reason: *(preview / example / test)*
+- *(No invented production data — see `00`. Demo data must be synthetic, PII-free, labeled, never shown as real.)*
+
 ## Content Rules
 - *(content from the user/reference only; no invented copy; numerals/dates per `04`)*
 
 ## Layout Rules
 - *(logical Tailwind utilities; token spacing scale; max content width per `layout.md`)*
+
+## Token Var Exceptions  *(tokens with no Tailwind utility — z-index / duration / easing / control sizes)*
+> Preferred: semantic Tailwind class when the token is mapped. Allowed exception: `style`+`var(--token)` when no utility exists. Value from `tokens.css` only; never a raw value; never an arbitrary value where `var()` suffices. See `02`.
+
+| Location | Token | Reason | Utility unavailable? |
+|---|---|---|---|
+|  |  |  |  |
 
 ## Responsive Behavior  *(mandatory)*
 - Desktop: 
@@ -101,3 +116,5 @@
 
 ## Post-implementation
 - QA per `design-protocols/03` (system + visual + Tailwind compliance + `05` Required Output). Record mismatches and documented deviations.
+- **QA Report Location:** Embedded (in this manifest) | Separate file · Path: ______  *(large task → separate `qa-reports/<page>.md` or `<page>.qa.md`; see `07`)*
+- **Preview runtime:** Real Tailwind | Shim mirror | Static artifact | Unknown  *(see `03`)*

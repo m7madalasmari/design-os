@@ -3,7 +3,7 @@
 > **المصدر التنفيذي الرسمي هو [`../tokens.css`](../tokens.css)** (Tailwind v4 `@theme`). هذا الملف **توثيق يطابقه 1:1** — أسماء/قيم متطابقة. أي تغيير يحدث في `tokens.css` أولًا ويُوثَّق هنا.
 > القيم وراء `--accent-*` و`--font-family-base` و`--color-focus-ring`/`--color-text-link` هي القابلة للثيم (انظر [brand-foundation](brand-foundation.md)).
 
-**قاعدة لا استثناء لها:** لا يُكتب لون hex أو px في مكوّن. تُستهلك التوكنز عبر أصناف Tailwind (انظر الجدول أدناه)؛ ما لا يولّد أصنافًا (z/sizing/duration) يُستهلك عبر `var()`.
+**قاعدة لا استثناء لها:** لا يُكتب لون hex أو px في مكوّن. تُستهلك التوكنز عبر أصناف Tailwind (انظر الجدول أدناه)؛ ما لا يولّد أصنافًا (z-index/duration/easing/أحجام تحكّم خارج المقياس) يُستهلك عبر `var()` — **استثناء توكن مسموح بشروط:** القيمة من `tokens.css`، لا قيمة خام، ولا قيمة Tailwind عشوائية إذا كان `var()` يكفي، وتُوثَّق في جدول *Token Var Exceptions* في الـmanifest. مثال مسموح: `style={{ zIndex: 'var(--z-modal)' }}`. التفصيل في [`design-protocols/02`](../../design-protocols/02-design-system-ssot.md).
 
 ## جدول المزامنة — tokens.md ⇆ tokens.css ⇆ Tailwind
 | التوكن (tokens.md / :root) | صنف/مفتاح Tailwind | ملاحظة |

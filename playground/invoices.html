@@ -1,0 +1,333 @@
+<title>الفواتير — اختبار design-os</title>
+
+<!-- ============================================================
+     1) tokens.css  ::root  (المصدر التنفيذي للتوكنز — منسوخ 1:1)
+     ============================================================ -->
+<style>
+:root{
+  --neutral-1:#FCFCFD;--neutral-2:#F9F9FB;--neutral-3:#F0F0F3;--neutral-4:#E8E8EC;
+  --neutral-5:#E0E0E6;--neutral-6:#D8D8DF;--neutral-7:#CECED6;--neutral-8:#B9B9C3;
+  --neutral-9:#8B8B96;--neutral-10:#6E6E79;--neutral-11:#50505B;--neutral-12:#1C1C24;
+  --green-fg:#1A7F4B;--green-bg:#E7F6EE;--green-border:#A6E0C0;
+  --amber-fg:#9A6700;--amber-bg:#FCF3E2;--amber-border:#ECCB8A;
+  --red-fg:#C12A2A;--red-bg:#FCEDED;--red-border:#F0B5B5;
+  --blue-fg:#15609E;--blue-bg:#E9F2FB;--blue-border:#ABCFF0;
+  --accent-solid:#3B5BDB;--accent-hover:#3450C4;--accent-active:#2C44A8;--accent-tint:#ECF0FD;--on-accent:#FFFFFF;
+  --color-bg-base:var(--neutral-1);--color-bg-subtle:var(--neutral-2);--color-bg-surface:#FFFFFF;
+  --color-bg-raised:#FFFFFF;--color-bg-hover:var(--neutral-3);--color-bg-active:var(--neutral-4);
+  --color-bg-overlay:rgba(28,28,36,.45);--color-bg-disabled:var(--neutral-3);
+  --color-text-primary:var(--neutral-12);--color-text-secondary:var(--neutral-10);
+  --color-text-tertiary:var(--neutral-9);--color-text-disabled:var(--neutral-8);--color-text-on-accent:var(--on-accent);
+  --color-text-link:var(--accent-solid);
+  --color-border-subtle:var(--neutral-5);--color-border-default:var(--neutral-6);--color-border-strong:var(--neutral-8);
+  --color-accent:var(--accent-solid);--color-accent-hover:var(--accent-hover);--color-accent-active:var(--accent-active);
+  --color-accent-subtle:var(--accent-tint);--color-text-accent:var(--accent-solid);
+  --color-success-fg:var(--green-fg);--color-success-bg:var(--green-bg);--color-success-border:var(--green-border);
+  --color-warning-fg:var(--amber-fg);--color-warning-bg:var(--amber-bg);--color-warning-border:var(--amber-border);
+  --color-danger-fg:var(--red-fg);--color-danger-bg:var(--red-bg);--color-danger-border:var(--red-border);
+  --color-info-fg:var(--blue-fg);--color-info-bg:var(--blue-bg);--color-info-border:var(--blue-border);
+  --color-focus-ring:var(--accent-solid);
+  --space-2xs:4px;--space-xs:8px;--space-sm:12px;--space-md:16px;--space-lg:24px;--space-xl:32px;
+  --font-family-base:"IBM Plex Sans Arabic",system-ui,"Segoe UI",Tahoma,sans-serif;
+  --font-size-xs:.75rem;--font-size-sm:.875rem;--font-size-md:1rem;--font-size-lg:1.125rem;
+  --font-size-xl:1.25rem;--font-size-2xl:1.5rem;--font-size-3xl:1.875rem;
+  --line-height-tight:1.3;--line-height-snug:1.5;--line-height-base:1.7;
+  --font-weight-regular:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;
+  --radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-full:9999px;
+  --shadow-sm:0 1px 2px rgba(28,28,36,.06);--shadow-md:0 4px 12px rgba(28,28,36,.10);--shadow-lg:0 12px 32px rgba(28,28,36,.16);
+  --shadow-focus:0 0 0 2px var(--color-bg-surface),0 0 0 4px var(--color-focus-ring);
+  --duration-fast:120ms;--duration-base:200ms;--duration-slow:320ms;
+  --ease-standard:cubic-bezier(.2,0,0,1);
+  --z-sticky:100;--z-dropdown:200;
+  --size-control-md:40px;--size-icon-sm:16px;--size-icon-md:20px;
+}
+</style>
+
+<!-- ============================================================
+     2) PREVIEW SHIM — يعرّف *فقط* كلاسات Tailwind المستخدمة في الـmarkup،
+        مربوطة بتوكنز tokens.css 1:1 (سابقة المثال الذهبي). ليس جزءًا من
+        المُخرَج النهائي — في مشروع حقيقي Tailwind يولّد هذه الكلاسات.
+     ============================================================ -->
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--color-bg-base);color:var(--color-text-primary);
+  font-family:var(--font-family-base);line-height:var(--line-height-base);
+  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+
+/* layout */
+.min-h-screen{min-height:100vh}
+.mx-auto{margin-inline:auto}.max-w-5xl{max-width:64rem}
+.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.block{display:block}.hidden{display:none}
+.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.flex-1{flex:1 1 0%}
+.items-center{align-items:center}.items-start{align-items:flex-start}
+.justify-between{justify-content:space-between}.justify-center{justify-content:center}
+.gap-1{gap:4px}.gap-2{gap:8px}.gap-3{gap:12px}.gap-4{gap:16px}.gap-6{gap:24px}
+.w-full{width:100%}.relative{position:relative}
+.overflow-x-auto{overflow-x:auto}.overflow-hidden{overflow:hidden}
+
+/* spacing (Tailwind 4px scale) */
+.p-2{padding:8px}.p-3{padding:12px}.p-4{padding:16px}.p-6{padding:24px}
+.px-2{padding-inline:8px}.px-3{padding-inline:12px}.px-4{padding-inline:16px}
+.py-0\.5{padding-block:2px}.py-1{padding-block:4px}.py-1\.5{padding-block:6px}.py-2{padding-block:8px}.py-3{padding-block:12px}.py-12{padding-block:48px}
+.ps-3{padding-inline-start:12px}.pe-3{padding-inline-end:12px}
+.mt-1{margin-block-start:4px}.mt-2{margin-block-start:8px}.mt-6{margin-block-start:24px}
+.mb-1{margin-block-end:4px}.mb-2{margin-block-end:8px}.mb-4{margin-block-end:16px}.mb-6{margin-block-end:24px}
+.ms-auto{margin-inline-start:auto}
+
+/* sizing (token-bound) — h-10 mapped to the control-size token, not a hardcoded 40px */
+.h-10{height:var(--size-control-md)}
+.size-2{width:8px;height:8px}.size-4{width:16px;height:16px}.size-5{width:20px;height:20px}.size-10{width:40px;height:40px}.size-12{width:48px;height:48px}
+
+/* color — semantic (maps @theme inline names) */
+.bg-background{background:var(--color-bg-base)}
+.bg-card{background:var(--color-bg-surface)}
+.bg-muted{background:var(--color-bg-subtle)}
+.bg-primary{background:var(--color-accent)}
+.bg-transparent{background:transparent}
+.bg-current{background:currentColor}
+.hover\:bg-primary-hover:hover{background:var(--color-accent-hover)}
+.hover\:bg-hover:hover{background:var(--color-bg-hover)}
+.text-foreground{color:var(--color-text-primary)}
+.text-muted-foreground{color:var(--color-text-secondary)}
+.text-faint{color:var(--color-text-tertiary)}
+.text-primary{color:var(--color-accent)}
+.text-primary-foreground{color:var(--color-text-on-accent)}
+.text-link{color:var(--color-text-link)}
+/* status (fg / soft / border) */
+.text-success{color:var(--color-success-fg)}.bg-success-soft{background:var(--color-success-bg)}.border-success{border-color:var(--color-success-border)}
+.text-warning{color:var(--color-warning-fg)}.bg-warning-soft{background:var(--color-warning-bg)}.border-warning{border-color:var(--color-warning-border)}
+.text-destructive{color:var(--color-danger-fg)}.bg-destructive-soft{background:var(--color-danger-bg)}.border-destructive{border-color:var(--color-danger-border)}
+.text-info{color:var(--color-info-fg)}.bg-info-soft{background:var(--color-info-bg)}.border-info{border-color:var(--color-info-border)}
+
+/* border */
+.border{border-width:1px;border-style:solid;border-color:var(--color-border-default)}
+.border-b{border-block-end-width:1px;border-style:solid;border-color:var(--color-border-subtle)}
+.border-t{border-block-start-width:1px;border-style:solid;border-color:var(--color-border-subtle)}
+.border-border{border-color:var(--color-border-default)}
+.border-border-subtle{border-color:var(--color-border-subtle)}
+
+/* radius */
+.rounded-sm{border-radius:var(--radius-sm)}.rounded-md{border-radius:var(--radius-md)}
+.rounded-lg{border-radius:var(--radius-lg)}.rounded-full{border-radius:var(--radius-full)}
+
+/* shadow */
+.shadow-sm{box-shadow:var(--shadow-sm)}.shadow-md{box-shadow:var(--shadow-md)}
+
+/* typography */
+.text-xs{font-size:var(--font-size-xs)}.text-sm{font-size:var(--font-size-sm)}.text-base{font-size:var(--font-size-md)}
+.text-lg{font-size:var(--font-size-lg)}.text-xl{font-size:var(--font-size-xl)}.text-2xl{font-size:var(--font-size-2xl)}.text-3xl{font-size:var(--font-size-3xl)}
+.font-medium{font-weight:500}.font-semibold{font-weight:600}.font-bold{font-weight:700}
+.leading-tight{line-height:var(--line-height-tight)}
+.tabular-nums{font-variant-numeric:tabular-nums}
+.text-start{text-align:start}.text-end{text-align:end}.text-center{text-align:center}
+.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.max-w-account{max-width:14rem}
+
+/* interaction */
+.outline-none{outline:none}
+.cursor-pointer{cursor:pointer}
+.transition-colors{transition-property:color,background-color,border-color,box-shadow;transition-duration:var(--duration-fast);transition-timing-function:var(--ease-standard)}
+.focus-visible\:ring:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+.focus-within\:ring:focus-within{box-shadow:var(--shadow-focus)}
+.z-sticky{z-index:var(--z-sticky)}
+.sticky{position:sticky}.top-0{inset-block-start:0}
+
+/* table */
+table{border-collapse:collapse}
+th,td{padding-block:12px;padding-inline:16px}
+thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-size-sm)}
+
+/* skeleton (loading only) */
+.skeleton{background:var(--color-bg-subtle);border-radius:var(--radius-sm);height:14px}
+@media (prefers-reduced-motion:no-preference){
+  .animate-pulse{animation:pulse 1.4s var(--ease-standard) infinite}
+  @keyframes pulse{50%{opacity:.5}}
+}
+@media (prefers-reduced-motion:reduce){
+  .transition-colors{transition:none}.animate-pulse{animation:none}
+}
+</style>
+
+<!-- ============================================================
+     3) الواجهة — Tailwind-first (كلاسات دلالية + أدوات RTL منطقية)
+     ============================================================ -->
+<div dir="rtl" lang="ar">
+<main class="min-h-screen mx-auto max-w-5xl p-6 flex flex-col gap-6">
+
+  <!-- إخلاء معاينة الاختبار -->
+  <p class="text-xs text-faint">معاينة اختبار البروتوكول · design-os v1.1.1 · Mode: System Fidelity · theme: neutral · بيانات تجريبية صناعية</p>
+
+  <!-- ===== Page Header ===== -->
+  <header class="flex flex-wrap items-center justify-between gap-4">
+    <div class="flex flex-col gap-1">
+      <h1 class="text-3xl font-bold leading-tight text-foreground">الفواتير</h1>
+      <p class="text-sm text-muted-foreground">إدارة فواتير العملاء وحالات السداد.</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-card border border-border text-foreground font-medium text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">
+        <svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 3v9m0 0 3.2-3.2M10 12 6.8 8.8M4 14v1.5A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5V14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        تصدير
+      </button>
+      <button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-primary-foreground font-medium text-sm transition-colors hover:bg-primary-hover focus-visible:ring cursor-pointer">
+        <svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke-linecap="round"/></svg>
+        أنشئ فاتورة
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Filter Bar ===== -->
+  <section class="flex flex-wrap items-center gap-3" aria-label="فلاتر الفواتير">
+    <!-- search (icon inline-start) -->
+    <div class="inline-flex items-center gap-2 h-10 ps-3 pe-3 bg-card border border-border rounded-md transition-colors focus-within:ring">
+      <svg class="size-5 text-muted-foreground" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="m13.5 13.5 3 3" stroke-linecap="round"/></svg>
+      <input type="search" class="bg-transparent outline-none text-sm text-foreground w-full" placeholder="ابحث برقم الفاتورة أو العميل" aria-label="بحث">
+    </div>
+    <!-- status chips -->
+    <div class="flex flex-wrap items-center gap-2" role="group" aria-label="فلترة بالحالة">
+      <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-primary text-primary-foreground text-sm font-medium transition-colors focus-visible:ring cursor-pointer">الكل</button>
+      <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-card border border-border text-foreground text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">مدفوعة</button>
+      <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-card border border-border text-foreground text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">قيد الانتظار</button>
+      <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-card border border-border text-foreground text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">متأخّرة</button>
+    </div>
+  </section>
+
+  <!-- ===== Table (filled) inside Card ===== -->
+  <section class="bg-card border border-border rounded-lg shadow-sm overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-muted sticky top-0 z-sticky">
+          <tr class="border-b">
+            <th class="text-start" scope="col"><button type="button" class="inline-flex items-center gap-1 font-medium text-muted-foreground transition-colors focus-visible:ring cursor-pointer" aria-sort="descending">رقم الفاتورة
+              <svg class="size-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m4 6 4-3 4 3M4 10l4 3 4-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></th>
+            <th class="text-start" scope="col">العميل</th>
+            <th class="text-start" scope="col">التاريخ</th>
+            <th class="text-start" scope="col">الحالة</th>
+            <th class="text-end" scope="col">المبلغ</th>
+          </tr>
+        </thead>
+        <tbody class="text-foreground">
+          <!-- row -->
+          <tr class="border-b transition-colors hover:bg-hover">
+            <td class="text-start"><bdi class="tabular-nums font-medium">INV-10234</bdi></td>
+            <td class="text-start"><span class="block truncate max-w-account">شركة الواحة للتجارة</span></td>
+            <td class="text-start text-muted-foreground">22 يونيو 2026</td>
+            <td class="text-start">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-success bg-success-soft"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>مدفوعة</span>
+            </td>
+            <td class="text-end"><bdi class="tabular-nums">12,500.00 ر.س</bdi></td>
+          </tr>
+          <tr class="border-b transition-colors hover:bg-hover">
+            <td class="text-start"><bdi class="tabular-nums font-medium">INV-10233</bdi></td>
+            <td class="text-start"><span class="block truncate max-w-account">مؤسسة النخبة</span></td>
+            <td class="text-start text-muted-foreground">21 يونيو 2026</td>
+            <td class="text-start">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-warning bg-warning-soft"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>قيد الانتظار</span>
+            </td>
+            <td class="text-end"><bdi class="tabular-nums">3,200.00 ر.س</bdi></td>
+          </tr>
+          <tr class="border-b transition-colors hover:bg-hover">
+            <td class="text-start"><bdi class="tabular-nums font-medium">INV-10232</bdi></td>
+            <td class="text-start"><span class="block truncate max-w-account">متجر السدرة</span></td>
+            <td class="text-start text-muted-foreground">20 يونيو 2026</td>
+            <td class="text-start">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-destructive bg-destructive-soft"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>متأخّرة</span>
+            </td>
+            <td class="text-end"><bdi class="tabular-nums">980.00 ر.س</bdi></td>
+          </tr>
+          <tr class="border-b transition-colors hover:bg-hover">
+            <td class="text-start"><bdi class="tabular-nums font-medium">INV-10231</bdi></td>
+            <td class="text-start"><span class="block truncate max-w-account">شركة أفق الرقمية</span></td>
+            <td class="text-start text-muted-foreground">19 يونيو 2026</td>
+            <td class="text-start">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-muted-foreground bg-muted"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>مسوّدة</span>
+            </td>
+            <td class="text-end"><bdi class="tabular-nums">7,450.00 ر.س</bdi></td>
+          </tr>
+          <tr class="border-b transition-colors hover:bg-hover">
+            <td class="text-start"><bdi class="tabular-nums font-medium">INV-10230</bdi></td>
+            <td class="text-start"><span class="block truncate max-w-account">مجموعة البيان</span></td>
+            <td class="text-start text-muted-foreground">18 يونيو 2026</td>
+            <td class="text-start">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-info bg-info-soft"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>قيد المعالجة</span>
+            </td>
+            <td class="text-end"><bdi class="tabular-nums">21,000.00 ر.س</bdi></td>
+          </tr>
+          <tr class="transition-colors hover:bg-hover">
+            <td class="text-start"><bdi class="tabular-nums font-medium">INV-10229</bdi></td>
+            <td class="text-start"><span class="block truncate max-w-account">شركة الواحة للتجارة</span></td>
+            <td class="text-start text-muted-foreground">17 يونيو 2026</td>
+            <td class="text-start">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-success bg-success-soft"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>مدفوعة</span>
+            </td>
+            <td class="text-end"><bdi class="tabular-nums">1,250.00 ر.س</bdi></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- results counter + pagination (composition) -->
+    <div class="flex flex-wrap items-center justify-between gap-3 p-3 border-t">
+      <p class="text-sm text-muted-foreground">عرض <bdi class="tabular-nums">1–6</bdi> من <bdi class="tabular-nums">6</bdi></p>
+      <div class="flex items-center gap-2">
+        <button type="button" class="inline-flex items-center justify-center h-10 px-3 rounded-md bg-card border border-border text-sm text-muted-foreground transition-colors focus-visible:ring cursor-pointer">السابق</button>
+        <button type="button" class="inline-flex items-center justify-center h-10 px-3 rounded-md bg-card border border-border text-sm text-foreground transition-colors hover:bg-hover focus-visible:ring cursor-pointer">التالي</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== States demo (الحالات الأربع الأخرى — table.md §3) ===== -->
+  <h2 class="text-xl font-semibold text-foreground mt-6">حالات الجدول (عرض توضيحي)</h2>
+  <div class="grid gap-4" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+
+    <!-- loading: skeleton -->
+    <div class="bg-card border border-border rounded-lg shadow-sm p-4 flex flex-col gap-3">
+      <p class="text-xs font-medium text-faint">تحميل (skeleton)</p>
+      <div class="flex flex-col gap-3" aria-hidden="true">
+        <div class="skeleton animate-pulse" style="width:60%"></div>
+        <div class="skeleton animate-pulse" style="width:85%"></div>
+        <div class="skeleton animate-pulse" style="width:70%"></div>
+        <div class="skeleton animate-pulse" style="width:90%"></div>
+      </div>
+    </div>
+
+    <!-- empty: first-use (أيقونة بسيطة فقط — data app) -->
+    <div class="bg-card border border-border rounded-lg shadow-sm p-4">
+      <p class="text-xs font-medium text-faint mb-2">فارغة (أول استخدام)</p>
+      <div class="flex flex-col items-center text-center gap-2 py-12">
+        <span class="flex items-center justify-center size-12 rounded-full bg-muted text-muted-foreground" aria-hidden="true">
+          <svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3.5h7l3 3V16a.5.5 0 0 1-.5.5h-9A.5.5 0 0 1 5 16V3.5Z"/><path d="M12 3.5V7h3M8 11h4M8 13.5h4" stroke-linecap="round"/></svg>
+        </span>
+        <h3 class="text-base font-semibold text-foreground">لم تُنشئ أي فاتورة بعد</h3>
+        <p class="text-sm text-muted-foreground">ابدأ بإنشاء أول فاتورة لعملائك.</p>
+        <button type="button" class="inline-flex items-center gap-2 h-10 px-4 mt-2 rounded-md bg-primary text-primary-foreground font-medium text-sm transition-colors hover:bg-primary-hover focus-visible:ring cursor-pointer">أنشئ أول فاتورة</button>
+      </div>
+    </div>
+
+    <!-- no-results -->
+    <div class="bg-card border border-border rounded-lg shadow-sm p-4">
+      <p class="text-xs font-medium text-faint mb-2">لا نتائج (بعد فلترة)</p>
+      <div class="flex flex-col items-center text-center gap-2 py-12">
+        <span class="flex items-center justify-center size-12 rounded-full bg-muted text-muted-foreground" aria-hidden="true">
+          <svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="5"/><path d="m13 13 3 3" stroke-linecap="round"/></svg>
+        </span>
+        <h3 class="text-base font-semibold text-foreground">لا نتائج تطابق هذه الفلاتر</h3>
+        <p class="text-sm text-muted-foreground">جرّب توسيع البحث أو إزالة بعض الفلاتر.</p>
+        <button type="button" class="inline-flex items-center gap-1 mt-2 text-sm font-medium text-link transition-colors focus-visible:ring cursor-pointer">امسح الفلاتر</button>
+      </div>
+    </div>
+
+    <!-- error -->
+    <div class="bg-card border border-border rounded-lg shadow-sm p-4">
+      <p class="text-xs font-medium text-faint mb-2">خطأ</p>
+      <div class="flex flex-col items-center text-center gap-2 py-12">
+        <span class="flex items-center justify-center size-12 rounded-full bg-destructive-soft text-destructive" aria-hidden="true">
+          <svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 6v4.5M10 13.5h.01" stroke-linecap="round"/><circle cx="10" cy="10" r="6.5"/></svg>
+        </span>
+        <h3 class="text-base font-semibold text-foreground">تعذّر تحميل الفواتير</h3>
+        <p class="text-sm text-muted-foreground">تحقّق من الاتصال ثم أعد المحاولة.</p>
+        <button type="button" class="inline-flex items-center gap-2 h-10 px-4 mt-2 rounded-md bg-card border border-border text-foreground font-medium text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">أعد المحاولة</button>
+      </div>
+    </div>
+
+  </div>
+</main>
+</div>

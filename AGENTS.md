@@ -33,8 +33,10 @@ Full rules: `00-operating-rules.md`. Arbitrary-value exception (Pixel Clone only
 | **System Fidelity** *(default)* | match reference **within** the system | "implement / build this design" |
 | **Strict SSOT** | system **>** reference | system consistency matters most |
 | **Improved** | reference **+** justified UX/a11y fixes | user explicitly asks to improve it |
+| **Greenfield / System-First** | **system is the only source** (no reference) | no image / no prior design; build from a description |
 
 Default is **System Fidelity** unless the user says otherwise. Announce the chosen mode before building.
+**No visual reference?** System Fidelity *collapses into* **Greenfield / System-First**: the design system, component inventory, and UX clarity become the contract — priority **user intent → design system → component inventory → UX clarity → visual-polish rules**. **Pixel QA does not apply unless a reference image exists.**
 
 ## Default Workflow
 

@@ -51,9 +51,9 @@
 - **Description list (`<dl>`)** inside Card — key/value facts.
 - **Brand highlight mark** — brand background behind text (themes).
 - **Numbered feature list** (01/02 …) — section-header + grid.
-- **Pagination** — counter + prev/next buttons (see gaps → graduate to a component).
+- **Pagination** — `status: composition-pattern` · `needs: component-spec`. Built from Button as counter + prev/next (e.g. «عرض 1–20 من 240»). Until a spec exists, use the composition; do **not** treat it as a documented component.
 
 ## Known gaps (missing entirely — `Spec ✗`)
 - **Data visualization** (chart · sparkline · legend · axis · tooltip-on-hover) — not in the library.
 - **Tooltip / Popover** — referenced by Select/Table, no spec yet.
-- **Pagination** — used as a composition; should graduate to a documented component.
+> Pagination is **not** listed here — it is a `composition-pattern` (`needs: component-spec`) tracked under **Compositions** above, to avoid double-listing.
