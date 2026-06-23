@@ -1,0 +1,473 @@
+<title>معرض مكوّنات design-os — Component Gallery</title>
+
+<!-- ============================================================
+     1) tokens.css :root  (executable token source — copied 1:1)
+     ============================================================ -->
+<style>
+:root{
+  --neutral-1:#FCFCFD;--neutral-2:#F9F9FB;--neutral-3:#F0F0F3;--neutral-4:#E8E8EC;
+  --neutral-5:#E0E0E6;--neutral-6:#D8D8DF;--neutral-7:#CECED6;--neutral-8:#B9B9C3;
+  --neutral-9:#8B8B96;--neutral-10:#6E6E79;--neutral-11:#50505B;--neutral-12:#1C1C24;
+  --green-fg:#1A7F4B;--green-bg:#E7F6EE;--green-border:#A6E0C0;
+  --amber-fg:#9A6700;--amber-bg:#FCF3E2;--amber-border:#ECCB8A;
+  --red-fg:#C12A2A;--red-bg:#FCEDED;--red-border:#F0B5B5;
+  --blue-fg:#15609E;--blue-bg:#E9F2FB;--blue-border:#ABCFF0;
+  --accent-solid:#3B5BDB;--accent-hover:#3450C4;--accent-active:#2C44A8;--accent-tint:#ECF0FD;--on-accent:#FFFFFF;
+  --color-bg-base:var(--neutral-1);--color-bg-subtle:var(--neutral-2);--color-bg-surface:#FFFFFF;
+  --color-bg-raised:#FFFFFF;--color-bg-hover:var(--neutral-3);--color-bg-active:var(--neutral-4);
+  --color-bg-overlay:rgba(28,28,36,.45);--color-bg-disabled:var(--neutral-3);
+  --color-text-primary:var(--neutral-12);--color-text-secondary:var(--neutral-10);
+  --color-text-tertiary:var(--neutral-9);--color-text-disabled:var(--neutral-8);--color-text-on-accent:var(--on-accent);
+  --color-text-link:var(--accent-solid);
+  --color-border-subtle:var(--neutral-5);--color-border-default:var(--neutral-6);--color-border-strong:var(--neutral-8);
+  --color-accent:var(--accent-solid);--color-accent-hover:var(--accent-hover);--color-accent-active:var(--accent-active);
+  --color-accent-subtle:var(--accent-tint);--color-text-accent:var(--accent-solid);
+  --color-success-fg:var(--green-fg);--color-success-bg:var(--green-bg);--color-success-border:var(--green-border);
+  --color-warning-fg:var(--amber-fg);--color-warning-bg:var(--amber-bg);--color-warning-border:var(--amber-border);
+  --color-danger-fg:var(--red-fg);--color-danger-bg:var(--red-bg);--color-danger-border:var(--red-border);
+  --color-info-fg:var(--blue-fg);--color-info-bg:var(--blue-bg);--color-info-border:var(--blue-border);
+  --color-focus-ring:var(--accent-solid);
+  --space-3xs:2px;--space-2xs:4px;--space-xs:8px;--space-sm:12px;--space-md:16px;--space-lg:24px;--space-xl:32px;--space-2xl:48px;--space-3xl:64px;
+  --font-family-base:"IBM Plex Sans Arabic",system-ui,"Segoe UI",Tahoma,sans-serif;
+  --font-family-mono:ui-monospace,"SF Mono",monospace;
+  --font-size-xs:.75rem;--font-size-sm:.875rem;--font-size-md:1rem;--font-size-lg:1.125rem;
+  --font-size-xl:1.25rem;--font-size-2xl:1.5rem;--font-size-3xl:1.875rem;--font-size-4xl:2.25rem;
+  --line-height-tight:1.3;--line-height-snug:1.5;--line-height-base:1.7;
+  --font-weight-regular:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;
+  --radius-none:0;--radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-full:9999px;
+  --shadow-sm:0 1px 2px rgba(28,28,36,.06);--shadow-md:0 4px 12px rgba(28,28,36,.10);--shadow-lg:0 12px 32px rgba(28,28,36,.16);
+  --shadow-focus:0 0 0 2px var(--color-bg-surface),0 0 0 4px var(--color-focus-ring);
+  --duration-fast:120ms;--duration-base:200ms;--duration-slow:320ms;
+  --ease-standard:cubic-bezier(.2,0,0,1);
+  --z-sticky:100;--z-dropdown:200;
+  --size-touch-min:44px;--size-control-sm:32px;--size-control-md:40px;--size-control-lg:48px;
+  --size-icon-sm:16px;--size-icon-md:20px;--size-icon-lg:24px;--border-width:1px;--border-width-strong:2px;
+}
+</style>
+
+<!-- ============================================================
+     2) PREVIEW SHIM + gallery chrome — mirrors tokens.css 1:1.
+        Preview runtime: shim mirror. NOT production code.
+     ============================================================ -->
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--color-bg-base);color:var(--color-text-primary);
+  font-family:var(--font-family-base);line-height:var(--line-height-base);
+  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+
+/* layout */
+.mx-auto{margin-inline:auto}.max-w-5xl{max-width:64rem}
+.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.block{display:block}.hidden{display:none}
+.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.flex-1{flex:1 1 0%}
+.items-center{align-items:center}.items-start{align-items:flex-start}.items-end{align-items:flex-end}
+.justify-between{justify-content:space-between}.justify-center{justify-content:center}.justify-end{justify-content:flex-end}
+.gap-1{gap:4px}.gap-2{gap:8px}.gap-3{gap:12px}.gap-4{gap:16px}.gap-6{gap:24px}.gap-8{gap:32px}
+.w-full{width:100%}.relative{position:relative}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.overflow-hidden{overflow:hidden}
+
+/* spacing */
+.p-2{padding:8px}.p-3{padding:12px}.p-4{padding:16px}.p-6{padding:24px}
+.px-2{padding-inline:8px}.px-3{padding-inline:12px}.px-4{padding-inline:16px}
+.py-0\.5{padding-block:2px}.py-1{padding-block:4px}.py-1\.5{padding-block:6px}.py-2{padding-block:8px}.py-3{padding-block:12px}.py-12{padding-block:48px}
+.ps-3{padding-inline-start:12px}.pe-3{padding-inline-end:12px}.ps-9{padding-inline-start:36px}
+.mt-1{margin-block-start:4px}.mt-2{margin-block-start:8px}.mb-1{margin-block-end:4px}.mb-2{margin-block-end:8px}.mb-4{margin-block-end:16px}
+.ms-2{margin-inline-start:8px}.me-2{margin-inline-end:8px}.ms-auto{margin-inline-start:auto}
+
+/* sizing */
+.h-8{height:var(--size-control-sm)}.h-10{height:var(--size-control-md)}.h-12{height:var(--size-control-lg)}
+.size-2{width:8px;height:8px}.size-4{width:16px;height:16px}.size-5{width:20px;height:20px}.size-6{width:24px;height:24px}.size-10{width:40px;height:40px}.size-12{width:48px;height:48px}
+.min-h-11{min-height:44px}
+
+/* color */
+.bg-background{background:var(--color-bg-base)}.bg-card{background:var(--color-bg-surface)}.bg-muted{background:var(--color-bg-subtle)}
+.bg-popover{background:var(--color-bg-raised)}.bg-primary{background:var(--color-accent)}.bg-primary-subtle{background:var(--color-accent-subtle)}
+.bg-transparent{background:transparent}.bg-current{background:currentColor}.bg-disabled{background:var(--color-bg-disabled)}
+.hover\:bg-primary-hover:hover{background:var(--color-accent-hover)}.hover\:bg-hover:hover{background:var(--color-bg-hover)}
+.text-foreground{color:var(--color-text-primary)}.text-muted-foreground{color:var(--color-text-secondary)}.text-faint{color:var(--color-text-tertiary)}
+.text-disabled{color:var(--color-text-disabled)}.text-primary{color:var(--color-accent)}.text-primary-foreground{color:var(--color-text-on-accent)}.text-link{color:var(--color-text-link)}
+.text-success{color:var(--color-success-fg)}.bg-success-soft{background:var(--color-success-bg)}
+.text-warning{color:var(--color-warning-fg)}.bg-warning-soft{background:var(--color-warning-bg)}
+.text-destructive{color:var(--color-danger-fg)}.bg-destructive-soft{background:var(--color-danger-bg)}
+.text-info{color:var(--color-info-fg)}.bg-info-soft{background:var(--color-info-bg)}
+
+/* border */
+.border{border-width:1px;border-style:solid;border-color:var(--color-border-default)}
+.border-2{border-width:2px;border-style:solid;border-color:var(--color-border-default)}
+.border-b{border-block-end-width:1px;border-style:solid;border-color:var(--color-border-subtle)}
+.border-t{border-block-start-width:1px;border-style:solid;border-color:var(--color-border-subtle)}
+.border-border{border-color:var(--color-border-default)}.border-strong{border-color:var(--color-border-strong)}
+.border-danger{border-color:var(--color-danger-border)}.border-focus{border-color:var(--color-focus-ring)}
+
+/* radius / shadow */
+.rounded-none{border-radius:0}.rounded-sm{border-radius:var(--radius-sm)}.rounded-md{border-radius:var(--radius-md)}
+.rounded-lg{border-radius:var(--radius-lg)}.rounded-full{border-radius:var(--radius-full)}
+.shadow-sm{box-shadow:var(--shadow-sm)}.shadow-md{box-shadow:var(--shadow-md)}.shadow-lg{box-shadow:var(--shadow-lg)}
+
+/* typography */
+.text-xs{font-size:var(--font-size-xs)}.text-sm{font-size:var(--font-size-sm)}.text-base{font-size:var(--font-size-md)}
+.text-lg{font-size:var(--font-size-lg)}.text-xl{font-size:var(--font-size-xl)}.text-2xl{font-size:var(--font-size-2xl)}
+.text-3xl{font-size:var(--font-size-3xl)}.text-4xl{font-size:var(--font-size-4xl)}
+.font-medium{font-weight:500}.font-semibold{font-weight:600}.font-bold{font-weight:700}
+.leading-tight{line-height:var(--line-height-tight)}.tabular-nums{font-variant-numeric:tabular-nums}.font-mono{font-family:var(--font-family-mono)}
+.text-start{text-align:start}.text-end{text-align:end}.text-center{text-align:center}
+.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.max-w-acct{max-width:12rem}
+
+/* interaction */
+.outline-none{outline:none}.cursor-pointer{cursor:pointer}.cursor-not-allowed{cursor:not-allowed}.opacity-60{opacity:.6}
+.hover\:underline:hover{text-decoration:underline}
+.transition-colors{transition-property:color,background-color,border-color,box-shadow;transition-duration:var(--duration-fast);transition-timing-function:var(--ease-standard)}
+.focus-visible\:ring:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+.focus-within\:ring:focus-within{box-shadow:var(--shadow-focus)}
+.ring{box-shadow:var(--shadow-focus)}        /* forced-focus demo */
+.z-sticky{z-index:var(--z-sticky)}.sticky{position:sticky}.top-0{inset-block-start:0}
+
+/* table */
+table{border-collapse:collapse}
+th,td{padding-block:12px;padding-inline:16px}
+thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-size-sm)}
+
+/* skeleton + spinner (UNDOCUMENTED primitives — flagged in manifest) */
+.skeleton{background:var(--color-bg-subtle);border-radius:var(--radius-sm);height:14px}
+.spinner{width:16px;height:16px;border-radius:9999px;border:2px solid var(--color-border-default);border-block-start-color:currentColor}
+@media (prefers-reduced-motion:no-preference){
+  .animate-pulse{animation:pulse 1.4s var(--ease-standard) infinite}@keyframes pulse{50%{opacity:.5}}
+  .animate-spin{animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+}
+@media (prefers-reduced-motion:reduce){.transition-colors{transition:none}.animate-pulse{animation:none}.animate-spin{animation:none}}
+
+/* ---- gallery chrome (preview scaffolding, not component values) ---- */
+.gallery{max-width:64rem;margin-inline:auto;padding:24px;display:flex;flex-direction:column;gap:32px}
+.section{display:flex;flex-direction:column;gap:16px}
+.section > h2{font-size:var(--font-size-2xl);font-weight:700;border-block-end:1px solid var(--color-border-subtle);padding-block-end:8px}
+.grp{display:flex;flex-direction:column;gap:8px}
+.grp > h3{font-size:var(--font-size-sm);font-weight:600;color:var(--color-text-secondary)}
+.row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px}
+.cap{font-size:var(--font-size-xs);color:var(--color-text-tertiary)}
+.cell{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.swatch{width:56px;height:56px;border-radius:var(--radius-md);border:1px solid var(--color-border-subtle)}
+.box{width:64px;height:48px;background:var(--color-bg-subtle);display:flex;align-items:center;justify-content:center;color:var(--color-text-tertiary);font-size:var(--font-size-xs)}
+.bar{height:16px;background:var(--color-accent);border-radius:var(--radius-sm)}
+.note{font-size:var(--font-size-xs);color:var(--color-warning-fg);background:var(--color-warning-bg);border:1px solid var(--color-warning-border);border-radius:var(--radius-sm);padding:2px 8px}
+</style>
+
+<div dir="rtl" lang="ar">
+<main class="gallery">
+
+  <header class="grp">
+    <h1 class="text-3xl font-bold leading-tight">معرض مكوّنات design-os</h1>
+    <p class="text-sm text-muted-foreground">صفحة اختبار بصري للمكوّنات وحالاتها — <span class="font-medium">ليست صفحة منتج</span>. theme: neutral · RTL · Preview runtime: shim mirror · مبني على tokens.css + INDEX.</p>
+  </header>
+
+  <!-- ============ 1. FOUNDATIONS ============ -->
+  <section class="section">
+    <h2>١. الأسس — Foundations</h2>
+
+    <div class="grp"><h3>ألوان النظام</h3>
+      <div class="row">
+        <div class="cell"><span class="swatch bg-background"></span><span class="cap">background</span></div>
+        <div class="cell"><span class="swatch bg-card"></span><span class="cap">card / surface</span></div>
+        <div class="cell"><span class="swatch bg-muted"></span><span class="cap">muted</span></div>
+        <div class="cell"><span class="swatch bg-primary"></span><span class="cap">primary</span></div>
+        <div class="cell"><span class="swatch bg-primary-subtle"></span><span class="cap">primary-subtle</span></div>
+        <div class="cell"><span class="swatch" style="background:var(--color-text-primary)"></span><span class="cap">foreground</span></div>
+        <div class="cell"><span class="swatch" style="background:var(--color-text-secondary)"></span><span class="cap">muted-foreground</span></div>
+        <div class="cell"><span class="swatch" style="background:var(--color-border-default)"></span><span class="cap">border</span></div>
+      </div>
+    </div>
+
+    <div class="grp"><h3>ألوان الحالات</h3>
+      <div class="row">
+        <div class="cell"><span class="swatch bg-success-soft" style="border-color:var(--color-success-border)"></span><span class="cap text-success">success</span></div>
+        <div class="cell"><span class="swatch bg-warning-soft" style="border-color:var(--color-warning-border)"></span><span class="cap text-warning">warning</span></div>
+        <div class="cell"><span class="swatch bg-destructive-soft" style="border-color:var(--color-danger-border)"></span><span class="cap text-destructive">danger</span></div>
+        <div class="cell"><span class="swatch bg-info-soft" style="border-color:var(--color-info-border)"></span><span class="cap text-info">info</span></div>
+      </div>
+    </div>
+
+    <div class="grp"><h3>السلّم الطباعي — Typography</h3>
+      <div class="flex flex-col gap-1">
+        <span class="text-4xl font-bold">4xl — العنوان الكبير</span>
+        <span class="text-3xl font-bold">3xl — عنوان صفحة</span>
+        <span class="text-2xl font-semibold">2xl — عنوان قسم</span>
+        <span class="text-xl font-semibold">xl — عنوان فرعي</span>
+        <span class="text-lg">lg — نص بارز</span>
+        <span class="text-base">base — نص الجسم ١٦px</span>
+        <span class="text-sm text-muted-foreground">sm — نص ثانوي</span>
+        <span class="text-xs text-faint">xs — تلميح ١٢px</span>
+      </div>
+    </div>
+
+    <div class="grp"><h3>الزوايا — Radius</h3>
+      <div class="row">
+        <div class="cell"><span class="box rounded-none"></span><span class="cap">none</span></div>
+        <div class="cell"><span class="box rounded-sm"></span><span class="cap">sm 4</span></div>
+        <div class="cell"><span class="box rounded-md"></span><span class="cap">md 8</span></div>
+        <div class="cell"><span class="box rounded-lg"></span><span class="cap">lg 12</span></div>
+        <div class="cell"><span class="box rounded-full"></span><span class="cap">full</span></div>
+      </div>
+    </div>
+
+    <div class="grp"><h3>الظلال — Shadows</h3>
+      <div class="row">
+        <div class="cell"><span class="box bg-card shadow-sm rounded-md"></span><span class="cap">sm</span></div>
+        <div class="cell"><span class="box bg-card shadow-md rounded-md"></span><span class="cap">md</span></div>
+        <div class="cell"><span class="box bg-card shadow-lg rounded-md"></span><span class="cap">lg</span></div>
+      </div>
+    </div>
+
+    <div class="grp"><h3>المسافات — Spacing (4px base)</h3>
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center gap-2"><span class="bar" style="width:8px"></span><span class="cap">xs 8</span></div>
+        <div class="flex items-center gap-2"><span class="bar" style="width:12px"></span><span class="cap">sm 12</span></div>
+        <div class="flex items-center gap-2"><span class="bar" style="width:16px"></span><span class="cap">md 16</span></div>
+        <div class="flex items-center gap-2"><span class="bar" style="width:24px"></span><span class="cap">lg 24</span></div>
+        <div class="flex items-center gap-2"><span class="bar" style="width:32px"></span><span class="cap">xl 32</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. BUTTONS ============ -->
+  <section class="section">
+    <h2>٢. الأزرار — Buttons</h2>
+    <div class="row">
+      <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-primary-foreground font-medium text-sm transition-colors hover:bg-primary-hover focus-visible:ring cursor-pointer">إجراء أساسي</button><span class="cap">primary</span></div>
+      <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-card border border-border text-foreground font-medium text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">ثانوي</button><span class="cap">secondary</span></div>
+      <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-transparent text-foreground font-medium text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">ثالثي</button><span class="cap">tertiary</span></div>
+      <div class="cell"><button type="button" aria-label="إعدادات" class="inline-flex items-center justify-center size-10 min-h-11 rounded-md bg-card border border-border text-foreground transition-colors hover:bg-hover focus-visible:ring cursor-pointer"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="2.5"/><path d="M10 3v2M10 15v2M3 10h2M15 10h2" stroke-linecap="round"/></svg></button><span class="cap">icon button</span></div>
+    </div>
+    <div class="row">
+      <div class="cell"><button type="button" disabled class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-disabled text-disabled font-medium text-sm cursor-not-allowed">معطّل</button><span class="cap">disabled</span></div>
+      <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-primary-foreground font-medium text-sm opacity-60 cursor-not-allowed"><span class="spinner animate-spin" aria-hidden="true"></span>جارٍ الحفظ…</button><span class="cap">loading*</span></div>
+      <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-8 px-3 rounded-md bg-primary text-primary-foreground font-medium text-sm transition-colors hover:bg-primary-hover focus-visible:ring cursor-pointer">صغير</button><span class="cap">sm (h-8)</span></div>
+      <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-primary-foreground font-medium text-sm transition-colors hover:bg-primary-hover focus-visible:ring cursor-pointer">متوسط</button><span class="cap">md (h-10)</span></div>
+      <div class="cell"><button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-primary-foreground font-medium text-sm transition-colors hover:bg-primary-hover focus-visible:ring cursor-pointer"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke-linecap="round"/></svg>أضف عنصرًا</button><span class="cap">icon+label (icon at inline-start → right)</span></div>
+    </div>
+    <span class="note">* Loading + Spinner: لا يوجد spec مستقل لـSpinner في INDEX — معروض من التوكنز، موثّق كفجوة.</span>
+  </section>
+
+  <!-- ============ 3. INPUTS ============ -->
+  <section class="section">
+    <h2>٣. الحقول — Inputs</h2>
+    <div class="row">
+      <div class="cell" style="min-width:220px">
+        <label class="text-sm font-medium" for="i1">الاسم</label>
+        <input id="i1" class="w-full h-10 px-3 bg-card border border-border rounded-md text-sm transition-colors focus-visible:ring" placeholder="مثال: محمد العبدالله">
+        <span class="cap">text · default</span>
+      </div>
+      <div class="cell" style="min-width:220px">
+        <label class="text-sm font-medium" for="i2">البريد الإلكتروني</label>
+        <input id="i2" dir="ltr" class="w-full h-10 px-3 bg-card border border-focus rounded-md text-sm ring" placeholder="name@example.com">
+        <span class="cap">focus (forced) · dir=ltr</span>
+      </div>
+      <div class="cell" style="min-width:220px">
+        <label class="text-sm font-medium text-disabled" for="i3">الحقل المعطّل</label>
+        <input id="i3" disabled class="w-full h-10 px-3 bg-disabled border border-border rounded-md text-sm text-disabled cursor-not-allowed" placeholder="غير متاح">
+        <span class="cap">disabled</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cell" style="min-width:220px">
+        <label class="text-sm font-medium" for="i4">رقم الجوال</label>
+        <input id="i4" dir="ltr" aria-invalid="true" class="w-full h-10 px-3 bg-card border border-danger rounded-md text-sm" value="05">
+        <span class="text-xs text-destructive">أدخل رقمًا يبدأ بـ 05 ومكوّنًا من 10 أرقام.</span>
+        <span class="cap">error (+aria-invalid, ثابت بلا قفز)</span>
+      </div>
+      <div class="cell" style="min-width:220px">
+        <label class="text-sm font-medium" for="i5">بحث</label>
+        <div class="inline-flex items-center gap-2 w-full h-10 ps-3 pe-3 bg-card border border-border rounded-md transition-colors focus-within:ring">
+          <svg class="size-5 text-muted-foreground" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="m13.5 13.5 3 3" stroke-linecap="round"/></svg>
+          <input id="i5" type="search" class="bg-transparent outline-none text-sm w-full" placeholder="ابحث في الطلبات" aria-label="بحث">
+        </div>
+        <span class="cap">search (icon inline-start)</span>
+      </div>
+      <div class="cell" style="min-width:220px">
+        <label class="text-sm font-medium" for="i6">المدينة</label>
+        <button id="i6" type="button" class="inline-flex items-center justify-between w-full h-10 px-3 bg-card border border-border rounded-md text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">
+          <span class="text-muted-foreground">اختر مدينة</span>
+          <svg class="size-4 text-muted-foreground" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="cap">select trigger (arrow inline-end)</span>
+      </div>
+    </div>
+    <div class="grp"><h3>Select — قائمة مفتوحة (open)</h3>
+      <div class="bg-popover border border-border rounded-md shadow-md" style="width:220px">
+        <div class="flex items-center justify-between px-3 py-2 text-sm bg-primary-subtle"><span>الرياض</span><svg class="size-4 text-primary" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="px-3 py-2 text-sm transition-colors hover:bg-hover cursor-pointer">جدة</div>
+        <div class="px-3 py-2 text-sm transition-colors hover:bg-hover cursor-pointer">الدمام</div>
+        <div class="px-3 py-2 text-sm transition-colors hover:bg-hover cursor-pointer">مكة</div>
+      </div>
+      <span class="cap">selected = accent-subtle + check (inline-start)؛ z-dropdown · shadow-md</span>
+    </div>
+    <div class="grp"><h3>Checkbox</h3>
+      <div class="row">
+        <label class="inline-flex items-center gap-2 min-h-11 cursor-pointer text-sm"><span class="inline-flex items-center justify-center size-5 rounded-sm border-2 border-strong bg-card" aria-hidden="true"></span>غير محدّد</label>
+        <label class="inline-flex items-center gap-2 min-h-11 cursor-pointer text-sm"><span class="inline-flex items-center justify-center size-5 rounded-sm bg-primary text-primary-foreground" aria-hidden="true"><svg class="size-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8 3.5 3.5L13 5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>محدّد</label>
+        <label class="inline-flex items-center gap-2 min-h-11 cursor-pointer text-sm"><span class="inline-flex items-center justify-center size-5 rounded-sm bg-primary text-primary-foreground" aria-hidden="true"><svg class="size-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8" stroke-linecap="round"/></svg></span>جزئي (indeterminate)</label>
+        <label class="inline-flex items-center gap-2 min-h-11 cursor-not-allowed text-sm text-disabled"><span class="inline-flex items-center justify-center size-5 rounded-sm border-2 border-border bg-disabled" aria-hidden="true"></span>معطّل</label>
+        <label class="inline-flex items-center gap-2 min-h-11 cursor-pointer text-sm"><span class="inline-flex items-center justify-center size-5 rounded-sm border-2 border-danger bg-card" aria-hidden="true"></span><span class="text-destructive">مطلوب (error)</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. FILTER BAR ============ -->
+  <section class="section">
+    <h2>٤. شريط الفلاتر — Filter Bar</h2>
+    <div class="flex flex-wrap items-center gap-3">
+      <div class="inline-flex items-center gap-2 h-10 ps-3 pe-3 bg-card border border-border rounded-md transition-colors focus-within:ring">
+        <svg class="size-5 text-muted-foreground" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="m13.5 13.5 3 3" stroke-linecap="round"/></svg>
+        <input type="search" class="bg-transparent outline-none text-sm w-full" placeholder="ابحث في الطلبات" aria-label="بحث">
+      </div>
+      <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-primary text-primary-foreground text-sm font-medium transition-colors focus-visible:ring cursor-pointer">الكل <bdi class="tabular-nums">(18)</bdi></button>
+      <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-card border border-border text-foreground text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">جديدة <bdi class="tabular-nums text-muted-foreground">(5)</bdi></button>
+      <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-card border border-border text-foreground text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">مجدولة <bdi class="tabular-nums text-muted-foreground">(4)</bdi></button>
+      <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-card border border-border text-foreground text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">مكتملة <bdi class="tabular-nums text-muted-foreground">(7)</bdi></button>
+      <button type="button" class="ms-auto inline-flex items-center text-sm font-medium text-link transition-colors hover:underline focus-visible:ring cursor-pointer">امسح الفلاتر</button>
+    </div>
+    <span class="cap">الشريحة النشطة = bg-primary · العدّادات داخل bdi · «امسح الفلاتر» في inline-end</span>
+  </section>
+
+  <!-- ============ 5. STATUS BADGES ============ -->
+  <section class="section">
+    <h2>٥. شارات الحالة — Status Badges</h2>
+    <div class="row">
+      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-muted-foreground bg-muted"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>محايد — جديدة</span>
+      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-info bg-info-soft"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>info — مجدولة</span>
+      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-success bg-success-soft"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>success — مكتملة</span>
+      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-warning bg-warning-soft"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>warning — معلّقة</span>
+      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-destructive bg-destructive-soft"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>danger — ملغية</span>
+    </div>
+    <span class="cap">دائمًا نقطة + نص (لا اعتماد على اللون وحده) · تعيين دلالي ثابت لكل قيمة</span>
+  </section>
+
+  <!-- ============ 6. TABLE ============ -->
+  <section class="section">
+    <h2>٦. الجدول — Table</h2>
+    <div class="grp"><h3>افتراضي + رأس لاصق (مرّر داخل الإطار) + فرز + عمود إجراء</h3>
+      <div class="bg-card border border-border rounded-lg shadow-sm overflow-hidden">
+        <div class="overflow-y-auto overflow-x-auto" style="max-height:200px">
+          <table class="w-full text-sm">
+            <thead class="bg-muted sticky top-0 z-sticky">
+              <tr class="border-b">
+                <th class="text-start"><button type="button" class="inline-flex items-center gap-1 font-medium text-muted-foreground transition-colors focus-visible:ring cursor-pointer" aria-sort="descending">رقم الطلب <svg class="size-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m4 6 4-3 4 3M4 10l4 3 4-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></th>
+                <th class="text-start">الحالة</th>
+                <th class="text-end">المبلغ</th>
+                <th class="text-end">إجراء</th>
+              </tr>
+            </thead>
+            <tbody class="text-foreground">
+              <tr class="border-b transition-colors hover:bg-hover"><td class="text-start"><bdi class="tabular-nums font-medium">REQ-2048</bdi></td><td class="text-start"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-muted-foreground bg-muted"><span class="size-2 rounded-full bg-current"></span>جديدة</span></td><td class="text-end"><bdi class="tabular-nums">1,250.00 ر.س</bdi></td><td class="text-end"><button type="button" class="text-sm font-medium text-link hover:underline focus-visible:ring cursor-pointer">عرض</button></td></tr>
+              <tr class="border-b transition-colors hover:bg-hover"><td class="text-start"><bdi class="tabular-nums font-medium">REQ-2047</bdi></td><td class="text-start"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-info bg-info-soft"><span class="size-2 rounded-full bg-current"></span>مجدولة</span></td><td class="text-end"><bdi class="tabular-nums">3,200.00 ر.س</bdi></td><td class="text-end"><button type="button" class="text-sm font-medium text-link hover:underline focus-visible:ring cursor-pointer">عرض</button></td></tr>
+              <tr class="border-b transition-colors hover:bg-hover"><td class="text-start"><bdi class="tabular-nums font-medium">REQ-2046</bdi></td><td class="text-start"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-success bg-success-soft"><span class="size-2 rounded-full bg-current"></span>مكتملة</span></td><td class="text-end"><bdi class="tabular-nums">980.00 ر.س</bdi></td><td class="text-end"><button type="button" class="text-sm font-medium text-link hover:underline focus-visible:ring cursor-pointer">عرض</button></td></tr>
+              <tr class="transition-colors hover:bg-hover"><td class="text-start"><bdi class="tabular-nums font-medium">REQ-2045</bdi></td><td class="text-start"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-destructive bg-destructive-soft"><span class="size-2 rounded-full bg-current"></span>ملغية</span></td><td class="text-end"><bdi class="tabular-nums">7,450.00 ر.س</bdi></td><td class="text-end"><button type="button" class="text-sm font-medium text-link hover:underline focus-visible:ring cursor-pointer">عرض</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-3 p-3 border-t">
+          <p class="text-sm text-muted-foreground">عرض <bdi class="tabular-nums">1–4</bdi> من <bdi class="tabular-nums">18</bdi></p>
+          <div class="flex items-center gap-2">
+            <button type="button" class="inline-flex items-center justify-center h-8 px-3 rounded-md bg-card border border-border text-sm text-muted-foreground transition-colors focus-visible:ring cursor-pointer">السابق</button>
+            <button type="button" class="inline-flex items-center justify-center h-8 px-3 rounded-md bg-card border border-border text-sm text-foreground transition-colors hover:bg-hover focus-visible:ring cursor-pointer">التالي</button>
+          </div>
+        </div>
+      </div>
+      <span class="cap">Pagination = composition موثّقة (counter + prev/next)، ليست مكوّنًا مستقلًا.</span>
+    </div>
+    <div class="grp"><h3>صف تحميل (loading skeleton)</h3>
+      <div class="bg-card border border-border rounded-lg shadow-sm p-4 flex flex-col gap-3" aria-hidden="true">
+        <div class="skeleton animate-pulse" style="width:70%"></div>
+        <div class="skeleton animate-pulse" style="width:90%"></div>
+        <div class="skeleton animate-pulse" style="width:60%"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. EMPTY STATES ============ -->
+  <section class="section">
+    <h2>٧. الحالات الفارغة — Empty States</h2>
+    <div class="grid gap-4" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      <div class="bg-card border border-border rounded-lg shadow-sm p-4">
+        <p class="cap mb-2">فارغة (أول استخدام)</p>
+        <div class="flex flex-col items-center text-center gap-2 py-12">
+          <span class="flex items-center justify-center size-12 rounded-full bg-muted text-muted-foreground" aria-hidden="true"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3.5h7l3 3V16a.5.5 0 0 1-.5.5h-9A.5.5 0 0 1 5 16V3.5Z"/><path d="M12 3.5V7h3M8 11h4" stroke-linecap="round"/></svg></span>
+          <h3 class="text-base font-semibold">لا توجد بيانات بعد</h3>
+          <p class="text-sm text-muted-foreground">ابدأ بإضافة أول عنصر.</p>
+          <button type="button" class="inline-flex items-center gap-2 h-10 px-4 mt-2 rounded-md bg-primary text-primary-foreground font-medium text-sm transition-colors hover:bg-primary-hover focus-visible:ring cursor-pointer">أضف عنصرًا</button>
+        </div>
+      </div>
+      <div class="bg-card border border-border rounded-lg shadow-sm p-4">
+        <p class="cap mb-2">لا نتائج</p>
+        <div class="flex flex-col items-center text-center gap-2 py-12">
+          <span class="flex items-center justify-center size-12 rounded-full bg-muted text-muted-foreground" aria-hidden="true"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="5"/><path d="m13 13 3 3" stroke-linecap="round"/></svg></span>
+          <h3 class="text-base font-semibold">لا نتائج تطابق هذه الفلاتر</h3>
+          <p class="text-sm text-muted-foreground">جرّب توسيع البحث.</p>
+          <button type="button" class="inline-flex items-center mt-2 text-sm font-medium text-link transition-colors hover:underline focus-visible:ring cursor-pointer">امسح الفلاتر</button>
+        </div>
+      </div>
+      <div class="bg-card border border-border rounded-lg shadow-sm p-4" role="alert">
+        <p class="cap mb-2">خطأ (error recovery)</p>
+        <div class="flex flex-col items-center text-center gap-2 py-12">
+          <span class="flex items-center justify-center size-12 rounded-full bg-destructive-soft text-destructive" aria-hidden="true"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 6v4.5M10 13.5h.01" stroke-linecap="round"/><circle cx="10" cy="10" r="6.5"/></svg></span>
+          <h3 class="text-base font-semibold">تعذّر تحميل البيانات</h3>
+          <p class="text-sm text-muted-foreground">تحقّق من الاتصال ثم أعد المحاولة.</p>
+          <button type="button" class="inline-flex items-center gap-2 h-10 px-4 mt-2 rounded-md bg-card border border-border text-foreground font-medium text-sm transition-colors hover:bg-hover focus-visible:ring cursor-pointer">أعد المحاولة</button>
+        </div>
+      </div>
+    </div>
+    <span class="cap">أيقونة بسيطة فقط (تطبيق بيانات) — لا illustration زخرفي · العنوان عنصر heading حقيقي · الخطأ داخل role=alert</span>
+  </section>
+
+  <!-- ============ 8. FEEDBACK / POLISH ============ -->
+  <section class="section">
+    <h2>٨. التغذية الراجعة واللمسات — Feedback / Polish</h2>
+    <div class="row">
+      <div class="cell"><button type="button" class="inline-flex items-center h-10 px-4 rounded-md bg-card border border-focus text-foreground font-medium text-sm ring">حلقة تركيز</button><span class="cap">focus ring (forced)</span></div>
+      <div class="cell"><button type="button" class="inline-flex items-center h-10 px-4 rounded-md bg-card border border-border text-foreground font-medium text-sm transition-colors hover:bg-hover cursor-pointer">مرّر فوقي</button><span class="cap">hover state</span></div>
+      <div class="cell" style="min-width:180px"><div class="flex flex-col gap-2 w-full"><span class="skeleton animate-pulse" style="width:90%"></span><span class="skeleton animate-pulse" style="width:60%"></span></div><span class="cap">skeleton*</span></div>
+    </div>
+    <div class="flex items-start gap-2 p-3 rounded-md bg-info-soft text-info" style="border:1px solid var(--color-info-border)" role="status">
+      <svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 9v4M10 6.5h.01" stroke-linecap="round"/><circle cx="10" cy="10" r="7"/></svg>
+      <p class="text-sm">تنبيه معلوماتي مضمّن (inline alert).</p>
+    </div>
+    <span class="note">* Skeleton + Alert المضمّن: لا spec مستقل لهما في INDEX (الموثّق: Toast + empty-state error) — معروضان من التوكنز، موثّقان كفجوة.</span>
+    <div class="grp"><h3>عمق الأسطح — Surface depth</h3>
+      <div class="row">
+        <div class="cell"><div class="box bg-card border border-border rounded-md"></div><span class="cap">surface + border</span></div>
+        <div class="cell"><div class="box bg-card shadow-sm rounded-md"></div><span class="cap">raised sm</span></div>
+        <div class="cell"><div class="box bg-popover shadow-md rounded-md"></div><span class="cap">popover md</span></div>
+        <div class="cell"><div class="box bg-card shadow-lg rounded-md"></div><span class="cap">modal lg</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. RTL EXAMPLES ============ -->
+  <section class="section">
+    <h2>٩. أمثلة RTL</h2>
+    <div class="grp"><h3>text-start / text-end</h3>
+      <div class="bg-card border border-border rounded-md p-3 flex flex-col gap-1">
+        <p class="text-start text-sm">text-start → يبدأ من اليمين (الافتراضي العربي).</p>
+        <p class="text-end text-sm">text-end → ينتهي عند اليسار (للأرقام/المبالغ).</p>
+      </div>
+    </div>
+    <div class="grp"><h3>ms / me / ps / pe (logical)</h3>
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center bg-muted rounded-md"><span class="ms-2 px-2 py-1 bg-primary-subtle text-primary text-xs rounded-sm">ms-2 → فراغ من البداية (يمين)</span></div>
+        <div class="flex items-center bg-muted rounded-md justify-end"><span class="me-2 px-2 py-1 bg-primary-subtle text-primary text-xs rounded-sm">me-2 → فراغ من النهاية (يسار)</span></div>
+        <div class="flex items-center bg-muted rounded-md"><span class="ps-9 pe-3 py-1 bg-card border border-border text-xs rounded-sm">ps-9 / pe-3</span></div>
+      </div>
+    </div>
+    <div class="grp"><h3>أرقام ومعرّفات داخل bdi</h3>
+      <p class="text-sm">الطلب <bdi class="tabular-nums font-medium">REQ-2048</bdi> بقيمة <bdi class="tabular-nums">1,250.00 ر.س</bdi> بنسبة <bdi class="tabular-nums">+12%</bdi> — معزولة فلا يُعاد ترتيبها.</p>
+    </div>
+    <div class="grp"><h3>موضع الأيقونة في الزر / البحث</h3>
+      <div class="row">
+        <button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-primary-foreground font-medium text-sm"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke-linecap="round"/></svg>إضافة</button>
+        <span class="cap">أيقونة في inline-start → تظهر يمين النص العربي</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="cap" style="border-block-start:1px solid var(--color-border-subtle);padding-block-start:16px">
+    معرض اختبار · design-os · ليس صفحة منتج · لا يُنسخ للمشاريع المستهلكة.
+  </footer>
+</main>
+</div>
