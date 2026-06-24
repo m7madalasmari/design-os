@@ -1,0 +1,283 @@
+<title>إدارة المستخدمين — dogfood v2.1.0 (design-os)</title>
+
+<!-- tokens.css :root — منسوخ 1:1 من المصدر التنفيذي (الافتراضي neutral) -->
+<style>
+:root{
+  --neutral-1:#FCFCFD;--neutral-2:#F9F9FB;--neutral-3:#F0F0F3;--neutral-4:#E8E8EC;
+  --neutral-5:#E0E0E6;--neutral-6:#D8D8DF;--neutral-7:#CECED6;--neutral-8:#B9B9C3;
+  --neutral-9:#8B8B96;--neutral-10:#6E6E79;--neutral-11:#50505B;--neutral-12:#1C1C24;
+  --green-fg:#1A7F4B;--green-bg:#E7F6EE;--green-border:#A6E0C0;
+  --amber-fg:#9A6700;--amber-bg:#FCF3E2;--amber-border:#ECCB8A;
+  --red-fg:#C12A2A;--red-bg:#FCEDED;--red-border:#F0B5B5;
+  --blue-fg:#15609E;--blue-bg:#E9F2FB;--blue-border:#ABCFF0;
+  /* brand ramp (placeholder blue) */
+  --brand-50:#ECF0FD;--brand-600:#3B5BDB;--brand-700:#3450C4;--brand-800:#2C44A8;
+  --accent-solid:var(--brand-600);--accent-hover:var(--brand-700);--accent-active:var(--brand-800);--accent-tint:var(--brand-50);--on-accent:#fff;
+  --color-bg-base:var(--neutral-1);--color-bg-subtle:var(--neutral-2);--color-bg-surface:#fff;
+  --color-bg-hover:var(--neutral-3);--color-bg-overlay:rgba(28,28,36,.45);--color-bg-disabled:var(--neutral-3);--color-bg-inverse:var(--neutral-12);
+  --color-text-primary:var(--neutral-12);--color-text-secondary:var(--neutral-10);--color-text-tertiary:var(--neutral-9);
+  --color-text-on-accent:#fff;--color-text-on-dark:#fff;--color-text-link:var(--brand-700);
+  --color-border-subtle:var(--neutral-5);--color-border-default:var(--neutral-6);--color-border-strong:var(--neutral-8);
+  --color-accent:var(--accent-solid);--color-accent-subtle:var(--accent-tint);
+  --color-secondary:var(--neutral-3);--color-secondary-hover:var(--neutral-4);--color-secondary-foreground:var(--neutral-12);
+  --color-success-fg:var(--green-fg);--color-success-bg:var(--green-bg);--color-success-border:var(--green-border);
+  --color-warning-fg:var(--amber-fg);--color-warning-bg:var(--amber-bg);--color-warning-border:var(--amber-border);
+  --color-danger-fg:var(--red-fg);--color-danger-bg:var(--red-bg);--color-danger-border:var(--red-border);
+  --color-info-fg:var(--blue-fg);--color-info-bg:var(--blue-bg);--color-info-border:var(--blue-border);
+  --color-focus-ring:var(--brand-600);
+  --space-2xs:4px;--space-xs:8px;--space-sm:12px;--space-md:16px;--space-lg:24px;--space-xl:32px;--space-2xl:48px;
+  --font-family-base:"IBM Plex Sans Arabic","IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-size-xs:.75rem;--font-size-sm:.875rem;--font-size-md:1rem;--font-size-lg:1.125rem;--font-size-xl:1.25rem;--font-size-2xl:1.5rem;--font-size-3xl:1.875rem;
+  --line-height-tight:1.3;--line-height-snug:1.5;--line-height-base:1.7;
+  --radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-full:9999px;
+  --shadow-sm:0 1px 2px rgba(28,28,36,.06);--shadow-md:0 4px 12px rgba(28,28,36,.10);--shadow-lg:0 12px 32px rgba(28,28,36,.16);
+  --shadow-focus:0 0 0 2px var(--color-bg-surface),0 0 0 4px var(--color-focus-ring);
+  --duration-fast:120ms;--ease-standard:cubic-bezier(.2,0,0,1);
+  --z-sticky:100;--z-overlay:300;--z-modal:310;--z-toast:400;
+  --size-control-sm:32px;--size-control-md:40px;
+}
+</style>
+
+<!-- PREVIEW SHIM — يعرّف كلاسات Tailwind المستخدمة فقط، مربوطة بالتوكنز 1:1. Preview runtime: shim mirror (ليس التنفيذ الإنتاجي). -->
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--color-bg-base);color:var(--color-text-primary);font-family:var(--font-family-base);line-height:var(--line-height-base);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.wrap{max-width:72rem;margin-inline:auto;padding:var(--space-lg);display:flex;flex-direction:column;gap:var(--space-2xl)}
+.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.block{display:block}
+.col{flex-direction:column}.wrap-w{flex-wrap:wrap}.items-center{align-items:center}.items-start{align-items:flex-start}
+.between{justify-content:space-between}.center{justify-content:center}.flex-1{flex:1 1 0%}
+.gap-1{gap:var(--space-2xs)}.gap-2{gap:var(--space-xs)}.gap-3{gap:var(--space-sm)}.gap-4{gap:var(--space-md)}.gap-6{gap:var(--space-lg)}
+.w-full{width:100%}.ov-x{overflow-x:auto}.ov-h{overflow:hidden}
+.p-3{padding:var(--space-sm)}.p-4{padding:var(--space-md)}.p-6{padding:var(--space-lg)}
+.px-3{padding-inline:var(--space-sm)}.px-4{padding-inline:var(--space-md)}.py-1{padding-block:var(--space-2xs)}.py-1\.5{padding-block:6px}.py-12{padding-block:var(--space-2xl)}
+.ps-3{padding-inline-start:var(--space-sm)}.pe-3{padding-inline-end:var(--space-sm)}
+.mt-2{margin-block-start:var(--space-xs)}.mb-1{margin-block-end:var(--space-2xs)}.mb-2{margin-block-end:var(--space-xs)}.mb-4{margin-block-end:var(--space-md)}
+.h-8{height:var(--size-control-sm)}.h-10{height:var(--size-control-md)}
+.size-2{width:8px;height:8px}.size-5{width:20px;height:20px}.size-9{width:36px;height:36px}.size-10{width:40px;height:40px}.size-12{width:48px;height:48px}
+.bg-card{background:var(--color-bg-surface)}.bg-muted{background:var(--color-bg-subtle)}.bg-primary{background:var(--color-accent)}.bg-secondary{background:var(--color-secondary)}.bg-transparent{background:transparent}.bg-current{background:currentColor}
+.hover\:bg-primary-hover:hover{background:var(--accent-hover)}.hover\:bg-hover:hover{background:var(--color-bg-hover)}.hover\:bg-secondary-hover:hover{background:var(--color-secondary-hover)}
+.text-fg{color:var(--color-text-primary)}.text-muted{color:var(--color-text-secondary)}.text-faint{color:var(--color-text-tertiary)}
+.text-on-accent{color:var(--color-text-on-accent)}.text-on-dark{color:var(--color-text-on-dark)}.text-link{color:var(--color-text-link)}.text-primary{color:var(--color-accent)}
+.text-success{color:var(--color-success-fg)}.bg-success-soft{background:var(--color-success-bg)}
+.text-info{color:var(--color-info-fg)}.bg-info-soft{background:var(--color-info-bg)}
+.text-warning{color:var(--color-warning-fg)}.bg-warning-soft{background:var(--color-warning-bg)}
+.text-danger{color:var(--color-danger-fg)}.bg-danger-soft{background:var(--color-danger-bg)}
+.bg-inverse{background:var(--color-bg-inverse)}
+.border{border:1px solid var(--color-border-default)}.border-b{border-block-end:1px solid var(--color-border-subtle)}.border-t{border-block-start:1px solid var(--color-border-subtle)}
+.border-success{border:1px solid var(--color-success-border)}.border-danger{border:1px solid var(--color-danger-border)}
+.rounded-sm{border-radius:var(--radius-sm)}.rounded-md{border-radius:var(--radius-md)}.rounded-lg{border-radius:var(--radius-lg)}.rounded-full{border-radius:var(--radius-full)}
+.shadow-sm{box-shadow:var(--shadow-sm)}.shadow-lg{box-shadow:var(--shadow-lg)}
+.text-xs{font-size:var(--font-size-xs)}.text-sm{font-size:var(--font-size-sm)}.text-base{font-size:var(--font-size-md)}.text-lg{font-size:var(--font-size-lg)}.text-xl{font-size:var(--font-size-xl)}.text-3xl{font-size:var(--font-size-3xl)}
+.fw-medium{font-weight:500}.fw-semibold{font-weight:600}.fw-bold{font-weight:700}
+.leading-tight{line-height:var(--line-height-tight)}.tabular{font-variant-numeric:tabular-nums}
+.start{text-align:start}.end{text-align:end}.tc{text-align:center}
+.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:14rem}
+.outline-none{outline:none}.pointer{cursor:pointer}.hover\:underline:hover{text-decoration:underline}
+.transition{transition-property:color,background-color,border-color,box-shadow;transition-duration:var(--duration-fast);transition-timing-function:var(--ease-standard)}
+.fv\:ring:focus-visible{outline:none;box-shadow:var(--shadow-focus)}.fw\:ring:focus-within{box-shadow:var(--shadow-focus)}
+.sticky{position:sticky}.top-0{inset-block-start:0}.z-sticky{z-index:var(--z-sticky)}
+table{border-collapse:collapse}th,td{padding-block:var(--space-sm);padding-inline:var(--space-md)}
+thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-size-sm)}
+.skel{background:var(--color-bg-subtle);border-radius:var(--radius-sm);height:14px}
+@media(prefers-reduced-motion:no-preference){.pulse{animation:p 1.4s var(--ease-standard) infinite}@keyframes p{50%{opacity:.5}}}
+@media(prefers-reduced-motion:reduce){.transition{transition:none}.pulse{animation:none}}
+.overlay{position:fixed;inset:0;background:var(--color-bg-overlay);z-index:var(--z-overlay);display:flex;align-items:center;justify-content:center;padding:var(--space-md)}
+.modal{background:var(--color-bg-surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);z-index:var(--z-modal);width:100%;max-width:30rem;padding:var(--space-lg)}
+.field{height:var(--size-control-md);border:1px solid var(--color-border-default);border-radius:var(--radius-md);background:var(--color-bg-surface);padding-inline:var(--space-sm);font:var(--font-size-sm)/1 var(--font-family-base);color:var(--color-text-primary);width:100%}
+.avatar{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--radius-full);background:var(--color-accent-subtle);color:var(--color-accent);font-weight:600}
+.dl{display:grid;grid-template-columns:9rem 1fr;gap:var(--space-sm) var(--space-md)}
+.note{font-size:var(--font-size-xs);color:var(--color-text-tertiary)}
+.sec-label{font-size:var(--font-size-xs);font-weight:700;color:var(--color-text-tertiary);letter-spacing:.04em}
+.badge{display:inline-flex;align-items:center;gap:var(--space-2xs);padding-inline:var(--space-xs);padding-block:2px;border-radius:var(--radius-md);font-size:var(--font-size-xs);font-weight:500}
+</style>
+
+<div dir="rtl" lang="ar">
+<div class="wrap">
+
+  <p class="note">معاينة dogfood · design-os v2.1.0 · Mode: Greenfield/System-First · theme: neutral (الافتراضي) · الخط: IBM Plex Sans Arabic (بديل نظام في المعاينة — CSP) · <span class="text-danger fw-medium">بيانات تجريبية صناعية — لا تمثّل أشخاصًا حقيقيين</span></p>
+
+  <!-- ====== 1) USERS LIST PAGE (presentation = table) ====== -->
+  <section class="flex col gap-6" aria-label="إدارة المستخدمين">
+    <header class="flex wrap-w items-start between gap-4">
+      <div class="flex col gap-1">
+        <h1 class="text-3xl fw-bold leading-tight text-fg">المستخدمون</h1>
+        <p class="text-sm text-muted">أدِر حسابات المستخدمين وصلاحياتهم وحالاتهم.</p>
+      </div>
+      <button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-on-accent fw-medium text-sm transition hover:bg-primary-hover fv:ring pointer">
+        <svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke-linecap="round"/></svg>
+        إضافة مستخدم
+      </button>
+    </header>
+
+    <!-- filter bar: search + status chips -->
+    <section class="flex wrap-w items-center gap-3" aria-label="فلاتر المستخدمين">
+      <div class="inline-flex items-center gap-2 h-10 ps-3 pe-3 bg-card border rounded-md transition fw:ring">
+        <svg class="size-5 text-muted" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="m13.5 13.5 3 3" stroke-linecap="round"/></svg>
+        <input type="search" class="bg-transparent outline-none text-sm text-fg w-full" placeholder="ابحث بالاسم أو البريد أو المعرّف" aria-label="بحث">
+      </div>
+      <div class="flex wrap-w items-center gap-2" role="group" aria-label="فلترة بالحالة">
+        <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-primary text-on-accent text-sm fw-medium transition fv:ring pointer">الكل <bdi class="tabular">(48)</bdi></button>
+        <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-card border text-fg text-sm transition hover:bg-hover fv:ring pointer">نشط <bdi class="tabular text-muted">(31)</bdi></button>
+        <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-card border text-fg text-sm transition hover:bg-hover fv:ring pointer">مدعو <bdi class="tabular text-muted">(9)</bdi></button>
+        <button type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-sm bg-card border text-fg text-sm transition hover:bg-hover fv:ring pointer">موقوف <bdi class="tabular text-muted">(8)</bdi></button>
+      </div>
+    </section>
+
+    <!-- table -->
+    <section class="bg-card border rounded-lg shadow-sm ov-h">
+      <div class="ov-x">
+        <table class="w-full text-sm">
+          <caption class="start px-4 py-1 text-xs text-faint">قائمة المستخدمين — 6 من 48</caption>
+          <thead class="bg-muted sticky top-0 z-sticky">
+            <tr class="border-b">
+              <th class="start" scope="col">المستخدم</th>
+              <th class="start" scope="col">البريد</th>
+              <th class="start" scope="col">الدور</th>
+              <th class="start" scope="col"><button type="button" class="inline-flex items-center gap-1 fw-medium text-muted transition fv:ring pointer" aria-sort="descending">آخر دخول
+                <svg class="size-5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m4 6 4-3 4 3M4 10l4 3 4-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></th>
+              <th class="start" scope="col">الحالة</th>
+              <th class="end" scope="col">إجراء</th>
+            </tr>
+          </thead>
+          <tbody class="text-fg">
+            <tr class="border-b transition hover:bg-hover">
+              <td class="start"><span class="inline-flex items-center gap-2"><span class="avatar size-9 text-xs" aria-hidden="true">سف</span><span class="fw-medium">سارة الفهد</span></span></td>
+              <td class="start"><bdi dir="ltr">s.alfahad@example.com</bdi></td>
+              <td class="start">مدير</td>
+              <td class="start text-muted">22 يونيو 2026</td>
+              <td class="start"><span class="badge bg-success-soft text-success"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>نشط</span></td>
+              <td class="end"><button type="button" class="h-8 px-3 rounded-md bg-secondary text-fg text-sm fw-medium transition hover:bg-secondary-hover fv:ring pointer">تعديل الحالة</button></td>
+            </tr>
+            <tr class="border-b transition hover:bg-hover">
+              <td class="start"><span class="inline-flex items-center gap-2"><span class="avatar size-9 text-xs" aria-hidden="true">من</span><span class="fw-medium">محمد الناصر</span></span></td>
+              <td class="start"><bdi dir="ltr">m.alnasser@example.com</bdi></td>
+              <td class="start">محرّر</td>
+              <td class="start text-muted">21 يونيو 2026</td>
+              <td class="start"><span class="badge bg-info-soft text-info"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>مدعو</span></td>
+              <td class="end"><button type="button" class="h-8 px-3 rounded-md bg-secondary text-fg text-sm fw-medium transition hover:bg-secondary-hover fv:ring pointer">تعديل الحالة</button></td>
+            </tr>
+            <tr class="border-b transition hover:bg-hover">
+              <td class="start"><span class="inline-flex items-center gap-2"><span class="avatar size-9 text-xs" aria-hidden="true">له</span><span class="fw-medium">ليلى الهاجري</span></span></td>
+              <td class="start"><bdi dir="ltr">l.alhajri@example.com</bdi></td>
+              <td class="start">مشاهد</td>
+              <td class="start text-muted">20 يونيو 2026</td>
+              <td class="start"><span class="badge bg-success-soft text-success"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>نشط</span></td>
+              <td class="end"><button type="button" class="h-8 px-3 rounded-md bg-secondary text-fg text-sm fw-medium transition hover:bg-secondary-hover fv:ring pointer">تعديل الحالة</button></td>
+            </tr>
+            <tr class="border-b transition hover:bg-hover">
+              <td class="start"><span class="inline-flex items-center gap-2"><span class="avatar size-9 text-xs" aria-hidden="true">عق</span><span class="fw-medium">عبدالله القحطاني</span></span></td>
+              <td class="start"><bdi dir="ltr">a.alqahtani@example.com</bdi></td>
+              <td class="start">محرّر</td>
+              <td class="start text-muted">18 يونيو 2026</td>
+              <td class="start"><span class="badge bg-danger-soft text-danger"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>موقوف</span></td>
+              <td class="end"><button type="button" class="h-8 px-3 rounded-md bg-secondary text-fg text-sm fw-medium transition hover:bg-secondary-hover fv:ring pointer">تعديل الحالة</button></td>
+            </tr>
+            <tr class="border-b transition hover:bg-hover">
+              <td class="start"><span class="inline-flex items-center gap-2"><span class="avatar size-9 text-xs" aria-hidden="true">نم</span><span class="fw-medium">نورة المطيري</span></span></td>
+              <td class="start"><bdi dir="ltr">n.almutairi@example.com</bdi></td>
+              <td class="start">مدير</td>
+              <td class="start text-muted">17 يونيو 2026</td>
+              <td class="start"><span class="badge bg-success-soft text-success"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>نشط</span></td>
+              <td class="end"><button type="button" class="h-8 px-3 rounded-md bg-secondary text-fg text-sm fw-medium transition hover:bg-secondary-hover fv:ring pointer">تعديل الحالة</button></td>
+            </tr>
+            <tr class="transition hover:bg-hover">
+              <td class="start"><span class="inline-flex items-center gap-2"><span class="avatar size-9 text-xs" aria-hidden="true">خع</span><span class="fw-medium">خالد العتيبي</span></span></td>
+              <td class="start"><bdi dir="ltr">k.alotaibi@example.com</bdi></td>
+              <td class="start">مشاهد</td>
+              <td class="start text-muted">15 يونيو 2026</td>
+              <td class="start"><span class="badge bg-info-soft text-info"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>مدعو</span></td>
+              <td class="end"><button type="button" class="h-8 px-3 rounded-md bg-secondary text-fg text-sm fw-medium transition hover:bg-secondary-hover fv:ring pointer">تعديل الحالة</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="flex wrap-w items-center between gap-3 p-3 border-t">
+        <p class="text-sm text-muted">عرض <bdi class="tabular">1–6</bdi> من <bdi class="tabular">48</bdi></p>
+        <div class="flex items-center gap-2">
+          <button type="button" class="h-8 px-3 rounded-md bg-card border text-sm text-muted transition fv:ring pointer">السابق</button>
+          <button type="button" class="h-8 px-3 rounded-md bg-card border text-sm text-fg transition hover:bg-hover fv:ring pointer">التالي</button>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ====== 2) STATES (loading / empty / no-results / error) ====== -->
+  <section class="flex col gap-4">
+    <h2 class="sec-label">حالات الجدول (عرض توضيحي)</h2>
+    <div class="grid gap-4" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      <div class="bg-card border rounded-lg shadow-sm p-4 flex col gap-3"><p class="text-xs fw-medium text-faint">تحميل</p>
+        <div class="flex col gap-3" aria-hidden="true"><div class="skel pulse" style="width:70%"></div><div class="skel pulse" style="width:90%"></div><div class="skel pulse" style="width:60%"></div><div class="skel pulse" style="width:85%"></div></div></div>
+      <div class="bg-card border rounded-lg shadow-sm p-4"><p class="text-xs fw-medium text-faint mb-2">فارغة (أول استخدام)</p>
+        <div class="flex col items-center tc gap-2 py-12"><span class="flex center size-12 rounded-full bg-muted text-muted" aria-hidden="true"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M4 16c0-3 3-4.5 6-4.5s6 1.5 6 4.5" stroke-linecap="round"/></svg></span>
+          <h3 class="text-base fw-semibold text-fg">لا مستخدمين بعد</h3><p class="text-sm text-muted">ابدأ بدعوة أول مستخدم لفريقك.</p>
+          <button type="button" class="inline-flex items-center gap-2 h-10 px-4 mt-2 rounded-md bg-primary text-on-accent fw-medium text-sm transition hover:bg-primary-hover fv:ring pointer">إضافة مستخدم</button></div></div>
+      <div class="bg-card border rounded-lg shadow-sm p-4"><p class="text-xs fw-medium text-faint mb-2">لا نتائج (بعد فلترة)</p>
+        <div class="flex col items-center tc gap-2 py-12"><span class="flex center size-12 rounded-full bg-muted text-muted" aria-hidden="true"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="5"/><path d="m13 13 3 3" stroke-linecap="round"/></svg></span>
+          <h3 class="text-base fw-semibold text-fg">لا نتائج تطابق الفلاتر</h3><p class="text-sm text-muted">جرّب توسيع البحث أو إزالة فلتر.</p>
+          <button type="button" class="inline-flex items-center gap-1 mt-2 text-sm fw-medium text-link transition hover:underline fv:ring pointer">امسح الفلاتر</button></div></div>
+      <div class="bg-card border rounded-lg shadow-sm p-4" role="alert"><p class="text-xs fw-medium text-faint mb-2">خطأ</p>
+        <div class="flex col items-center tc gap-2 py-12"><span class="flex center size-12 rounded-full bg-danger-soft text-danger" aria-hidden="true"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 6v4.5M10 13.5h.01" stroke-linecap="round"/><circle cx="10" cy="10" r="6.5"/></svg></span>
+          <h3 class="text-base fw-semibold text-fg">تعذّر تحميل المستخدمين</h3><p class="text-sm text-muted">تحقّق من الاتصال ثم أعد المحاولة.</p>
+          <button type="button" class="inline-flex items-center gap-2 h-10 px-4 mt-2 rounded-md bg-card border text-fg fw-medium text-sm transition hover:bg-hover fv:ring pointer">أعد المحاولة</button></div></div>
+    </div>
+  </section>
+
+  <!-- ====== 3) USER DETAIL (presentation = detail layout, NOT cards grid) ====== -->
+  <section class="flex col gap-4">
+    <h2 class="sec-label">تفاصيل المستخدم (presentation-by-content: تخطيط تفصيل لا جدول/كروت)</h2>
+    <article class="bg-card border rounded-lg shadow-sm ov-h">
+      <header class="flex wrap-w items-center between gap-4 p-6 border-b">
+        <div class="flex items-center gap-3">
+          <span class="avatar size-12 text-base" aria-hidden="true">سف</span>
+          <div class="flex col gap-1">
+            <div class="flex items-center gap-2"><h3 class="text-xl fw-semibold text-fg">سارة الفهد</h3><span class="badge bg-success-soft text-success"><span class="size-2 rounded-full bg-current" aria-hidden="true"></span>نشط</span></div>
+            <p class="text-sm text-muted"><bdi dir="ltr">s.alfahad@example.com</bdi></p>
+          </div>
+        </div>
+        <button type="button" class="inline-flex items-center gap-2 h-10 px-4 rounded-md bg-primary text-on-accent fw-medium text-sm transition hover:bg-primary-hover fv:ring pointer">تعديل الحالة</button>
+      </header>
+      <div class="p-6 flex col gap-6">
+        <div class="flex col gap-3"><p class="sec-label">معلومات الحساب</p>
+          <dl class="dl text-sm"><dt class="text-muted">المعرّف</dt><dd class="text-fg"><bdi class="tabular">USR-10293</bdi></dd>
+            <dt class="text-muted">الدور</dt><dd class="text-fg">مدير</dd>
+            <dt class="text-muted">القسم</dt><dd class="text-fg">العمليات</dd>
+            <dt class="text-muted">تاريخ الإنشاء</dt><dd class="text-fg">3 يناير 2026</dd>
+            <dt class="text-muted">آخر دخول</dt><dd class="text-fg">22 يونيو 2026</dd></dl></div>
+        <div class="flex col gap-3 border-t" style="padding-block-start:var(--space-lg)"><p class="sec-label">الصلاحيات</p>
+          <div class="flex wrap-w gap-2"><span class="badge bg-muted text-muted">إدارة المستخدمين</span><span class="badge bg-muted text-muted">عرض التقارير</span><span class="badge bg-muted text-muted">تصدير البيانات</span></div></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ====== 4) FEEDBACK MESSAGES (success / error) ====== -->
+  <section class="flex col gap-4">
+    <h2 class="sec-label">رسائل النجاح/الخطأ</h2>
+    <div class="flex col gap-3">
+      <div class="flex items-start gap-3 p-4 rounded-md bg-success-soft border-success" role="status"><svg class="size-5 text-success" style="margin-block-start:2px" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 10 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><p class="text-sm fw-medium text-fg">تم تحديث حالة المستخدم</p><p class="text-sm text-muted">أصبحت سارة الفهد «موقوف». يمكنك التراجع خلال ٣٠ ثانية.</p></div></div>
+      <div class="flex items-start gap-3 p-4 rounded-md bg-danger-soft border-danger" role="alert"><svg class="size-5 text-danger" style="margin-block-start:2px" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 6v4.5M10 13.5h.01" stroke-linecap="round"/><circle cx="10" cy="10" r="6.5"/></svg><div><p class="text-sm fw-medium text-fg">تعذّر تحديث الحالة</p><p class="text-sm text-muted">انتهت الجلسة. أعد المحاولة بعد تسجيل الدخول.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ====== 5) EDIT-STATUS MODAL (short focused action → modal; a11y contract) ====== -->
+  <section class="flex col gap-4">
+    <h2 class="sec-label">مودال تعديل الحالة (إجراء قصير مركّز → modal، بعقد a11y)</h2>
+    <div class="overlay" style="position:relative;inset:auto;border-radius:var(--radius-lg)">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" aria-describedby="m-desc">
+        <div class="flex items-start between gap-3 mb-4">
+          <h3 id="m-title" class="text-lg fw-semibold text-fg">تعديل حالة المستخدم</h3>
+          <button type="button" class="inline-flex center size-9 rounded-md text-muted transition hover:bg-hover fv:ring pointer" aria-label="إغلاق"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 6 8 8M14 6l-8 8" stroke-linecap="round"/></svg></button>
+        </div>
+        <p id="m-desc" class="text-sm text-muted mb-4">تغيير حالة «سارة الفهد». الإيقاف يمنع الدخول فورًا.</p>
+        <label class="flex col gap-2 mb-4"><span class="text-sm fw-medium text-fg">الحالة</span>
+          <select class="field" aria-label="الحالة"><option>نشط</option><option>موقوف</option><option>مدعو</option></select></label>
+        <div class="flex items-center gap-2" style="justify-content:flex-start;flex-direction:row-reverse">
+          <button type="button" class="h-10 px-4 rounded-md bg-primary text-on-accent fw-medium text-sm transition hover:bg-primary-hover fv:ring pointer">حفظ</button>
+          <button type="button" class="h-10 px-4 rounded-md bg-card border text-fg fw-medium text-sm transition hover:bg-hover fv:ring pointer">تراجع</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>
