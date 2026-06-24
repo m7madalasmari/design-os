@@ -2,7 +2,7 @@
 
 Reusable, Tailwind-first **operating template** for building UI: an agent contract (`design-protocols/`) + a design system (`design-system/`) + page manifests. Copy it into any project; the agent reads `AGENTS.md` and follows the protocol.
 
-**Version:** v1.1.0 · See [`VERSION.md`](VERSION.md) · [`CHANGELOG.md`](CHANGELOG.md)
+**Version:** v1.2.0 · See [`VERSION.md`](VERSION.md) · [`CHANGELOG.md`](CHANGELOG.md)
 **Deep install:** [`PROJECT-INSTALL.md`](PROJECT-INSTALL.md) · **Fast path:** [`QUICKSTART.md`](QUICKSTART.md)
 
 ---
@@ -62,6 +62,7 @@ Each project only needs to:
 ## What's inside
 ```
 AGENTS.md                 entry contract (read first)
+ROLES.md                  the review council — 9 role mindsets worn across Think/Build/Review (lens sweep)
 RUNBOOK.md                one-shot flow (request → delivery) · REQUEST.md (intake) · OUTPUT.md (handover)
 design-protocols/         00 rules · 01 image→ui · 02 ssot · 03 qa · 04 rtl · 05 polish · 07 done · 08 app-shell · 09 spa-build (conditional) · examples/
 design-system/            tokens.css (executable) · foundations/ · components/ (+INDEX) · rules/ · themes/ · VERSION · CHANGELOG

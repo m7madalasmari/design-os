@@ -87,5 +87,8 @@ This project is **Tailwind-first**. Tailwind is the implementation; the design s
 - **RTL:** logical utilities only (`ms/me`, `ps/pe`, `start/end`, `text-start/text-end`). See [`04`](04-arabic-rtl-ux.md).
 - **Enforcement:** if the project already uses a linter (e.g., `eslint-plugin-tailwindcss`), encode the arbitrary-value ban there. Do **not** add new tooling otherwise — these are checked at QA time ([`03`](03-pixel-qa.md)).
 
+## Roles (accountability layer)
+The roles that own these rules and run the per-phase lens sweep are in [`../ROLES.md`](../ROLES.md) — a lightweight pass with each role's mindset (Think → Build → Review), not a separate protocol. This file governs *how* the agent works; ROLES.md governs *who is accountable* for each part.
+
 ## References (no duplication)
 Detailed design rules: `design-system/rules/` ([ai-design-rules](../design-system/rules/ai-design-rules.md) · [page-composition-rules](../design-system/rules/page-composition-rules.md) · [qa-checklist](../design-system/rules/qa-checklist.md) · [forbidden-patterns](../design-system/rules/forbidden-patterns.md)) and `foundations/`. This file governs their application, it does not replace them.

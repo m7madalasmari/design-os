@@ -4,6 +4,19 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v1.2.0 — 2026-06-24 — roles layer (the review council)
+Additive run-layer feature: an **accountability layer** over the protocols. The protocols (`00–09`) are the *rulebooks*; roles are *who owns each one*. No protocol behavior, token, or component changed; design-system untouched.
+- **New `ROLES.md`** — a **two-level** review council: a fast pass with each role's mindset, not extra agents and not a debate.
+  - **Level 1 — 9 Operating Roles** (the only voices that run in the sweep): Product & Strategy · UX & Information Architecture · Visual & Experience Design · Design System · Content & UX Writing · Accessibility · Frontend & Implementation · QA & Validation · Documentation & Handoff. Each carries **Purpose · Owns · Decisions it can challenge · Checklist · Output in manifest · Anti-patterns**, plus its rulebook + phase.
+  - **Level 2 — Checklists:** the detailed reviewers (≈45) become **checklist items** inside the role that owns them — never runtime voices.
+  - **Separation rule:** *can it disagree with another role and need arbitration → Operating Role; just a verification dimension inside a larger role → Checklist Item.*
+  - **Cross-cutting resolutions:** **RTL** is not a role (checklist under Design System · Content · Frontend · QA, governed by `04`); **Interaction** splits (UX = behavior/task-flow, Visual = polish/motion); **Performance** is a Frontend checklist tied to `09` (SPA-gate only); **Requirements Clarifier** → Product checklist; **Manifest/Changelog/Release/Handoff** → Documentation checklist.
+  - **Runtime rule:** Full sweep = 9 roles max · Fast sweep = 3 minimum on every task (Product & Strategy · UX & IA · Visual & Experience); the rest run as QA/validation when needed, with Design System + Accessibility as non-skippable gates for any real interface.
+  - **Precedence on conflict:** intent → accessibility floor → SSOT → reference fidelity → visual polish (Product & Strategy breaks ties).
+- **Wired in:** `AGENTS.md` (*Roles — the review council* section, two-level + sweep rule), `RUNBOOK.md` (ROLES.md added to step 1 *Read the contract*; Review-phase sweep folded into step 9 *QA*), `00-operating-rules.md` (*Roles* pointer). No duplication — each touchpoint links to `ROLES.md`.
+- **Consistency:** `README.md` (*What's inside* + version line `v1.1.0` → `v1.2.0`), `VERSION.md` (run-layer bundle + tag → `v1.2.0`).
+- **MINOR** (additive, backward compatible): existing runs behave the same; the sweep makes the implicit ownership explicit.
+
 ## v1.1.9 — 2026-06-23 — docs consistency (full-review fixes)
 Documentation-consistency pass from a full review. No spec/token/protocol behavior changed; no design-system version bump (specs unchanged at v1.1.6).
 - **Component count fixed 20 → 27** — `design-system/README.md` (count + added the 7 missing from its list: rating · scale · stepper · form · nav-bar · hero · site-footer) and root `VERSION.md` bundle line. Now matches INDEX / coverage / gallery / CHANGELOG.

@@ -21,7 +21,7 @@ The agent fills the rest from the protocols. Anything not stated → resolved by
 A request may come as: the one-shot prompt above, a filled [`REQUEST.md`](REQUEST.md), or a free-text ask. Map it onto the REQUEST fields (Task · Mode · Direction · Reference · Output type · Notes · Constraints). Missing fields are inferred and **documented**, not interrogated.
 
 ## The pipeline (request → delivery)
-1. **Read the contract.** `AGENTS.md` → this RUNBOOK. (Already loaded if continuing a session.)
+1. **Read the contract.** `AGENTS.md` → this RUNBOOK → [`ROLES.md`](ROLES.md) (the lens sweep worn across the phases below). (Already loaded if continuing a session.)
 2. **Detect task type:** Design (page/component/redesign) · SPA build (Vite/React app/handover/Nx) · Review · Playground/demo. SPA triggers: "build app", "create SPA", "Vite React", "production-ready", "handover", "Nx monorepo", "team standards", "implement as real app".
 3. **Resolve the Mode** (if `Auto`, use the table below). Announce it.
 4. **Read the right protocols:**
@@ -33,7 +33,7 @@ A request may come as: the one-shot prompt above, a filled [`REQUEST.md`](REQUES
    - **Inside the design-os template repo:** `playground/<name>/manifest.md` (fixtures only — never product manifests here).
 7. **Map components** to `design-system/components/INDEX.md`. A missing component/token is documented in `design-system/` **first**, then used. No new component without checking INDEX.
 8. **Implement** — Tailwind-first, semantic token classes, logical RTL utilities, WCAG AA. No arbitrary values (Pixel Clone excepted, documented); token-only `var()` exceptions documented (`02`). SPA tasks also obey `09`.
-9. **QA** (`03`): System QA + RTL QA (`04`) + **Accessibility QA (`06`, every interface)** + Visual-Polish QA (`05`). **Pixel QA only if a reference image exists.** SPA tasks also run the **Engineering DoD** gates (`07`).
+9. **QA + role sweep** (`03`): System QA + RTL QA (`04`) + **Accessibility QA (`06`, every interface)** + Visual-Polish QA (`05`). Run the **Review-phase [`ROLES.md`](ROLES.md) sweep** here — Visual Designer · Accessibility · QA · UX Writer each emit one `pass`/`flag` line; Handoff Lead closes at step 11. **Pixel QA only if a reference image exists.** SPA tasks also run the **Engineering DoD** gates (`07`).
 10. **Manual self-check** (`07`): arbitrary values · directional RTL utilities · `text-left/right` · undocumented components · out-of-scope edits · manifest+QA present · token-var exceptions documented.
 11. **Definition of Done gate** (`07`): the task is **not done** until every box passes. Report any unchecked box and why — never present partial work as complete.
 12. **Deliver** per [`OUTPUT.md`](OUTPUT.md): what was built · files changed · preview/runtime · manifest location · QA location · DoD result · known limitations · next actions.
