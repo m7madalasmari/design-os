@@ -47,7 +47,9 @@ disagree → two Operating Roles, resolved by precedence.
   must be asked before building"; "this isn't the user's actual problem"; "out of scope for this task."
 - **Checklist:**
   - *Business Analyst* — the problem and outcome are clear and worth solving.
-  - *Scope Manager* — nothing built beyond the request (no extra sections/metrics/actions).
+  - *Scope Manager* — nothing built beyond the request (no extra sections/metrics/actions). Judge
+    scope against the **template-vs-consumer** context (RUNBOOK · README): a demo/states block is
+    legitimate in a `playground/` fixture but is scope creep in a consumer product page.
   - *Requirements Clarifier* — ambiguities resolved via Ask-vs-Assume: ask only when a gap blocks or
     changes a core decision; otherwise proceed with a **documented** assumption (`observed / inferred /
     approximate / unknown`).
@@ -213,6 +215,10 @@ disagree → two Operating Roles, resolved by precedence.
   "needed"); Content, Frontend, QA, and Documentation scale with the task — a one-component tweak may
   not need Documentation.
 - Each role emits one `pass` / `flag: <what + where>` line. Roles only "talk" on conflict.
+- **One finding, one owner.** A single detail often shows up under several lenses (e.g. a raw inline
+  value is visible to Design System, Frontend, and Accessibility at once). **Log it once, under the
+  role that owns the *rule* it breaks** — Design System for an undocumented value, Accessibility for
+  a contrast failure, etc. Other roles reference it, they do not re-report it. Keeps the sweep terse.
 
 ## Precedence (on conflict — Product & Strategy breaks remaining ties)
 1. **User intent / chosen Mode**
