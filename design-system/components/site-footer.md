@@ -13,7 +13,7 @@
 `default` (تعبئة داكنة) · رابط `hover`/`focus-visible`.
 
 ## 4. المقاسات
-- تعبئة `dark` (`--neutral-12`)، نصّ `#FFFFFF`/رمادي فاتح، حشو رأسي `--space-2xl`.
+- تعبئة `dark` (`--color-bg-inverse`)، نصّ `--color-text-on-dark` / خافت `--color-text-on-dark-muted`، حشو رأسي `--space-2xl`. **(لا hex خام ولا `--neutral-*` مباشرة — توكنز دلالية فقط.)**
 - الروابط `--font-size-sm`، الشعار `--font-size-lg`، الحقوق `--font-size-xs` بنصّ خافت.
 - CTA = [button](button.md) (على خلفية داكنة: نمط مناسب التباين).
 
@@ -35,6 +35,6 @@
 - إخفاء حلقة التركيز على الخلفية الداكنة.
 
 ## 9. علاقته بالتوكنز
-- التعبئة: `--neutral-12` + نصّ `#FFFFFF`/رمادي فاتح.
+- التعبئة: `--color-bg-inverse` + نصّ `--color-text-on-dark` / خافت `--color-text-on-dark-muted`.
 - القياس: `--space-2xl` · `--font-size-sm`/`-xs`/`-lg`.
 - الروابط/الـCTA: توكنز [button](button.md) + `--shadow-focus`.

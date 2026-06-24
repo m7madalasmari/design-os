@@ -4,6 +4,16 @@
 
 ---
 
+## v2.1.0 — 2026-06-24 — Default DS audit uplift (anti-bland + IBM typography gated)
+Executive DS audit + fixes. Additive/back-compatible (MINOR); default rendering largely preserved (link default brand-600→brand-700 for AA). Audit report: root `design-system-audit-report.md`. *re-QA:* link color; anti-bland review of existing fixtures.
+- **Anti-bland (core gap):** new `rules/anti-bland-ui-rules.md` — 8 checkable rules vs monotony/generic output (measurable hierarchy ≥2 signals · ≥2 spacing relationships · grid varies by content · composition by page type · named density levels · depth=hierarchy · presentation by content · "add-intent" test). Promoted to a hard **Anti-Generic Gate**.
+- **Typography enforced:** new `foundations/typography-system.md` — IBM Plex Sans Arabic (Arabic) + IBM Plex Sans (Latin) as permanent default + @font-face/fontsource loading; no Tajawal/Inter/browser-default. Made a **Typography Gate** (was mandated but ungated — the biggest unguarded mandate).
+- **Token fixes (tokens.css):** +`--breakpoint-*` in `@theme` (were prose-only — SSOT gap); +`--color-secondary`/`-hover`/`-foreground` (neutral-derived); +`--color-primary-active` utility; +`--color-bg-inverse`/`--color-text-on-dark*`; **link default brand-600→brand-700** (honors documented decoupling/AA).
+- **New references:** `foundations/token-architecture.md` (unified 4-tier), `rules/quality-gates.md` (5 gates), `../delivery-contract.md`, `../default-design-system-standard.md`, `../design-protocols/reference-driven-reconstruction.md`.
+- **Component contracts strengthened:** modal+drawer a11y contract (role=dialog/aria-modal/focus-trap/return-focus/scroll-lock); form submit lifecycle (loading/success/server-error recovery); table responsive + a11y wiring (caption/scope/aria-sort/aria-busy); site-footer raw `#FFFFFF`/`--neutral-12` → semantic inverse tokens; component-tokens index +tabs/alert/toast/form/secondary.
+- **Enforcement wired:** ROLES (5 gates), AGENTS, 07 DoD (+typography/anti-generic/README/static-grep boxes), qa-checklist (+§6 typography, +§10 anti-generic).
+- **Backlog (P0/P1 next):** sidebar/app-shell spec, data-app header, textarea/radio/switch standalone, breadcrumb, dark-mode tokens.
+
 ## v2.0.0 — 2026-06-24 — Default DS uplift (3 layers)
 **BREAKING (token architecture + theming model).** Raises the default design system: a smart color cascade, an explicit component-token tier, and an enforced quality gate. No component **values** changed at default (placeholder rendering preserved exactly); the *contracts* changed. *re-QA:* re-run color QA on any brand theme; re-confirm component acceptance criteria.
 

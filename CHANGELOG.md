@@ -4,6 +4,15 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v2.1.0 — 2026-06-24 — Default DS audit uplift (anti-bland + IBM typography gated)
+**MINOR.** Executive deep audit of the default DS (report: `design-system-audit-report.md`) + fixes. Core finding: the system prevented *slop* but not *blandness*, and IBM typography was default-but-ungated. Back-compatible; default rendering preserved (link brand-600→700 for AA). design-system → v2.1.0 (detail: `design-system/CHANGELOG.md`).
+- **Anti-Generic Gate** — new `design-system/rules/anti-bland-ui-rules.md`: 8 checkable rules vs monotony/generic UI (measurable hierarchy · ≥2 spacing relationships · grid/composition/presentation vary by content & page type · named density levels). Promoted to a hard gate.
+- **Typography Gate** — new `design-system/foundations/typography-system.md`: IBM Plex Sans Arabic (ar) + IBM Plex Sans (latin) mandated as permanent default + loading + enforcement; no Tajawal/Inter/browser-default.
+- **Token fixes** — breakpoints into SSOT `@theme`; +secondary/+primary-active/+inverse semantic tokens; link→brand-700.
+- **New standards** — `token-architecture.md`, `quality-gates.md` (5 gates), root `delivery-contract.md`, `default-design-system-standard.md`, `design-protocols/reference-driven-reconstruction.md`.
+- **Component contracts** — modal/drawer a11y contract, form submit lifecycle, table responsive + a11y wiring, site-footer raw-hex → semantic inverse tokens.
+- **Gates now five:** Design System · Typography · Component Quality · Anti-Generic · Accessibility — wired into `ROLES.md`/`AGENTS.md`/`07-definition-of-done.md`/`qa-checklist.md`.
+
 ## v2.0.0 — 2026-06-24 — Default Design System uplift (3 layers)
 **MAJOR.** Raises the default DS to a real systems level (Material/Atlassian/Carbon/Polaris *thinking*, not imitation): a smart color cascade, an explicit component-token tier, and an enforced quality gate. Default rendering is **byte-for-byte preserved** (old accent values = ramp stops 50/600/700/800); what changed is the **contracts** and the theming model. design-system → **v2.0.0** (detail: [`design-system/CHANGELOG.md`](design-system/CHANGELOG.md)).
 - **Layer 2 — Smart color system** (the quality lever): new `foundations/color-system.md` — any brand **seed** derives a full `--brand-50…950` ramp (agent-executed OKLCH protocol, no tooling) → semantic tokens → all components, with **mandatory contrast guards** + light-brand branch + worked example. Changing one color now cascades through the whole system, not just `primary`. `tokens.css` gains the ramp tier; theming is now **seed→ramp**.

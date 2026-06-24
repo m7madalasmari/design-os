@@ -226,19 +226,24 @@ A sweep is a fast pass, not a meeting. Order: **Fast sweep → Gates → remaini
 | UX & Information Architecture | structure · task flow · states |
 | Visual & Experience Design | composition · rhythm · polish risk |
 
-**2 · Gates — three checkpoints that cannot be skipped:**
-- **Design System Gate** — *must pass before implementation is valid.* No arbitrary values; every block
-  mapped to `INDEX`; anything new documented first (`02`); brand applied as a full ramp cascade, not a
-  primary swap (`color-system`). Checked at **RUNBOOK step 7**, before code.
-- **Component Quality Gate** — *must pass before a component is done.* Each component meets its acceptance
-  criteria (states · RTL · no clutter · one primary · token bindings) **and** is the right component for
-  the job (Modal vs Drawer vs Page; Table vs Card vs List) — `design-system/rules/component-quality-gate.md`.
-  Checked per component during build/review.
-- **Accessibility Gate** — *must pass before delivery is acceptable.* WCAG-AA floor: contrast · keyboard ·
-  focus · ARIA · reduced motion (`06`). Checked at **RUNBOOK step 9**, before Definition of Done.
+**2 · Gates — five checkpoints that cannot be skipped** (full reference: `design-system/rules/quality-gates.md`):
+- **Design System Gate** — *before implementation is valid.* No arbitrary values; every block mapped to
+  `INDEX`; anything new documented first (`02`); brand applied as a full ramp cascade, not a primary swap
+  (`color-system`). RUNBOOK step 7.
+- **Typography Gate** — *before delivery.* IBM Plex Sans Arabic loaded & applied (or a brand theme
+  explicitly requested + documented), type scale applied, Arabic body 1.7; no Tajawal/Inter/browser-default
+  (`typography-system`).
+- **Component Quality Gate** — *before a component is done.* Meets acceptance criteria (states · RTL · no
+  clutter · one primary · token bindings) **and** is the right component for the job
+  (`component-quality-gate`). Per component during build/review.
+- **Anti-Generic Gate** — *before delivery.* Page passes `anti-bland-ui-rules` (measurable hierarchy ≥2
+  signals · ≥2 spacing relationships · grid varies by content · composition matches page type · presentation
+  matches content). A bland-but-valid page fails. Promotes the *Output stance* from mindset to gate.
+- **Accessibility Gate** — *before delivery is acceptable.* WCAG-AA floor: contrast · keyboard · focus ·
+  ARIA · reduced motion (`06`). RUNBOOK step 9.
 
-All three are **hard floors** — never traded for brand or fidelity (see *Precedence*). A failed gate **blocks
-the pipeline**; it is not a flag to weigh against the others.
+All five are **hard floors** — never traded for brand or fidelity (see *Precedence*; Accessibility and
+clarity outrank Anti-Generic). A failed gate **blocks the pipeline**; it is not a flag to weigh.
 
 **3 · Remaining roles — run as validation when there is something to validate.** Content, Frontend, QA,
 and Documentation scale with the task (a one-component tweak may not need Documentation).

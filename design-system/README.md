@@ -25,6 +25,8 @@
 | [brand-foundation.md](foundations/brand-foundation.md) | كيف تعمل طبقة الثيم المحايد، وكيف تُحقن هوية علامة فعلية فوقها |
 | [color-system.md](foundations/color-system.md) | **نظام الألوان الذكي** — اشتقاق بذرة واحدة إلى ramp كامل (50–950) → دلالي، بحُرّاس تباين |
 | [component-tokens.md](foundations/component-tokens.md) | **عقود ربط المكوّنات** (الطبقة الثالثة): كل جزء/حالة → توكن دلالي؛ المكوّنات تربط بالدلالي فقط |
+| [token-architecture.md](foundations/token-architecture.md) | **المرجع الموحّد** لطبقات التوكنز الأربع (primitive → brand ramp → semantic → component) والتتالي |
+| [typography-system.md](foundations/typography-system.md) | **معيار الطباعة الإجباري** — IBM Plex Sans Arabic + التحميل (@font-face) + الإنفاذ ببوّابة |
 | [tokens.md](foundations/tokens.md) | **القاموس** — كل لون/مسافة/زاوية/ظل/حركة كتوكن دلالي. المرجع الأول لأي قيمة |
 | [typography.md](foundations/typography.md) | الخط، السلّم الطباعي، الأوزان، ارتفاع السطر، معالجة الأرقام |
 | [spacing.md](foundations/spacing.md) | شبكة 4px، سلّم المسافات، متى تُستخدم كل خطوة |
@@ -57,6 +59,8 @@
 | [qa-checklist.md](rules/qa-checklist.md) | قائمة فحص قبل اعتماد أي شاشة |
 | [forbidden-patterns.md](rules/forbidden-patterns.md) | **الممنوعات** صراحةً، وسبب المنع، والبديل الصحيح |
 | [component-quality-gate.md](rules/component-quality-gate.md) | **بوّابة جودة المكوّن**: معايير قبول إلزامية لكل مكوّن + قاعدة اختيار المكوّن الصحيح (Modal/Drawer/Page…) |
+| [anti-bland-ui-rules.md](rules/anti-bland-ui-rules.md) | **منع الرتابة**: 8 قواعد قابلة للفحص ضدّ المخرجات الـgeneric/الموناتون (Anti-Generic Gate) |
+| [quality-gates.md](rules/quality-gates.md) | **المرجع الموحّد للبوّابات الخمس** (Design System · Typography · Component Quality · Anti-Generic · Accessibility) |
 
 ---
 

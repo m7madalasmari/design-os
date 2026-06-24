@@ -37,13 +37,17 @@
   /* ---------- semantic: text ---------- */
   --color-text-primary:var(--neutral-12); --color-text-secondary:var(--neutral-10);
   --color-text-tertiary:var(--neutral-9); --color-text-disabled:var(--neutral-8); --color-text-on-accent:var(--on-accent);
-  --color-text-link:var(--accent-solid);      /* decoupled — contrast-verified, not auto = accent */
+  /* inverse / dark surface (footer, dark sections) — gives components a semantic instead of raw #FFFFFF / --neutral-12 */
+  --color-bg-inverse:var(--neutral-12); --color-text-on-dark:#FFFFFF; --color-text-on-dark-muted:var(--neutral-7);
+  --color-text-link:var(--brand-700);      /* decoupled, contrast-verified ≥4.5:1 — NOT auto = accent (color-system §4) */
   /* ---------- semantic: border ---------- */
   --color-border-subtle:var(--neutral-5); --color-border-default:var(--neutral-6); --color-border-strong:var(--neutral-8);
   --color-border-focus:var(--color-focus-ring);
   /* ---------- semantic: accent (action) ---------- */
   --color-accent:var(--accent-solid); --color-accent-hover:var(--accent-hover); --color-accent-active:var(--accent-active);
   --color-accent-subtle:var(--accent-tint); --color-text-accent:var(--accent-solid);
+  /* ---------- semantic: secondary (neutral-derived, NOT brand — keeps 60-30-10) ---------- */
+  --color-bg-secondary:var(--neutral-3); --color-bg-secondary-hover:var(--neutral-4); --color-text-on-secondary:var(--neutral-12);
   /* ---------- semantic: status (triplets) ---------- */
   --color-success-fg:var(--green-fg); --color-success-bg:var(--green-bg); --color-success-border:var(--green-border);
   --color-warning-fg:var(--amber-fg); --color-warning-bg:var(--amber-bg); --color-warning-border:var(--amber-border);
@@ -110,7 +114,12 @@
   --color-primary:            var(--color-accent);
   --color-primary-foreground: var(--color-text-on-accent);
   --color-primary-hover:      var(--color-accent-hover);
+  --color-primary-active:     var(--color-accent-active);
   --color-primary-subtle:     var(--color-accent-subtle);
+  /* secondary (neutral-derived, not brand) */
+  --color-secondary:            var(--color-bg-secondary);
+  --color-secondary-hover:      var(--color-bg-secondary-hover);
+  --color-secondary-foreground: var(--color-text-on-secondary);
   /* interaction */
   --color-link:               var(--color-text-link);
   /* status (solid + soft + border) */
@@ -130,6 +139,8 @@
   --leading-tight:var(--line-height-tight); --leading-snug:var(--line-height-snug); --leading-relaxed:var(--line-height-base);
   /* motion easing */
   --ease-standard:var(--ease-standard); --ease-decelerate:var(--ease-decelerate);
+  /* breakpoints (SSOT — mobile-first min-width; was prose-only in layout.md) */
+  --breakpoint-sm:40rem; --breakpoint-md:48rem; --breakpoint-lg:64rem; --breakpoint-xl:80rem; --breakpoint-2xl:96rem;
 }
 
 /* Spacing: use Tailwind's default 4px scale (= --space-*: p-1=4px … p-4=16px=space-md, p-6=24px=space-lg).

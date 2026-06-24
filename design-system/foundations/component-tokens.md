@@ -40,6 +40,11 @@
 | **status-badge** | success/warning/danger/info × `fg`+`soft` (`--color-success-*`…) — **لا تتبع البراند** |
 | **link** | `--color-link` (محقَّق التباين، مفصول عن accent) |
 | **nav / app-shell** | سطح `--color-bg-surface`/`-subtle` · حدّ `--color-border-subtle` · عنصر نشط `--color-primary`/`--color-primary-subtle` |
+| **tabs** | تبويب نشط `--color-primary` (نصّ/مؤشّر سفلي) · خامل `--color-text-secondary` · فاصل `--color-border-subtle` |
+| **alert** | حسب النوع: `--color-{success,warning,destructive,info}` (fg) + `-soft` (خلفية) + `-border` |
+| **toast** | سطح `--color-bg-surface` · ظلّ `--shadow-md` · طبقة `--z-toast` · لون النوع كـalert |
+| **form** | حقول→ربط input · تسمية `--color-text-primary` · مساعدة `--color-text-tertiary` · خطأ `--color-destructive` · أساسي→ربط button · ثانوي `--color-secondary` |
+| **secondary button / chip** | تعبئة `--color-secondary` · hover `--color-secondary-hover` · نصّ `--color-secondary-foreground` (محايد، لا براند) |
 
 ## 4. ما لا يُربط بالبراند (وظيفي ثابت)
 

@@ -21,6 +21,10 @@
 - [ ] **Required Output** delivered (the `05` report + QA tables + scope/deviations).
 - [ ] **QA Report location** stated (embedded in this manifest, or a separate file) — see *QA report storage* below.
 - [ ] **Token Var Exceptions** documented (if any `style`+`var()` token use) — manifest *Token Var Exceptions* table.
+- [ ] **Typography Gate** — IBM Plex Sans Arabic loaded & applied (or a brand theme explicitly requested + documented; playground/CSP fallback noted), type scale applied, Arabic body line-height ≈1.7. No Tajawal/Inter/browser-default ([`typography-system`](../design-system/foundations/typography-system.md)).
+- [ ] **Anti-Generic Gate** — page passes [`anti-bland-ui-rules`](../design-system/rules/anti-bland-ui-rules.md) (measurable hierarchy ≥2 signals · ≥2 spacing relationships · grid varies by content · composition matches page type · presentation matches content · not "AI-looking"). A bland-but-valid page is **not** done.
+- [ ] **README** present for any deliverable handed to another person (not SPA-only).
+- [ ] **Static grep pass run & recorded** — arbitrary values + directional RTL utilities (helpers below); record the result, don't just assert it.
 
 ## Manual Self-check  (run before declaring done — no tooling required)
 A quick pass the agent performs by hand (these are the same as the `03` Lint-ready Rules):
