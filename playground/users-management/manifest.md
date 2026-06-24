@@ -54,4 +54,4 @@ shell/تنقّل عام (08 — لم يُطلب) · CRUD حيّ · فرز/فلت
 ## Post-implementation
 - QA per `03`: System + RTL + Accessibility + Visual-Polish. **Pixel QA: N/A (Greenfield).**
 - **QA Report Location:** التقرير الكامل في `../../dogfood-v2.1.0-users-page-report.md`.
-- **Preview runtime:** Shim mirror (ليس التنفيذ الإنتاجي).
+- **Preview runtime:** Shim mirror + **JS تفاعلي مضمّن** (بحث · فلترة بالحالة · ترقيم · مودال تعديل/إضافة بـfocus-trap/return-focus · حفظ يحدّث البيانات · toast نجاح/خطأ · حالات فارغة/لا-نتائج حيّة) — vanilla بلا أداة بناء. ليس التنفيذ الإنتاجي.
