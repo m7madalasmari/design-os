@@ -88,7 +88,7 @@ For any UI design, redesign, screenshot-to-code, page, component, dashboard, for
 ## Roles — the review council (lens sweep)
 The protocols are the rulebooks; **[`ROLES.md`](ROLES.md) is who is accountable for each one.** A **two-level** model: **9 Operating Roles** are the only voices that run in the sweep; the detailed reviewers live under them as **checklists** (separation rule: *can it disagree with another role → role; just a verification dimension → checklist item*). It is a fast pass with each role's mindset — **not** a debate or extra agents. Each role emits one line (`pass` / `flag`); conflicts resolve by precedence (intent → accessibility floor → SSOT → fidelity → polish; Product & Strategy breaks ties).
 - **Full sweep = 9 roles max.** **Fast sweep = 3 minimum on every task:** Product & Strategy · UX & Information Architecture · Visual & Experience Design.
-- The other six run as **QA / validation when needed**; for any real shipped interface, **Design System** and **Accessibility** are non-skippable gates.
+- The other six run as **QA / validation when needed**, with two hard checkpoints that block the pipeline: the **Design System Gate** (must pass before implementation is valid) and the **Accessibility Gate** (must pass before delivery is acceptable).
 
 ## Adding to the system
 

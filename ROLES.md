@@ -22,6 +22,14 @@ Test it: *Contrast Reviewer* and *ARIA Reviewer* never disagree — both serve A
 items. *Visual & Experience Design* (wants a warm brand hero) and *Accessibility* (contrast floor) **can**
 disagree → two Operating Roles, resolved by precedence.
 
+### Output stance (anti-generic — governs every sweep)
+> **Do not stack components. Compose the experience around the primary task.**
+> **Reject generic / default UI** — the result must show hierarchy, rhythm, depth, and purposeful polish.
+
+Owned operationally by **UX & Information Architecture** (structure the layout around the primary task)
+and **Visual & Experience Design** (hierarchy, rhythm, depth, polish — no default look). A page that is a
+flat stack of default cards **fails the sweep even if every component is individually valid.**
+
 ---
 
 ## Level 1 — Operating Roles
@@ -62,7 +70,8 @@ disagree → two Operating Roles, resolved by precedence.
 ### 2. UX & Information Architecture
 - **Purpose:** structure, flows, and state coverage are complete and logical.
 - **Owns:** information architecture, user/task flows, navigation & shell consistency, the manifest's
-  structure, completeness of states. **Owns interaction *behavior and task flow*** (polish belongs to Visual).
+  structure, completeness of states. **Composes the layout around the primary task — never a generic
+  stack of components** (see *Output stance*). **Owns interaction *behavior and task flow*** (polish belongs to Visual).
 - **Decisions it can challenge:** "a state is missing (empty/loading/error/edge)"; "the hierarchy
   buries the primary action"; "this breaks the app-shell/nav rhythm"; "the flow has a dead end."
 - **Checklist:**
@@ -73,14 +82,16 @@ disagree → two Operating Roles, resolved by precedence.
 - **Output in manifest:** *Reference Analysis (layout/regions) · Data States · Responsive Behavior ·
   Components Used*.
 - **Anti-patterns:** happy-path only; missing empty/error states; inventing a new shell/nav without
-  need; hierarchy that hides the primary task.
+  need; hierarchy that hides the primary task; stacking components instead of composing around the task.
 
 ### 3. Visual & Experience Design
-- **Purpose:** composition, rhythm, and polish at quality — and on-brand.
+- **Purpose:** composition, rhythm, and polish at quality — and on-brand. **Reject generic / default
+  UI; demand hierarchy, rhythm, depth, and purposeful polish** (see *Output stance*).
 - **Owns:** visual composition, layout rhythm, spacing/type-scale application, brand expression.
   **Owns interaction *polish, motion, and perceived quality*** (behavior belongs to UX).
 - **Decisions it can challenge:** "spacing breaks the 4px rhythm"; "brand misused (warm promoted to
-  primary; 60-30-10 violated)"; "this reads as generic AI-SaaS"; "feedback/motion missing here."
+  primary; 60-30-10 violated)"; "this reads as generic AI-SaaS"; "this is a flat stack of default
+  components with no hierarchy/depth"; "feedback/motion missing here."
 - **Checklist:**
   - *UI Composition Designer* — alignment, grouping, balance hold across breakpoints.
   - *Layout & Rhythm Designer* — spacing/type on the system scale, no drift.
@@ -204,21 +215,38 @@ disagree → two Operating Roles, resolved by precedence.
 5. **Manifest / Changelog / Release / Handoff are not roles.** All checklist items under
    **Documentation & Handoff**.
 
-## Runtime rule (how the sweep actually runs)
-- **Full sweep = 9 roles maximum.** Never more — the 45 are checklists, not voices.
-- **Fast sweep = 3 roles minimum**, run on every task (these *shape* the work):
-  1. Product & Strategy
-  2. UX & Information Architecture
-  3. Visual & Experience Design
-- **The remaining six run as QA / validation when there is something to validate.** For any real,
-  shipped interface, **Design System** and **Accessibility** are non-skippable gates (they are always
-  "needed"); Content, Frontend, QA, and Documentation scale with the task — a one-component tweak may
-  not need Documentation.
-- Each role emits one `pass` / `flag: <what + where>` line. Roles only "talk" on conflict.
-- **One finding, one owner.** A single detail often shows up under several lenses (e.g. a raw inline
-  value is visible to Design System, Frontend, and Accessibility at once). **Log it once, under the
-  role that owns the *rule* it breaks** — Design System for an undocumented value, Accessibility for
-  a contrast failure, etc. Other roles reference it, they do not re-report it. Keeps the sweep terse.
+## How to run a role sweep
+A sweep is a fast pass, not a meeting. Order: **Fast sweep → Gates → remaining roles → manifest.**
+
+**1 · Fast sweep — 3 roles, on every task.** They *shape* the work; each emits one line with a defined output:
+
+| Role | Output (one line) |
+|------|-------------------|
+| Product & Strategy | intent · scope · primary action |
+| UX & Information Architecture | structure · task flow · states |
+| Visual & Experience Design | composition · rhythm · polish risk |
+
+**2 · Gates — two checkpoints that cannot be skipped:**
+- **Design System Gate** — *must pass before implementation is valid.* No arbitrary values; every block
+  mapped to `INDEX`; anything new documented first (`02`). Checked at **RUNBOOK step 7**, before code.
+- **Accessibility Gate** — *must pass before delivery is acceptable.* WCAG-AA floor: contrast · keyboard ·
+  focus · ARIA · reduced motion (`06`). Checked at **RUNBOOK step 9**, before Definition of Done.
+
+Both are **hard floors** — never traded for brand or fidelity (see *Precedence*). A failed gate **blocks
+the pipeline**; it is not a flag to weigh against the others.
+
+**3 · Remaining roles — run as validation when there is something to validate.** Content, Frontend, QA,
+and Documentation scale with the task (a one-component tweak may not need Documentation).
+
+**4 · Write it to the manifest.** Each verdict and flag lands in the role's mapped section (see each
+role's *Output in manifest*); the Accessibility Gate fills *Accessibility Notes*.
+
+### Rules of the sweep
+- **Full sweep = 9 roles maximum** — the 45 are checklists, not voices.
+- Each role emits one `pass` / `flag: <what + where>` line; roles only "talk" on conflict.
+- **One finding, one owner** — a detail seen by several lenses is logged once, under the role that owns
+  the *rule* it breaks (Design System for an undocumented value, Accessibility for a contrast failure, …).
+  Other roles reference it; they do not re-report it. Keeps the sweep terse.
 
 ## Precedence (on conflict — Product & Strategy breaks remaining ties)
 1. **User intent / chosen Mode**
