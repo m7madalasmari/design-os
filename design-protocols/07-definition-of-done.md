@@ -29,6 +29,7 @@
 ## Manual Self-check  (run before declaring done — no tooling required)
 A quick pass the agent performs by hand (these are the same as the `03` Lint-ready Rules):
 - [ ] **No undocumented arbitrary Tailwind values** (`bg-[#…]`, `p-[…]`, `w-[…]`, `rounded-[…]`…). Any used in Pixel Clone Mode are documented in the manifest.
+- [ ] **No undocumented raw inline `style=`** (`style="…"` / `style={{…}}` with px/hex/`minmax`/`transform`/`row-reverse`). Allowed only as `var(--token)`, a genuinely dynamic value, an SVG/canvas case, or a clearly-commented fixture — else replace with a utility/variant (forbidden #18).
 - [ ] **No `left-*` / `right-*` / `ml-*` / `mr-*` / `pl-*` / `pr-*`** in RTL — logical utilities only (`ms/me`, `ps/pe`, `start/end`).
 - [ ] **No `text-left` / `text-right`** — `text-start` / `text-end` instead.
 - [ ] **No undocumented component** — every block maps to `components/INDEX.md` (or was documented first).
@@ -36,7 +37,7 @@ A quick pass the agent performs by hand (these are the same as the `03` Lint-rea
 - [ ] **Manifest + QA report present** — `page-manifests/<page>.md` exists and a `03` QA report was produced.
 - [ ] **Token var exceptions documented** — any `style`+`var(--token)` for a token without a Tailwind utility (z-index/duration/easing/size) is listed in the manifest; no raw values, no arbitrary value where `var()` suffices.
 
-Any failed line blocks completion. (Grep helpers, e.g. `\b(ml|mr|pl|pr)-` and `(bg|text|p|m|w|h|rounded)-\[` — purely manual, no Stylelint/CI added.)
+Any failed line blocks completion. (Grep helpers, e.g. `\b(ml|mr|pl|pr)-`, `(bg|text|p|m|w|h|rounded)-\[`, and **inline style** `style=("|\{\{)[^"}]*([0-9]+px|#[0-9a-fA-F]{3,6}|minmax|row-reverse|translate)` — purely manual, no Stylelint/CI added.)
 
 ## QA report storage
 - **Small / medium task:** the QA report **may be embedded** inside the page manifest.

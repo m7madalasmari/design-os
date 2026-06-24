@@ -4,6 +4,16 @@
 
 ---
 
+## v2.1.1 — 2026-06-24 — close high-impact gaps from users-page dogfood
+Targeted closure of the 3 high-impact gaps surfaced by the v2.1.0 users-page dogfood + 2 small contracts. Additive, back-compatible. **Components 27 → 29.**
+- **`components/avatar.md` (new):** initials/image/icon-fallback/status-dot · sizes xs–lg · circle/rounded · image-failed → initials → icon fallback · a11y (decorative when the name is beside it — never repeat the name) · semantic, low-emphasis colors only. Closes the ad-hoc `.avatar` gap.
+- **`components/detail-view.md` (new composition):** description-list (`dl/dt/dd`) for a single entity — anatomy, variants (simple/grouped/summary/with-actions/with-status), responsive (2-col→stacked), RTL, a11y, visual rules (no card-per-field, no table-for-key-value). Closes the ad-hoc `dl` gap.
+- **inline-`style=` gate:** forbidden **#18** (raw px/hex/minmax/transform/row-reverse in inline style); wired into `rules/quality-gates.md` (DS Gate), `rules/qa-checklist.md` §1, `07-definition-of-done.md` (box + grep helper), `LOCAL-STABILITY.md`. Closes the gap that `[...]`-only checks missed (surfaced twice).
+- **`filter-bar.md` §11 — responsive contract:** desktop row / tablet wrap / mobile (search stays + filters → drawer/sheet) / RTL; no silent crop.
+- **`modal.md` §6.6 + `drawer.md` — footer order:** canonical rule — inline-end alignment, DOM [secondary, primary], destructive takes the primary slot, **no manual `row-reverse`**.
+- INDEX +avatar +detail-view (29); BACKLOG: avatar + detail-view marked shipped.
+- Regression dogfood re-run on the users page (report: root `dogfood-v2.1.1-regression-report.md`).
+
 ## v2.1.0 — 2026-06-24 — Default DS audit uplift (anti-bland + IBM typography gated)
 Executive DS audit + fixes. Additive/back-compatible (MINOR); default rendering largely preserved (link default brand-600→brand-700 for AA). Audit report: root `design-system-audit-report.md`. *re-QA:* link color; anti-bland review of existing fixtures.
 - **Anti-bland (core gap):** new `rules/anti-bland-ui-rules.md` — 8 checkable rules vs monotony/generic output (measurable hierarchy ≥2 signals · ≥2 spacing relationships · grid varies by content · composition by page type · named density levels · depth=hierarchy · presentation by content · "add-intent" test). Promoted to a hard **Anti-Generic Gate**.

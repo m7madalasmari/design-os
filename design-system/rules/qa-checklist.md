@@ -7,6 +7,7 @@
 ## 1. التوكنز والقيم
 - [ ] لا hex/rgb مكتوب يدويًا — كل لون من [tokens](../foundations/tokens.md) (ممنوع #11).
 - [ ] لا px/مسافة خارج السلّم (ممنوع #12، #13).
+- [ ] **لا inline `style=` خام** — لا px/hex/minmax/transform/`row-reverse` داخل `style`؛ إلا `var(--token)`/ديناميكي/fixture موثّق (ممنوع #18).
 - [ ] المكوّنات تستهلك التوكنز الدلالية لا الأولية ([brand-foundation](../foundations/brand-foundation.md)).
 
 ## 2. التسلسل والأفعال

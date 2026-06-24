@@ -46,7 +46,8 @@ body{background:var(--color-bg-base);color:var(--color-text-primary);font-family
 .wrap{max-width:72rem;margin-inline:auto;padding:var(--space-lg);display:flex;flex-direction:column;gap:var(--space-2xl)}
 .flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.block{display:block}
 .col{flex-direction:column}.wrap-w{flex-wrap:wrap}.items-center{align-items:center}.items-start{align-items:flex-start}
-.between{justify-content:space-between}.center{justify-content:center}.flex-1{flex:1 1 0%}
+.between{justify-content:space-between}.center{justify-content:center}.justify-end{justify-content:flex-end}.flex-1{flex:1 1 0%}
+.demo-static{position:relative;inset:auto;border-radius:var(--radius-lg)} /* fixture: render fixed overlay inline for preview */
 .gap-1{gap:var(--space-2xs)}.gap-2{gap:var(--space-xs)}.gap-3{gap:var(--space-sm)}.gap-4{gap:var(--space-md)}.gap-6{gap:var(--space-lg)}
 .w-full{width:100%}.ov-x{overflow-x:auto}.ov-h{overflow:hidden}
 .p-3{padding:var(--space-sm)}.p-4{padding:var(--space-md)}.p-6{padding:var(--space-lg)}
@@ -95,7 +96,8 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
 <div dir="rtl" lang="ar">
 <div class="wrap">
 
-  <p class="note">معاينة dogfood · design-os v2.1.0 · Mode: Greenfield/System-First · theme: neutral (الافتراضي) · الخط: IBM Plex Sans Arabic (بديل نظام في المعاينة — CSP) · <span class="text-danger fw-medium">بيانات تجريبية صناعية — لا تمثّل أشخاصًا حقيقيين</span></p>
+  <!-- v2.1.1 regression: avatar → components/avatar.md · detail → components/detail-view.md · modal footer → §6.6 (no row-reverse) · inline styles documented (forbidden #18) -->
+  <p class="note">معاينة dogfood · design-os v2.1.1 · Mode: Greenfield/System-First · theme: neutral (الافتراضي) · الخط: IBM Plex Sans Arabic (بديل نظام في المعاينة — CSP) · avatar/detail بعقد spec · <span class="text-danger fw-medium">بيانات تجريبية صناعية — لا تمثّل أشخاصًا حقيقيين</span></p>
 
   <!-- ====== 1) USERS LIST PAGE (presentation = table) ====== -->
   <section class="flex col gap-6" aria-label="إدارة المستخدمين">
@@ -205,6 +207,7 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
   <!-- ====== 2) STATES (loading / empty / no-results / error) ====== -->
   <section class="flex col gap-4">
     <h2 class="sec-label">حالات الجدول (عرض توضيحي)</h2>
+    <!-- DOCUMENTED FIXTURE INLINE (forbidden #18 exception): auto-fit grid (minmax) + skeleton placeholder widths (%) are demo-only illustrative layout with no token; in a real Tailwind project these become grid utilities / skeleton variants. Logged in manifest Token Var Exceptions. -->
     <div class="grid gap-4" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
       <div class="bg-card border rounded-lg shadow-sm p-4 flex col gap-3"><p class="text-xs fw-medium text-faint">تحميل</p>
         <div class="flex col gap-3" aria-hidden="true"><div class="skel pulse" style="width:70%"></div><div class="skel pulse" style="width:90%"></div><div class="skel pulse" style="width:60%"></div><div class="skel pulse" style="width:85%"></div></div></div>
@@ -254,15 +257,15 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
   <section class="flex col gap-4">
     <h2 class="sec-label">رسائل النجاح/الخطأ</h2>
     <div class="flex col gap-3">
-      <div class="flex items-start gap-3 p-4 rounded-md bg-success-soft border-success" role="status"><svg class="size-5 text-success" style="margin-block-start:2px" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 10 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><p class="text-sm fw-medium text-fg">تم تحديث حالة المستخدم</p><p class="text-sm text-muted">أصبحت سارة الفهد «موقوف». يمكنك التراجع خلال ٣٠ ثانية.</p></div></div>
-      <div class="flex items-start gap-3 p-4 rounded-md bg-danger-soft border-danger" role="alert"><svg class="size-5 text-danger" style="margin-block-start:2px" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 6v4.5M10 13.5h.01" stroke-linecap="round"/><circle cx="10" cy="10" r="6.5"/></svg><div><p class="text-sm fw-medium text-fg">تعذّر تحديث الحالة</p><p class="text-sm text-muted">انتهت الجلسة. أعد المحاولة بعد تسجيل الدخول.</p></div></div>
+      <div class="flex items-start gap-3 p-4 rounded-md bg-success-soft border-success" role="status"><svg class="size-5 text-success" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 10 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><p class="text-sm fw-medium text-fg">تم تحديث حالة المستخدم</p><p class="text-sm text-muted">أصبحت سارة الفهد «موقوف». يمكنك التراجع خلال ٣٠ ثانية.</p></div></div>
+      <div class="flex items-start gap-3 p-4 rounded-md bg-danger-soft border-danger" role="alert"><svg class="size-5 text-danger" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 6v4.5M10 13.5h.01" stroke-linecap="round"/><circle cx="10" cy="10" r="6.5"/></svg><div><p class="text-sm fw-medium text-fg">تعذّر تحديث الحالة</p><p class="text-sm text-muted">انتهت الجلسة. أعد المحاولة بعد تسجيل الدخول.</p></div></div>
     </div>
   </section>
 
   <!-- ====== 5) EDIT-STATUS MODAL (short focused action → modal; a11y contract) ====== -->
   <section class="flex col gap-4">
     <h2 class="sec-label">مودال تعديل الحالة (إجراء قصير مركّز → modal، بعقد a11y)</h2>
-    <div class="overlay" style="position:relative;inset:auto;border-radius:var(--radius-lg)">
+    <div class="overlay demo-static">
       <div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" aria-describedby="m-desc">
         <div class="flex items-start between gap-3 mb-4">
           <h3 id="m-title" class="text-lg fw-semibold text-fg">تعديل حالة المستخدم</h3>
@@ -271,9 +274,10 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
         <p id="m-desc" class="text-sm text-muted mb-4">تغيير حالة «سارة الفهد». الإيقاف يمنع الدخول فورًا.</p>
         <label class="flex col gap-2 mb-4"><span class="text-sm fw-medium text-fg">الحالة</span>
           <select class="field" aria-label="الحالة"><option>نشط</option><option>موقوف</option><option>مدعو</option></select></label>
-        <div class="flex items-center gap-2" style="justify-content:flex-start;flex-direction:row-reverse">
-          <button type="button" class="h-10 px-4 rounded-md bg-primary text-on-accent fw-medium text-sm transition hover:bg-primary-hover fv:ring pointer">حفظ</button>
+        <!-- footer order (modal §6.6): justify inline-end, DOM [secondary, primary] — primary at inline-end; no row-reverse -->
+        <div class="flex items-center gap-2 justify-end">
           <button type="button" class="h-10 px-4 rounded-md bg-card border text-fg fw-medium text-sm transition hover:bg-hover fv:ring pointer">تراجع</button>
+          <button type="button" class="h-10 px-4 rounded-md bg-primary text-on-accent fw-medium text-sm transition hover:bg-primary-hover fv:ring pointer">حفظ</button>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 # Design System — Version
 
-**Current: v2.1.0** (2026-06-24)
+**Current: v2.1.1** (2026-06-24)
 
 Covers the design system (`foundations/`, `components/`, `rules/`, `themes/`, `tokens.css`) and the agent protocol layer (`design-protocols/` 00–09). This number tracks **design-system** changes (tokens / components / foundations) and may intentionally lag the OS release in root [`VERSION.md`](../VERSION.md).
 

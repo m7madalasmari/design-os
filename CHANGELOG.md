@@ -4,6 +4,14 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v2.1.1 — 2026-06-24 — close high-impact gaps from users-page dogfood
+Additive, back-compatible. Closes the 3 high-impact gaps from the v2.1.0 dogfood + 2 small contracts. **Components 27 → 29.** design-system → v2.1.1 (detail: `design-system/CHANGELOG.md`).
+- **avatar.md** (new component) — initials/image/icon-fallback/status-dot, sizes, circle/rounded, fallback chain, decorative-when-named a11y, semantic colors. Closes ad-hoc `.avatar`.
+- **detail-view.md** (new composition) — description-list pattern for a single entity (no card-per-field, no table-for-key-value). Closes ad-hoc `dl`.
+- **inline-`style=` gate** — forbidden #18 + wired into quality-gates / qa-checklist / 07 DoD (box + grep) / LOCAL-STABILITY. Closes the gap `[...]`-only checks missed.
+- **filter-bar responsive contract** + **modal/drawer footer order** (no manual row-reverse).
+- Regression dogfood on the users page **passed** — `dogfood-v2.1.1-regression-report.md`.
+
 ## v2.1.0 — 2026-06-24 — Default DS audit uplift (anti-bland + IBM typography gated)
 **MINOR.** Executive deep audit of the default DS (report: `design-system-audit-report.md`) + fixes. Core finding: the system prevented *slop* but not *blandness*, and IBM typography was default-but-ungated. Back-compatible; default rendering preserved (link brand-600→700 for AA). design-system → v2.1.0 (detail: `design-system/CHANGELOG.md`).
 - **Anti-Generic Gate** — new `design-system/rules/anti-bland-ui-rules.md`: 8 checkable rules vs monotony/generic UI (measurable hierarchy · ≥2 spacing relationships · grid/composition/presentation vary by content & page type · named density levels). Promoted to a hard gate.

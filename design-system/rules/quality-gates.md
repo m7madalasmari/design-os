@@ -8,7 +8,7 @@
 ---
 
 ## 1. Design System Gate — *قبل صحّة التنفيذ*
-يفحص: توكنز فقط (صفر arbitrary) · كل كتلة مربوطة بـ`INDEX` · أي جديد موثّق أولًا · البراند مطبّق **كـramp كامل متتالٍ** لا تبديل primary (color-system) · المكوّنات تربط بالـsemantic فقط (لا `--brand-*`/`--neutral-*`/hex).
+يفحص: توكنز فقط (صفر arbitrary، **بما فيها inline `style=` الخام** — forbidden #18، لا px/hex/minmax/transform/row-reverse إلا token-var/ديناميكي/fixture موثّق) · كل كتلة مربوطة بـ`INDEX` · أي جديد موثّق أولًا · البراند مطبّق **كـramp كامل متتالٍ** لا تبديل primary (color-system) · المكوّنات تربط بالـsemantic فقط (لا `--brand-*`/`--neutral-*`/hex).
 المالك: **Design System**. المرجع: [02](../../design-protocols/02-design-system-ssot.md) · [component-tokens](../foundations/component-tokens.md) · [color-system](../foundations/color-system.md).
 
 ## 2. Typography Gate — *قبل التسليم* (جديد v2.1)

@@ -25,6 +25,7 @@
 | [Card](card.md) | ✅ / ✗ | static · interactive · loading · empty (fills: surface/muted/dark/brand) | logical padding; title `inline-start` | `bg-card border border-border rounded-lg p-6` (shadow only if raised) |
 | [Page Header](page-header.md) | ✅ / ✗ | default · breadcrumb · tabs · loading · sticky | title `inline-start`, action `inline-end`; one `h1` | `flex items-center justify-between`; `h1 text-3xl font-bold` |
 | [Section Header](section-header.md) | ✅ / ✗ | default · action · count · collapsible | title `inline-start`, action `inline-end` | `flex justify-between`; `h2 text-xl font-semibold` |
+| [Detail View](detail-view.md) (composition) | ✅ / ✗ | simple · grouped · summary+details · with-actions · with-status | semantic `dl/dt/dd`; labels/values `text-start`; emails/IDs bidi; 2-col desktop → stacked mobile | `dl` grid (label/value) + group sections; **not a table for key-value** |
 
 ## Data
 | Component | Spec / Impl | Required states | RTL / a11y | Expected Tailwind usage |
@@ -33,6 +34,7 @@
 | [Empty State](empty-state.md) | ✅ / ✗ | first-use · no-results · error · no-permission | **title is a heading** (not `<p>`); icon by context | `flex flex-col items-center text-center gap-2 py-12` |
 | [Filter Bar](filter-bar.md) | ✅ / ✗ | default · active · loading · no-results | search `inline-start`; clear `inline-end` | `flex flex-wrap gap-2`; chips `rounded-sm` |
 | [Status Badge](status-badge.md) | ✅ / ✗ | success · warning · danger · info · neutral | dot + text (not color alone); not mirrored | `inline-flex gap-1 px-2 py-0.5 rounded-md text-xs`; `text-success bg-success-soft` |
+| [Avatar](avatar.md) | ✅ / ✗ | image loaded · image failed · missing · loading; variants: initials/image/icon-fallback/status-dot | `aria-hidden` when name beside it (don't repeat name); status dot logical corner; circle/rounded | `inline-flex items-center justify-center rounded-full size-9 bg-primary-subtle text-primary font-semibold` |
 | [Pagination](pagination.md) | ✅ / ✗ | default · current · disabled · hover · focus · ellipsis | `nav aria-label`; `aria-current=page`; chevron **mirrored** in RTL; numbers tabular+bidi | `flex items-center gap-2`; btn `h-8 px-3 rounded-md border`; current `bg-primary-subtle text-primary` |
 
 ## Feedback & loading
@@ -58,7 +60,7 @@
 | [Site Footer](site-footer.md) | ✅ / ✗ | default · link states | logical; light links on dark | `bg-foreground text-background py-12` |
 
 ## Compositions (NOT components — built from the above)
-- **Description list (`<dl>`)** inside Card — key/value facts.
+- **Detail View / Description list (`<dl>`)** — now a documented composition: [detail-view.md](detail-view.md) (v2.1.1; was a loose "dl inside Card").
 - **Brand highlight mark** — brand background behind text (themes).
 - **Numbered feature list** (01/02 …) — section-header + grid.
 - *(Pagination graduated to a documented component in v1.1.5 — see Data above.)*

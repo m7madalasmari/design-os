@@ -14,8 +14,8 @@
 **إضافة مستخدم** (primary في الرأس). الإجراء الصفّي «تعديل الحالة» = secondary. (إجراء أساسي واحد لكل سياق.)
 
 ## Component Mapping (INDEX — لا مكوّن جديد)
-page-header · search-input · filter-bar (شرائح حالة بعدّادات) · table (+ caption/scope/aria-sort) · status-badge (نشط→success · مدعو→info · موقوف→danger) · button (primary/secondary) · pagination (composition) · empty-state (×4 حالات) · **detail layout** (page-header + dl + status-badge — تركيب، لا مكوّن detail مستقل) · modal (تعديل الحالة، عقد a11y) · select · alert/«رسالة» (نجاح/خطأ).
-- Missing component/token documented first: **لا شيء** (كله من النظام).
+page-header · search-input · filter-bar (شرائح حالة + عقد responsive §11) · table (+caption/scope/aria-sort) · status-badge · **avatar** ([avatar.md](../../design-system/components/avatar.md)، الأحرف الأولى، decorative) · button (primary/secondary) · pagination · empty-state (×4) · **detail-view** ([detail-view.md](../../design-system/components/detail-view.md)، `dl` لا كروت) · modal (عقد a11y §6.5 + ترتيب أزرار §6.6) · select · رسائل success/error.
+- Missing component/token documented first: **لا شيء** (v2.1.1: avatar وdetail-view صارا بعقد — لم يعودا ad-hoc).
 
 ## Data States (الخمسة)
 Loading: skeleton · Empty (أول استخدام): «لا مستخدمين بعد» + دعوة · No-results (بعد فلترة): «لا نتائج» + مسح · Error: `role=alert` + إعادة · Filled: الافتراضي.
@@ -40,8 +40,10 @@ Loading: skeleton · Empty (أول استخدام): «لا مستخدمين بع
 ## Token Var Exceptions
 | Location | القيمة | السبب | utility غير متوفّر؟ |
 |---|---|---|---|
-| رأس الجدول اللاصق | `--z-sticky` | ترتيب الطبقة | Yes |
-| skeleton/grid/إزاحات | `width:%` · `minmax(260px,1fr)` · `2px` · `row-reverse` | تخطيط معاينة لا توكن له | جزئي — **تُحلّ بـTailwind حقيقي في المشروع المستهلك** (هنا shim) |
+| رأس الجدول اللاصق | `--z-sticky` | ترتيب الطبقة | Yes (token-var) |
+| تذييل التفصيل | `padding-block-start:var(--space-lg)` | فاصل مجموعة | token-var (مسموح) |
+| skeleton/grid (fixture) | `width:%` · `minmax(260px,1fr)` | تخطيط معاينة توضيحي لا توكن له — **fixture موثّق بتعليق** (forbidden #18 يسمح به) | يصير utility في Tailwind الحقيقي |
+> **مُزال في v2.1.1 (forbidden #18):** `flex-direction:row-reverse` اليدوي (→ ترتيب أزرار §6.6) و`margin:2px` الخام. صفر inline style خام **غير موثّق**.
 
 ## Forbidden (this page) — مُحترَمة
 لون/قيمة خارج التوكنز · مكوّن غير موثّق · بيانات PII حقيقية · arbitrary Tailwind · أدوات اتجاهية · أكثر من primary · أعمدة حشو · شارة بلا نص.

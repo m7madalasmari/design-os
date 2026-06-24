@@ -5,20 +5,20 @@
 ## Definition
 design-os is **locally ready** when an agent can take a real request, run it end-to-end via the protocols, and deliver a correct, system-compliant, accessible result — repeatedly — without the operator re-explaining the system, and with a clean, tagged tree.
 
-## Checklist  (status as of v2.1.0)
+## Checklist  (status as of v2.1.1)
 - [x] **Protocol sequence complete** — `00–09` with **no gap** (`06` added in v1.1.7).
 - [x] **`06` Accessibility exists** — baseline a11y protocol + QA, wired into AGENTS/RUNBOOK/07.
 - [x] **Premium Visual Baseline active** — font (IBM Plex Sans Arabic chain), icon-system (Lucide), native-control prevention, visual-acceptance criteria (v1.1.6).
 - [x] **Component Gallery usable** — renders cleanly, RTL, token-based, no native-control chrome.
 - [x] **Core components covered** — all **27/27** documented components render in the gallery (completed in v1.1.8 — see [`playground/design-system-preview/coverage.md`](playground/design-system-preview/coverage.md)).
 - [x] **No native/browser-looking controls in preview** — appearance reset in the gallery shim (v1.1.6 fix).
-- [x] **No arbitrary Tailwind values in examples** — verified by grep on every fixture.
+- [x] **No arbitrary Tailwind values in examples** — verified by grep on every fixture (incl. **inline `style=` raw values** — forbidden #18, since v2.1.1).
 - [x] **RTL rules active** — logical utilities only; bidi-isolated numerals; mirrored directional icons.
 - [x] **Manifests working** — `_TEMPLATE.md` + 3 worked fixtures.
 - [x] **One-shot RUNBOOK working** — `RUNBOOK.md` + Auto Mode + `REQUEST`/`OUTPUT`; exercised by the Greenfield run.
 - [x] **≥ 3 successful local stress tests** — `invoices` (System Fidelity), `consultation-requests` (Greenfield), `design-system-preview` (gallery). All passed DoD, zero arbitrary values, RTL pass.
 - [x] **No untracked files** — clean working tree.
-- [x] **Clean release tag** — `v2.1.0`.
+- [x] **Clean release tag** — `v2.1.1`.
 
 **Verdict:** **locally ready ✅** — full gallery coverage (27/27) since v1.1.8. Remaining future work (backlog components, GitHub publish) is tracked, not blocking.
 

@@ -2,6 +2,14 @@
 
 > Documented-but-not-yet-specced components, prioritized. Adding any of these = a future `design-system` version (spec + INDEX + gallery). Check [`INDEX.md`](INDEX.md) before building; nothing here is approved for use until it has a spec.
 
+## ✅ Shipped (out of backlog)
+- **avatar** → [`avatar.md`](avatar.md) (v2.1.1 — surfaced by users-page dogfood).
+- **detail-view / description-list** → [`detail-view.md`](detail-view.md) (v2.1.1 — was a loose composition; now a contract).
+- Non-component v2.1.1 closures: **inline-`style=` gate** (forbidden #18 + checks), **filter-bar responsive contract**, **modal/drawer footer order**.
+
+## Still deferred (need another test to prove necessity)
+sidebar/app-shell · data-app header · dark-mode tokens · textarea/radio/switch standalone · breadcrumb · Request Portal · GitHub Review — **and the rows below.**
+
 ## Priority summary
 | # | Component | Priority | Form | Gallery later |
 |---|---|---|---|---|
@@ -12,7 +20,7 @@
 | 5 | breadcrumb | Medium | standalone (used by `page-header`) | Yes |
 | 6 | chip / tag | Medium | standalone (used by `filter-bar`) | Yes |
 | 7 | progress | Medium | standalone (pairs with `spinner`) | Yes |
-| 8 | avatar | Medium | standalone | Yes |
+| 8 | ~~avatar~~ | **✅ Done v2.1.1** | [`avatar.md`](avatar.md) | shipped |
 | 9 | accordion | Medium | standalone | Yes |
 | 10 | tooltip / popover | Medium | standalone (referenced by select/table) | Yes |
 | 11 | date-picker | Low | standalone (composes calendar + input + popover) | Yes |
