@@ -3,22 +3,22 @@
 > ثيم علامة فوق [الأساس المحايد](../foundations/brand-foundation.md). يُعيد إسناد التوكنز القابلة للثيم فقط.
 
 ## قرارات الثيم
-1. **accent = بنفسجي طويق `#4F29B7`.** لون داكن مشبع → يعمل في كل أدوار accent: تعبئة + **نصّ رابط + حلقة تركيز** (تباين ≈ 9:1 على الأبيض). لا حاجة لتوكن brand منفصل هنا (بخلاف Moonli الفاتح).
+1. **بذرة = بنفسجي طويق `#4F29B7`** → ramp كامل مشتق ([color-system](../foundations/color-system.md) §3)، مثبّتة عند `--brand-600`. لون داكن مشبع → يعمل في كل أدوار accent: تعبئة + **نصّ رابط + حلقة تركيز** (تباين ≈ 9:1 على الأبيض). لا حاجة لتوكن brand منفصل هنا (بخلاف Moonli الفاتح).
 2. **الخط:** IBM Plex Sans Arabic (هوية طويق). يُحمَّل محليًا في الإنتاج؛ في المعاينة (CSP) بديل نظام.
 3. **الظلال المزاحة الصلبة** (هوية طويق التسويقية) **ليست** افتراض هذا الثيم لتطبيقات النموذج/البيانات — تبقى الظلال الناعمة من النظام. تُستخدم كنمط تعبئة خاص عند الطلب فقط.
 
 ## التوكنز
 ```css
 :root[data-theme="tuwaiq"], .theme-tuwaiq {
-  --accent-solid:  #4F29B7;
-  --accent-hover:  #432299;
-  --accent-active: #381C82;
-  --accent-tint:   #ECE7FA;   /* خلفية محدّد/تلميح خفيفة */
-  --on-accent:     #FFFFFF;
+  /* بذرة #4F29B7 → ramp مشتق (color-system §3)، مثبّتة عند 600 */
+  --brand-50:#F1ECFB; --brand-100:#E6DBF8; --brand-200:#CFBCF1; --brand-300:#AE92E6;
+  --brand-400:#8A5FD6; --brand-500:#6B3FC9; --brand-600:#4F29B7; --brand-700:#432299;
+  --brand-800:#381C82; --brand-900:#2E1768; --brand-950:#1F0F47;
+  /* accent/link/focus يشتقّون من الـramp تلقائيًا (tokens.css) — لا ضبط يدوي */
+  --on-accent: #FFFFFF;
 
   --radius-md: 10px;
   --radius-lg: 18px;
-
   --font-family-base: "IBM Plex Sans Arabic", system-ui, "Segoe UI", sans-serif;
 }
 ```

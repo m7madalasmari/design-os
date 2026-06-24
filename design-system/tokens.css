@@ -22,8 +22,13 @@
   --amber-fg:#9A6700; --amber-bg:#FCF3E2; --amber-border:#ECCB8A;
   --red-fg:#C12A2A;  --red-bg:#FCEDED;  --red-border:#F0B5B5;
   --blue-fg:#15609E; --blue-bg:#E9F2FB; --blue-border:#ABCFF0;
-  /* ---------- primitives: accent (placeholder; theme overrides) ---------- */
-  --accent-solid:#3B5BDB; --accent-hover:#3450C4; --accent-active:#2C44A8; --accent-tint:#ECF0FD; --on-accent:#FFFFFF;
+  /* ---------- primitives: brand ramp (placeholder blue; a theme overrides all 11 via the
+       seed→ramp derivation in foundations/color-system.md). NOT a brand decision — a placeholder. ---------- */
+  --brand-50:#ECF0FD; --brand-100:#DCE3FB; --brand-200:#BFCDF7; --brand-300:#9DB0F0;
+  --brand-400:#6E86E6; --brand-500:#4A63DE; --brand-600:#3B5BDB; --brand-700:#3450C4;
+  --brand-800:#2C44A8; --brand-900:#273C8C; --brand-950:#1B2856;
+  /* accent (action) = mapped from the brand ramp — see foundations/color-system.md §4. Override the ramp, not these. */
+  --accent-solid:var(--brand-600); --accent-hover:var(--brand-700); --accent-active:var(--brand-800); --accent-tint:var(--brand-50); --on-accent:#FFFFFF;
 
   /* ---------- semantic: surfaces ---------- */
   --color-bg-base:var(--neutral-1); --color-bg-subtle:var(--neutral-2); --color-bg-surface:#FFFFFF;

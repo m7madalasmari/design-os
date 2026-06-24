@@ -43,21 +43,20 @@
 
 ## كيف تُنشئ ثيم علامة فعلية
 
-أنشئ ملف ثيم يُعيد تعريف التوكنز القابلة للثيم فقط:
+**النموذج (v2): بذرة → ramp → semantic.** لا تضبط accent يدويًا بأربع درجات. أعطِ بذرة العلامة، اشتقّ الـramp الكامل `--brand-50…950` ببروتوكول [color-system](color-system.md) §3، واكتبه في الثيم. الـaccent/link/focus مربوطة بالـramp في [tokens.css](../tokens.css) فتتحدّث تلقائيًا مع حُرّاس التباين.
 
 ```css
-/* theme-example.css — مثال إنشاء ثيم */
+/* theme-example.css — النموذج الجديد: الثيم يضبط الـramp فقط */
 :root[data-theme="brand-x"] {
-  --color-accent:         #4F29B7;  /* لون العلامة الأساسي */
-  --color-accent-hover:   #4322A0;  /* أغمق بدرجة */
-  --color-accent-active:  #381C86;
-  --color-accent-subtle:  #EFEAFB;  /* خلفية تلميح */
-  --color-text-on-accent: #FFFFFF;  /* يجب أن يحقق 4.5:1 فوق accent */
-
+  /* الـramp المشتق من البذرة (color-system §3) — 11 درجة */
+  --brand-50:#…; --brand-100:#…; /* … */ --brand-600:#…; /* … */ --brand-950:#…;
+  /* توقيع غير لوني (اختياري) */
   --font-family-base: "IBM Plex Sans Arabic", system-ui, sans-serif;
   --radius-md: 10px;
+  /* تجاوز ربط افتراضي عند الحاجة فقط (مثلًا فرع العلامة الفاتحة — color-system §5) */
 }
 ```
+> النموذج اليدوي القديم (ضبط `--color-accent*`/`--accent-*` مباشرة) ما زال يعمل للتوافق الخلفي، لكن المعتمَد هو **اشتقاق الـramp** — يضمن التتالي الكامل وحُرّاس التباين ([color-system](color-system.md)).
 
 ### شروط أي ثيم (تُفحص في [qa-checklist](../rules/qa-checklist.md))
 1. **التباين:** `--color-text-on-accent` فوق `--color-accent` ≥ 4.5:1. والمميِّز كحدّ/أيقونة فوق الخلفية ≥ 3:1.
