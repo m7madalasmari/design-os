@@ -4,6 +4,14 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v2.0.0 — 2026-06-24 — Default Design System uplift (3 layers)
+**MAJOR.** Raises the default DS to a real systems level (Material/Atlassian/Carbon/Polaris *thinking*, not imitation): a smart color cascade, an explicit component-token tier, and an enforced quality gate. Default rendering is **byte-for-byte preserved** (old accent values = ramp stops 50/600/700/800); what changed is the **contracts** and the theming model. design-system → **v2.0.0** (detail: [`design-system/CHANGELOG.md`](design-system/CHANGELOG.md)).
+- **Layer 2 — Smart color system** (the quality lever): new `foundations/color-system.md` — any brand **seed** derives a full `--brand-50…950` ramp (agent-executed OKLCH protocol, no tooling) → semantic tokens → all components, with **mandatory contrast guards** + light-brand branch + worked example. Changing one color now cascades through the whole system, not just `primary`. `tokens.css` gains the ramp tier; theming is now **seed→ramp**.
+- **Layer 1 — Component-token tier**: new `foundations/component-tokens.md` — the third tier as a **binding contract** (part/state → semantic token), fit for Tailwind-first (no CSS-var explosion). Components bind to semantic only.
+- **Layer 3 — Component Quality Gate**: new `rules/component-quality-gate.md` — mandatory acceptance criteria per component (Table/Modal/Form/Button/Input) + component-selection matrix (Modal vs Drawer vs Page; Table vs Card vs List). Now a **third enforced gate** (Design System · Component Quality · Accessibility).
+- **Wired:** `ROLES.md` (3 gates), `AGENTS.md`, `RUNBOOK.md` (step 8), `00-operating-rules.md`, `design-system/README.md`, `VERSION.md`, `README.md`, `LOCAL-STABILITY.md`.
+- **Back-compat:** the manual 4-step accent override still works; existing pages render identically until a brand seed is applied.
+
 ## v1.3.0 — 2026-06-24 — roles layer: run procedure, gates, anti-generic stance
 Hardening of the v1.2.0 roles layer after a live dogfood on the `consultation-requests` fixture. Additive; no protocol/token/component behavior changed; design-system untouched.
 - **`ROLES.md` — new "How to run a role sweep"** (replaces the prose *Runtime rule* — single source for sweep mechanics): ordered flow **Fast sweep → Gates → remaining roles → manifest**, with **defined Fast-sweep outputs** — Product & Strategy: intent/scope/primary action · UX & IA: structure/task flow/states · Visual & Experience: composition/rhythm/polish risk.

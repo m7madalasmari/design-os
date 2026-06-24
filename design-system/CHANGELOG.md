@@ -4,6 +4,14 @@
 
 ---
 
+## v2.0.0 — 2026-06-24 — Default DS uplift (3 layers)
+**BREAKING (token architecture + theming model).** Raises the default design system: a smart color cascade, an explicit component-token tier, and an enforced quality gate. No component **values** changed at default (placeholder rendering preserved exactly); the *contracts* changed. *re-QA:* re-run color QA on any brand theme; re-confirm component acceptance criteria.
+
+- **Layer 2 — Smart color system.** New [`foundations/color-system.md`](foundations/color-system.md): any brand **seed** derives a full 11-step ramp (`--brand-50…950`) via an agent-executed OKLCH lightness/chroma protocol → maps to semantic tokens → cascades to all components, with **mandatory contrast guards** + light-brand branch + worked example (#1277A1). `tokens.css` gains the `--brand-*` ramp tier; accent now derives from it (old values = stops 50/600/700/800, so default rendering is identical). Theming model in [`brand-foundation.md`](foundations/brand-foundation.md) is now **seed → ramp** (manual 4-step override still back-compatible). [`theme-tuwaiq.md`](themes/theme-tuwaiq.md) updated to the ramp model.
+- **Layer 1 — Component-token tier.** New [`foundations/component-tokens.md`](foundations/component-tokens.md): the third tier expressed for a Tailwind-first system — a **binding contract** (component part/state → semantic token), not a CSS-var explosion. Rule: components bind to semantic tokens only (never `--brand-*`/`--neutral-*`/hex). Each spec's "علاقته بالتوكنز" section **is** this contract.
+- **Layer 3 — Component Quality Gate.** New [`rules/component-quality-gate.md`](rules/component-quality-gate.md): mandatory universal + per-component acceptance criteria (Table · Modal · Form · Button · Input spelled out) + a **component-selection matrix** (Modal vs Drawer vs Page; Table vs Card vs List). Promoted to an enforced **third gate** alongside Design System + Accessibility gates.
+- **Wired:** `ROLES.md` (3rd gate), `AGENTS.md`, `RUNBOOK.md` (step 8), `00-operating-rules.md`, `design-system/README.md` (foundations + rules index; spec template now includes Visual Acceptance + token-binding contract).
+
 ## v1.1.6 — 2026-06-23
 Visual foundation + icon system (from gallery findings). Light `09` link only; no general-protocol behavior changed; no product pages; no real deps (Lucide standardized for real projects; preview uses inline-SVG Lucide-style shim); no tokens’ values changed except the font fallback chain.
 - **Typography/Font** — standard fallback chain `IBM Plex Sans Arabic, IBM Plex Sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif` in `tokens.css`/`tokens.md`; `typography.md` rules: Arabic UI must use IBM Plex Sans Arabic; `system-ui` first only in preview (CSP, documented); no unlicensed font files committed. *re-QA:* visual only where the font loads.
