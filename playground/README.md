@@ -8,6 +8,7 @@ These are **not** product pages and **not** the production implementation.
 - **`invoices/`** — first live-test fixture (invoices admin screen; the run that drove the v1.1.2 patch). See [`invoices/README.md`](invoices/README.md).
 - **`consultation-requests/`** — Greenfield / System-First test fixture (admin requests screen). See [`consultation-requests/README.md`](consultation-requests/README.md).
 - **`design-system-preview/`** — component gallery fixture (every component + states, for visual review). See [`design-system-preview/README.md`](design-system-preview/README.md).
+- **`saas-analytics-landing/`** — System Fidelity test fixture (SaaS analytics marketing landing page from a reference image; RTL, `moonli` theme). See [`saas-analytics-landing/README.md`](saas-analytics-landing/README.md).
 
 Each fixture folder holds `manifest.md` + `preview.html` + `README.md`. **Preview runtime: shim mirror** (mirrors `tokens.css` + semantic classes 1:1; no Tailwind build) — not production code.
 
@@ -17,5 +18,6 @@ Each fixture folder holds `manifest.md` + `preview.html` + `README.md`. **Previe
 | Consultation Requests | Greenfield / System-First | Passed (Pixel QA N/A) | Zero | Passed | Passed | None | ✅ Passed |
 | Invoices | System Fidelity (no ref) | Passed (Pixel QA N/A) | Zero | Passed | Passed | None | ✅ Passed |
 | Design System Preview | Greenfield (gallery) | Passed (Pixel QA N/A) | Zero | Passed | Passed | None (6 gaps logged) | ✅ Passed |
+| SaaS Analytics Landing | System Fidelity (ref image) | Passed (Pixel QA N/A) | Zero | Passed | Passed | None | ✅ Passed |
 
 > Fixtures prove design-os on realistic screens; they are **not** product pages and are **not** copied to consumer projects.

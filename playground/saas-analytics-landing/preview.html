@@ -1,0 +1,585 @@
+<title>نبض — منصة تحليلات بياناتك (design-os playground)</title>
+
+<!-- ============================================================
+     1) tokens.css  :root  (المصدر التنفيذي للتوكنز — منسوخ 1:1)
+     ============================================================ -->
+<style>
+:root{
+  --neutral-1:#FCFCFD;--neutral-2:#F9F9FB;--neutral-3:#F0F0F3;--neutral-4:#E8E8EC;
+  --neutral-5:#E0E0E6;--neutral-6:#D8D8DF;--neutral-7:#CECED6;--neutral-8:#B9B9C3;
+  --neutral-9:#8B8B96;--neutral-10:#6E6E79;--neutral-11:#50505B;--neutral-12:#1C1C24;
+  --green-fg:#1A7F4B;--green-bg:#E7F6EE;--green-border:#A6E0C0;
+  --amber-fg:#9A6700;--amber-bg:#FCF3E2;--amber-border:#ECCB8A;
+  --red-fg:#C12A2A;--red-bg:#FCEDED;--red-border:#F0B5B5;
+  --blue-fg:#15609E;--blue-bg:#E9F2FB;--blue-border:#ABCFF0;
+  --accent-solid:#3B5BDB;--accent-hover:#3450C4;--accent-active:#2C44A8;--accent-tint:#ECF0FD;--on-accent:#FFFFFF;
+  --color-bg-base:var(--neutral-1);--color-bg-subtle:var(--neutral-2);--color-bg-surface:#FFFFFF;
+  --color-bg-raised:#FFFFFF;--color-bg-hover:var(--neutral-3);--color-bg-active:var(--neutral-4);
+  --color-bg-overlay:rgba(28,28,36,.45);--color-bg-disabled:var(--neutral-3);
+  --color-text-primary:var(--neutral-12);--color-text-secondary:var(--neutral-10);
+  --color-text-tertiary:var(--neutral-9);--color-text-disabled:var(--neutral-8);--color-text-on-accent:var(--on-accent);
+  --color-text-link:var(--accent-solid);
+  --color-border-subtle:var(--neutral-5);--color-border-default:var(--neutral-6);--color-border-strong:var(--neutral-8);
+  --color-accent:var(--accent-solid);--color-accent-hover:var(--accent-hover);--color-accent-active:var(--accent-active);
+  --color-accent-subtle:var(--accent-tint);--color-text-accent:var(--accent-solid);
+  --color-success-fg:var(--green-fg);--color-success-bg:var(--green-bg);--color-success-border:var(--green-border);
+  --color-warning-fg:var(--amber-fg);--color-warning-bg:var(--amber-bg);--color-warning-border:var(--amber-border);
+  --color-danger-fg:var(--red-fg);--color-danger-bg:var(--red-bg);--color-danger-border:var(--red-border);
+  --color-info-fg:var(--blue-fg);--color-info-bg:var(--blue-bg);--color-info-border:var(--blue-border);
+  --color-focus-ring:var(--accent-solid);
+  --space-2xs:4px;--space-xs:8px;--space-sm:12px;--space-md:16px;--space-lg:24px;--space-xl:32px;--space-2xl:48px;--space-3xl:64px;--space-4xl:96px;
+  --font-family-base:"IBM Plex Sans Arabic","IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+  --font-size-xs:.75rem;--font-size-sm:.875rem;--font-size-md:1rem;--font-size-lg:1.125rem;
+  --font-size-xl:1.25rem;--font-size-2xl:1.5rem;--font-size-3xl:1.875rem;--font-size-4xl:2.25rem;
+  --line-height-tight:1.3;--line-height-snug:1.5;--line-height-base:1.7;
+  --font-weight-regular:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;
+  --radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-full:9999px;
+  --shadow-sm:0 1px 2px rgba(28,28,36,.06);--shadow-md:0 4px 12px rgba(28,28,36,.10);--shadow-lg:0 12px 32px rgba(28,28,36,.16);
+  --shadow-focus:0 0 0 2px var(--color-bg-surface),0 0 0 4px var(--color-focus-ring);
+  --duration-fast:120ms;--duration-base:200ms;--duration-slow:320ms;
+  --ease-standard:cubic-bezier(.2,0,0,1);--ease-decelerate:cubic-bezier(0,0,0,1);
+  --z-sticky:100;--z-dropdown:200;
+  --size-control-sm:32px;--size-control-md:40px;--size-control-lg:48px;
+  --size-icon-sm:16px;--size-icon-md:20px;--size-icon-lg:24px;--size-touch-min:44px;
+}
+
+/* ---- theme-moonli (منسوخ 1:1 من design-system/themes/theme-moonli.md) ----
+   أسود = لون الفعل (تعبئة/رابط/تركيز عالي التباين). ليموني = سطح علامة فقط. */
+:root[data-theme="moonli"],.theme-moonli{
+  --accent-solid:#1C1C24;--accent-hover:#000000;--accent-active:#000000;--accent-tint:#EFEFF2;--on-accent:#FFFFFF;
+  --color-brand:#C6F24E;--color-brand-strong:#AEE635;--color-on-brand:#15161A;--color-brand-subtle:#F2FBDD;
+  --radius-md:12px;--radius-lg:24px;
+  --font-family-base:"IBM Plex Sans Arabic","IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+}
+</style>
+
+<!-- ============================================================
+     2) PREVIEW SHIM — يعرّف فقط كلاسات Tailwind المستخدمة، مربوطة بـtokens.css 1:1.
+        Preview runtime: shim mirror. ليس التنفيذ الإنتاجي (Tailwind يولّدها في مشروع حقيقي).
+why a few page-level primitive/var uses exist هنا موثّق في manifest (canvas + on-dark muted + z-sticky).
+     ============================================================ -->
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+/* preflight-style reset (mirrors Tailwind base): headings/paragraphs styled by token classes only */
+h1,h2,h3,h4,h5,h6,p,figure,ul,ol{margin:0}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;line-height:inherit}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+body{background:var(--neutral-4);color:var(--color-text-primary);
+  font-family:var(--font-family-base);line-height:var(--line-height-base);
+  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+
+/* display / layout */
+.block{display:block}.inline-flex{display:inline-flex}.flex{display:flex}.grid{display:grid}.hidden{display:none}
+.relative{position:relative}.absolute{position:absolute}.sticky{position:sticky}.isolate{isolation:isolate}
+.end-0{inset-inline-end:0}
+.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}
+.items-center{align-items:center}.items-start{align-items:flex-start}.items-end{align-items:flex-end}
+.justify-between{justify-content:space-between}.justify-center{justify-content:center}.justify-start{justify-content:flex-start}
+.mx-auto{margin-inline:auto}
+.max-w-6xl{max-width:72rem}.max-w-3xl{max-width:48rem}.max-w-prose{max-width:60ch}.max-w-xs{max-width:20rem}
+.w-full{width:100%}.h-full{height:100%}.min-h-screen{min-height:100vh}
+.overflow-hidden{overflow:hidden}.top-0{inset-block-start:0}.z-sticky{z-index:var(--z-sticky)}
+.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}
+
+/* gap */
+.gap-1{gap:4px}.gap-2{gap:8px}.gap-3{gap:12px}.gap-4{gap:16px}.gap-6{gap:24px}.gap-8{gap:32px}.gap-12{gap:48px}
+
+/* padding (Tailwind 4px scale) */
+.p-2{padding:8px}.p-4{padding:16px}.p-6{padding:24px}.p-8{padding:32px}
+.px-2{padding-inline:8px}.px-3{padding-inline:12px}.px-4{padding-inline:16px}.px-6{padding-inline:24px}.px-8{padding-inline:32px}
+.py-0\.5{padding-block:2px}.py-1{padding-block:4px}.py-1\.5{padding-block:6px}.py-2{padding-block:8px}.py-4{padding-block:16px}.py-6{padding-block:24px}
+.py-12{padding-block:48px}.py-16{padding-block:64px}
+.pb-16{padding-block-end:64px}.pt-8{padding-block-start:32px}
+.ps-3{padding-inline-start:12px}.pe-3{padding-inline-end:12px}
+
+/* margin (logical only; m-0 = symmetric zero, RTL-safe) */
+.m-0{margin:0}
+.mt-2{margin-block-start:8px}.mt-3{margin-block-start:12px}.mt-4{margin-block-start:16px}.mt-6{margin-block-start:24px}.mt-8{margin-block-start:32px}.mt-12{margin-block-start:48px}
+.mb-2{margin-block-end:8px}.mb-3{margin-block-end:12px}.mb-4{margin-block-end:16px}.mb-6{margin-block-end:24px}.mb-8{margin-block-end:32px}.mb-12{margin-block-end:48px}
+.ms-auto{margin-inline-start:auto}.me-1{margin-inline-end:4px}.mt-auto{margin-block-start:auto}
+
+/* sizing (token-bound) */
+.h-10{height:var(--size-control-md)}.h-12{height:var(--size-control-lg)}
+.size-2{width:8px;height:8px}.size-4{width:16px;height:16px}.size-5{width:20px;height:20px}.size-6{width:24px;height:24px}
+.size-8{width:32px;height:32px}.size-9{width:36px;height:36px}.size-10{width:40px;height:40px}
+.h-px{height:1px}
+.icon-illus{width:100%;height:auto;display:block}
+
+/* color — surfaces */
+.bg-canvas{background:var(--neutral-4)}              /* page canvas — موثّق في manifest */
+.bg-background{background:var(--color-bg-base)}
+.bg-card{background:var(--color-bg-surface)}
+.bg-muted{background:var(--color-bg-subtle)}
+.bg-foreground{background:var(--color-text-primary)} /* كرت/تذييل داكن = neutral-12 */
+.bg-primary{background:var(--color-accent)}
+.bg-brand{background:var(--color-brand)}
+.bg-brand-subtle{background:var(--color-brand-subtle)}
+.bg-transparent{background:transparent}
+.bg-border{background:var(--color-border-subtle)}
+
+/* color — text */
+.text-foreground{color:var(--color-text-primary)}
+.text-muted-foreground{color:var(--color-text-secondary)}
+.text-faint{color:var(--color-text-tertiary)}
+.text-primary{color:var(--color-accent)}
+.text-primary-foreground{color:var(--color-text-on-accent)}
+.text-link{color:var(--color-text-link)}
+.text-on-brand{color:var(--color-on-brand)}
+.text-brand-strong{color:var(--color-brand-strong)}
+.text-inverted{color:#FFFFFF}                        /* نصّ على داكن (= card dark spec) */
+.text-inverted-muted{color:var(--neutral-7)}         /* نصّ خافت على داكن (≈9:1) */
+
+/* borders */
+.border{border-width:1px;border-style:solid;border-color:var(--color-border-default)}
+.border-t{border-block-start-width:1px;border-style:solid;border-color:var(--color-border-subtle)}
+.border-b{border-block-end-width:1px;border-style:solid;border-color:var(--color-border-subtle)}
+.border-border{border-color:var(--color-border-default)}
+.border-subtle{border-color:var(--color-border-subtle)}
+.border-inverted{border-color:rgba(255,255,255,.16)} /* حدّ خفيف على الداكن */
+
+/* radius / shadow */
+.rounded-sm{border-radius:var(--radius-sm)}.rounded-md{border-radius:var(--radius-md)}
+.rounded-lg{border-radius:var(--radius-lg)}.rounded-full{border-radius:var(--radius-full)}
+.shadow-sm{box-shadow:var(--shadow-sm)}.shadow-md{box-shadow:var(--shadow-md)}.shadow-lg{box-shadow:var(--shadow-lg)}
+
+/* typography */
+.text-xs{font-size:var(--font-size-xs)}.text-sm{font-size:var(--font-size-sm)}.text-base{font-size:var(--font-size-md)}
+.text-lg{font-size:var(--font-size-lg)}.text-xl{font-size:var(--font-size-xl)}.text-2xl{font-size:var(--font-size-2xl)}
+.text-3xl{font-size:var(--font-size-3xl)}.text-4xl{font-size:var(--font-size-4xl)}
+.font-medium{font-weight:500}.font-semibold{font-weight:600}.font-bold{font-weight:700}
+.leading-tight{line-height:var(--line-height-tight)}.leading-snug{line-height:var(--line-height-snug)}.leading-relaxed{line-height:var(--line-height-base)}
+.text-start{text-align:start}.text-end{text-align:end}.text-center{text-align:center}
+.tabular-nums{font-variant-numeric:tabular-nums}.tracking-normal{letter-spacing:0}
+
+/* interaction / motion */
+.cursor-pointer{cursor:pointer}.outline-none{outline:none}.select-none{user-select:none}.list-none{list-style:none}
+.appearance-none{appearance:none;-webkit-appearance:none}
+.transition-colors{transition-property:color,background-color,border-color,box-shadow;transition-duration:var(--duration-fast);transition-timing-function:var(--ease-standard)}
+.transition-transform{transition-property:transform;transition-duration:var(--duration-base);transition-timing-function:var(--ease-standard)}
+.hover\:bg-primary-hover:hover{background:var(--color-accent-hover)}
+.hover\:bg-hover:hover{background:var(--color-bg-hover)}
+.hover\:underline:hover{text-decoration:underline}
+.focus-visible\:ring:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+
+/* card lift (purposeful hover feedback) */
+.lift{transition:transform var(--duration-base) var(--ease-standard),box-shadow var(--duration-base) var(--ease-standard),border-color var(--duration-fast) var(--ease-standard)}
+.lift:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+/* arrow nudge on "اعرف المزيد" (RTL forward = نحو inline-end) */
+.more-link .arrow{transition:transform var(--duration-base) var(--ease-standard)}
+.more-link:hover .arrow{transform:translateX(4px)} /* RTL: المحور البصري للأمام */
+.more-dark:hover{color:var(--color-brand-strong)}  /* رابط داكن → ليموني عند hover (تباين ≈11:1 على الداكن) */
+
+/* brand highlight mark — تركيب موثّق (INDEX): خلفية brand خلف نصّ التسمية */
+.brand-mark{display:inline-flex;align-items:center;background:var(--color-brand);color:var(--color-on-brand);
+  padding-inline:10px;padding-block:3px;border-radius:var(--radius-sm);font-weight:600}
+
+/* details (mobile menu) — إفصاح أصلي بلا JS */
+details.nav-mobile>summary{list-style:none;cursor:pointer}
+details.nav-mobile>summary::-webkit-details-marker{display:none}
+
+/* responsive (mirrors Tailwind md: breakpoint) */
+@media (min-width:768px){
+  .md\:flex{display:flex}.md\:hidden{display:none}.md\:inline-flex{display:inline-flex}
+  .md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .md\:text-4xl{font-size:var(--font-size-4xl)}
+  .md\:p-12{padding:48px}.md\:py-16{padding-block:64px}.md\:px-8{padding-inline:32px}
+  .md\:order-2{order:2}
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion:reduce){
+  .transition-colors,.transition-transform,.lift,.more-link .arrow{transition:none}
+  .lift:hover{transform:none}.more-link:hover .arrow{transform:none}
+  *{scroll-behavior:auto}
+}
+html{scroll-behavior:smooth}
+</style>
+
+<!-- ============================================================
+     3) الواجهة — RTL · Tailwind-first (كلاسات دلالية + أدوات منطقية) · theme moonli
+     ============================================================ -->
+<div dir="rtl" lang="ar" data-theme="moonli" class="theme-moonli">
+
+  <!-- preview meta (سطر معاينة خافت — ليس جزءًا من المنتج) -->
+  <p class="text-xs text-faint text-center py-2 px-4">
+    معاينة design-os · Mode: System Fidelity · theme: moonli · runtime: shim mirror ·
+    الخط: بديل نظام (IBM Plex Sans Arabic غير محمّل في المعاينة بسبب CSP) ·
+    <span class="font-medium" style="color:var(--color-danger-fg)">أرقام «حالات الاستخدام» عيّنة توضيحية — لا تمثّل بيانات حقيقية</span>
+  </p>
+
+  <!-- اللوح الأبيض العائم (يحاكي إطار المرجع) -->
+  <div class="mx-auto max-w-6xl bg-card rounded-lg shadow-lg overflow-hidden">
+
+    <!-- ===================== Nav Bar ===================== -->
+    <header class="sticky top-0 z-sticky bg-card border-b">
+      <nav class="flex items-center justify-between gap-4 px-4 md:px-8 py-4" aria-label="التنقّل الرئيسي">
+
+        <!-- الشعار (inline-start = يمين في RTL) -->
+        <a href="#" class="inline-flex items-center gap-2 text-lg font-bold text-foreground rounded-sm focus-visible:ring" aria-label="نبض — الصفحة الرئيسية">
+          <span class="inline-flex items-center justify-center size-8 rounded-md bg-foreground shrink-0" aria-hidden="true">
+            <!-- نبضة/خطّ نشاط -->
+            <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l2-6 4 14 3-9 2 1h4"/></svg>
+          </span>
+          نبض
+        </a>
+
+        <!-- روابط (سطح المكتب) -->
+        <ul class="hidden md:flex items-center gap-6 list-none p-2 m-0" role="list">
+          <li><a href="#features" class="text-sm text-muted-foreground hover:underline transition-colors rounded-sm focus-visible:ring">المنصّة</a></li>
+          <li><a href="#features" class="text-sm text-muted-foreground hover:underline transition-colors rounded-sm focus-visible:ring">المزايا</a></li>
+          <li><a href="#cases" class="text-sm text-muted-foreground hover:underline transition-colors rounded-sm focus-visible:ring">حالات الاستخدام</a></li>
+          <li><a href="#" class="text-sm text-muted-foreground hover:underline transition-colors rounded-sm focus-visible:ring">الأسعار</a></li>
+          <li><a href="#" class="text-sm text-muted-foreground hover:underline transition-colors rounded-sm focus-visible:ring">المدوّنة</a></li>
+        </ul>
+
+        <!-- CTA ثانوي (inline-end = يسار في RTL) + قائمة الجوال -->
+        <div class="flex items-center gap-2">
+          <a href="#" class="hidden md:inline-flex items-center h-10 px-4 rounded-md bg-card border border-border text-sm font-medium text-foreground transition-colors hover:bg-hover focus-visible:ring">اطلب عرضًا</a>
+
+          <details class="nav-mobile md:hidden relative">
+            <summary class="inline-flex items-center justify-center size-10 rounded-md bg-card border border-border text-foreground transition-colors hover:bg-hover focus-visible:ring" aria-label="القائمة">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            </summary>
+            <ul class="absolute end-0 list-none m-0 mt-2 p-2 flex flex-col gap-1 bg-card border border-border rounded-md shadow-md" role="list" style="min-width:max-content">
+              <li><a href="#features" class="block px-3 py-2 rounded-sm text-sm text-foreground transition-colors hover:bg-hover focus-visible:ring">المنصّة</a></li>
+              <li><a href="#features" class="block px-3 py-2 rounded-sm text-sm text-foreground transition-colors hover:bg-hover focus-visible:ring">المزايا</a></li>
+              <li><a href="#cases" class="block px-3 py-2 rounded-sm text-sm text-foreground transition-colors hover:bg-hover focus-visible:ring">حالات الاستخدام</a></li>
+              <li><a href="#" class="block px-3 py-2 rounded-sm text-sm text-foreground transition-colors hover:bg-hover focus-visible:ring">الأسعار</a></li>
+              <li><a href="#" class="block px-3 py-2 rounded-sm text-sm text-foreground transition-colors hover:bg-hover focus-visible:ring">المدوّنة</a></li>
+              <li><a href="#" class="block px-3 py-2 mt-2 rounded-sm text-sm font-medium text-center bg-card border border-border text-foreground transition-colors hover:bg-hover focus-visible:ring">اطلب عرضًا</a></li>
+            </ul>
+          </details>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ===================== Hero ===================== -->
+      <section class="px-4 md:px-8 py-12 md:py-16" aria-labelledby="hero-title">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+          <!-- النصّ (inline-start = يمين) -->
+          <div class="text-start">
+            <span class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-brand-subtle text-sm font-medium text-foreground">
+              <span class="size-2 rounded-full bg-brand" aria-hidden="true"></span>
+              تحليلات حيّة لفِرق المنتج
+            </span>
+            <h1 id="hero-title" class="text-3xl md:text-4xl font-bold leading-tight text-foreground">
+              حوّل بياناتك المبعثرة إلى قرارٍ واضح
+            </h1>
+            <p class="mt-6 text-lg text-muted-foreground leading-relaxed max-w-prose">
+              يجمع «نبض» مقاييسك من كل مصادرك في لوحةٍ واحدة حيّة، ويُنبّهك قبل أن يتحوّل التغيّر إلى مشكلة — دون أن تكتب استعلامًا واحدًا.
+            </p>
+            <div class="flex flex-wrap items-center gap-3 mt-8">
+              <a href="#" class="inline-flex items-center gap-2 h-12 px-6 rounded-md bg-primary text-primary-foreground font-semibold transition-colors hover:bg-primary-hover focus-visible:ring">
+                ابدأ مجانًا
+                <svg class="size-5 arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6 5 12l6 6M5 12h14"/></svg>
+              </a>
+              <a href="#" class="more-link inline-flex items-center gap-2 h-12 px-4 rounded-md bg-transparent text-foreground font-medium transition-colors hover:bg-hover focus-visible:ring">
+                <span class="inline-flex items-center justify-center size-6 rounded-full border border-border" aria-hidden="true">
+                  <svg class="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                </span>
+                جولة سريعة
+              </a>
+            </div>
+            <p class="mt-4 text-sm text-muted-foreground">بلا بطاقة دفع · إعداد خلال دقائق</p>
+          </div>
+
+          <!-- الرسم التوضيحي (inline-end = يسار) — زينة علامة aria-hidden -->
+          <div class="relative" aria-hidden="true">
+            <div class="bg-muted rounded-lg p-6 md:p-12 overflow-hidden">
+              <svg class="icon-illus" viewBox="0 0 400 320" fill="none" role="presentation">
+                <!-- حلقات مدارية -->
+                <ellipse cx="200" cy="165" rx="150" ry="92" stroke="var(--color-border-strong)" stroke-width="1.5"/>
+                <ellipse cx="200" cy="165" rx="150" ry="92" stroke="var(--color-text-primary)" stroke-width="2" transform="rotate(34 200 165)" stroke-dasharray="3 9" stroke-linecap="round"/>
+                <!-- لوح مقاييس مجرّد -->
+                <rect x="120" y="96" width="160" height="120" rx="14" fill="var(--color-bg-surface)" stroke="var(--color-text-primary)" stroke-width="2"/>
+                <!-- خطّ نبض/نشاط -->
+                <path d="M138 168l20-26 18 34 20-58 16 40 18-18 16 14h20" fill="none" stroke="var(--color-text-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- أعمدة مجرّدة -->
+                <rect x="146" y="116" width="10" height="20" rx="3" fill="var(--color-brand)"/>
+                <rect x="162" y="110" width="10" height="26" rx="3" fill="var(--color-border-strong)"/>
+                <rect x="178" y="120" width="10" height="16" rx="3" fill="var(--color-border-strong)"/>
+                <!-- نقاط عُقد -->
+                <circle cx="200" cy="73" r="6" fill="var(--color-text-primary)"/>
+                <circle cx="332" cy="205" r="5" fill="var(--color-text-primary)"/>
+                <!-- شارة ليمونية (مشاركة) -->
+                <g transform="translate(286 78)">
+                  <circle cx="22" cy="22" r="22" fill="var(--color-brand)"/>
+                  <path d="M16 22a4 4 0 1 0 0-.01M28 15a4 4 0 1 0 0-.01M28 29a4 4 0 1 0 0-.01M19.5 20l5-3M19.5 24l5 3" stroke="var(--color-on-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </g>
+                <!-- نجمة رباعية (تأكيد المرجع) -->
+                <path d="M86 120c2-16 4-18 6 0 16 2 16 4 0 6-2 16-4 16-6 0-16 2-16-4 0-6z" fill="var(--color-brand)"/>
+                <path d="M330 120c1.5-12 3-13 4.5 0 12 1.5 12 3 0 4.5-1.5 12-3 12-4.5 0-12 1.5-12-3 0-4.5z" fill="var(--color-text-primary)"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Trust / مصادر (بديل صادق عن جدار الشعارات) ===================== -->
+      <section class="px-4 md:px-8 py-6 border-t border-b" aria-label="مصادر البيانات والتكاملات">
+        <div class="flex flex-col md:flex items-center gap-4">
+          <p class="text-sm text-muted-foreground text-center">يتّصل «نبض» بمصادر بياناتك أينما كانت</p>
+          <ul class="flex flex-wrap items-center justify-center gap-6 list-none p-2 m-0" role="list">
+            <li class="inline-flex items-center gap-2 text-muted-foreground font-semibold">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>
+              قواعد SQL
+            </li>
+            <li class="inline-flex items-center gap-2 text-muted-foreground font-semibold">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6S5 8 5 12s4 6 4 6M15 6s4 2 4 6-4 6-4 6"/></svg>
+              واجهات API
+            </li>
+            <li class="inline-flex items-center gap-2 text-muted-foreground font-semibold">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+              ملفات CSV
+            </li>
+            <li class="inline-flex items-center gap-2 text-muted-foreground font-semibold">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-11.3-2M6 16a6 6 0 0 0 11.3 2"/><path d="M5 6v4h4M19 18v-4h-4"/></svg>
+              Webhooks
+            </li>
+            <li class="inline-flex items-center gap-2 text-muted-foreground font-semibold">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 4v16"/></svg>
+              جداول البيانات
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== المزايا (4 كروت متناوبة) ===================== -->
+      <section id="features" class="px-4 md:px-8 py-12 md:py-16">
+        <header class="mb-8">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="brand-mark text-sm">المزايا</span>
+            <span class="h-px flex-1 bg-border" aria-hidden="true"></span>
+          </div>
+          <h2 class="text-2xl font-bold text-foreground leading-tight">كل ما تحتاجه لتتبّع بياناتك واتخاذ قرارٍ أسرع</h2>
+          <p class="mt-2 text-base text-muted-foreground max-w-prose">أربع قدرات أساسية تعمل معًا، من أوّل اتصالٍ بمصدرك حتى التنبيه في الوقت المناسب.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- 1) كرت فاتح -->
+          <article class="lift bg-card border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div class="flex items-start justify-between gap-4">
+              <div class="text-start">
+                <h3 class="brand-mark text-base mb-3">لوحات حيّة</h3>
+                <p class="mt-3 text-sm text-muted-foreground leading-relaxed">صمّم لوحتك بالسحب والإفلات، وراقب مقاييسك وهي تتحدّث لحظيًّا دون تحديث الصفحة.</p>
+              </div>
+              <span class="inline-flex items-center justify-center size-10 rounded-md bg-muted text-foreground shrink-0" aria-hidden="true">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </span>
+            </div>
+            <a href="#" class="more-link inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors rounded-sm focus-visible:ring">
+              اعرف المزيد
+              <svg class="size-4 arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6 5 12l6 6M5 12h14"/></svg>
+            </a>
+          </article>
+
+          <!-- 2) كرت داكن -->
+          <article class="lift bg-foreground border border-inverted rounded-lg p-6 flex flex-col gap-4">
+            <div class="flex items-start justify-between gap-4">
+              <div class="text-start">
+                <h3 class="inline-flex text-base font-semibold text-inverted mb-3">تنبيهات ذكية</h3>
+                <p class="mt-3 text-sm text-inverted-muted leading-relaxed">حدّد عتبةً مرّة واحدة، ويتولّى «نبض» مراقبتها — يصلك التنبيه على القناة التي تختارها فور تجاوزها.</p>
+              </div>
+              <span class="inline-flex items-center justify-center size-10 rounded-md bg-brand text-on-brand shrink-0" aria-hidden="true">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+              </span>
+            </div>
+            <a href="#" class="more-link more-dark inline-flex items-center gap-1 text-sm font-medium text-inverted transition-colors rounded-sm focus-visible:ring">
+              اعرف المزيد
+              <svg class="size-4 arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6 5 12l6 6M5 12h14"/></svg>
+            </a>
+          </article>
+
+          <!-- 3) كرت داكن -->
+          <article class="lift bg-foreground border border-inverted rounded-lg p-6 flex flex-col gap-4">
+            <div class="flex items-start justify-between gap-4">
+              <div class="text-start">
+                <h3 class="inline-flex text-base font-semibold text-inverted mb-3">تقارير تلقائية</h3>
+                <p class="mt-3 text-sm text-inverted-muted leading-relaxed">جدوِل تقريرًا أسبوعيًّا يصل فريقك جاهزًا — ملخّص واضح بأهمّ التغيّرات بدل جداول طويلة.</p>
+              </div>
+              <span class="inline-flex items-center justify-center size-10 rounded-md bg-brand text-on-brand shrink-0" aria-hidden="true">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+              </span>
+            </div>
+            <a href="#" class="more-link more-dark inline-flex items-center gap-1 text-sm font-medium text-inverted transition-colors rounded-sm focus-visible:ring">
+              اعرف المزيد
+              <svg class="size-4 arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6 5 12l6 6M5 12h14"/></svg>
+            </a>
+          </article>
+
+          <!-- 4) كرت فاتح -->
+          <article class="lift bg-card border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div class="flex items-start justify-between gap-4">
+              <div class="text-start">
+                <h3 class="brand-mark text-base mb-3">مصادر وتكاملات</h3>
+                <p class="mt-3 text-sm text-muted-foreground leading-relaxed">اربط قواعد بياناتك وواجهاتك وملفاتك في مكانٍ واحد، وحدّث الاتصال دون تعطيل لوحاتك.</p>
+              </div>
+              <span class="inline-flex items-center justify-center size-10 rounded-md bg-muted text-foreground shrink-0" aria-hidden="true">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7l3-3a3 3 0 0 1 4 4l-3 3M10 17l-3 3a3 3 0 0 1-4-4l3-3"/><path d="M8 16 16 8"/></svg>
+              </span>
+            </div>
+            <a href="#" class="more-link inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors rounded-sm focus-visible:ring">
+              اعرف المزيد
+              <svg class="size-4 arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6 5 12l6 6M5 12h14"/></svg>
+            </a>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ===================== كتلة الدعوة الوسطى ===================== -->
+      <section class="px-4 md:px-8 pb-16" aria-labelledby="mid-cta-title">
+        <div class="bg-muted rounded-lg p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center overflow-hidden">
+          <div class="text-start">
+            <h2 id="mid-cta-title" class="text-2xl font-bold text-foreground leading-tight">جرّب «نبض» على بياناتك اليوم</h2>
+            <p class="mt-3 text-base text-muted-foreground max-w-prose">اربط أوّل مصدرٍ لك وأنشئ لوحتك الأولى خلال دقائق. التجربة كاملة الميزات، وتُلغى متى شئت.</p>
+            <div class="flex flex-wrap items-center gap-3 mt-6">
+              <a href="#" class="inline-flex items-center gap-2 h-12 px-6 rounded-md bg-primary text-primary-foreground font-semibold transition-colors hover:bg-primary-hover focus-visible:ring">
+                ابدأ مجانًا
+                <svg class="size-5 arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6 5 12l6 6M5 12h14"/></svg>
+              </a>
+              <a href="#" class="more-link inline-flex items-center gap-1 h-12 px-2 text-sm font-medium text-foreground transition-colors rounded-sm focus-visible:ring">تحدّث إلى فريق المبيعات
+                <svg class="size-4 arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6 5 12l6 6M5 12h14"/></svg>
+              </a>
+            </div>
+          </div>
+          <!-- رسم زينة (inline-end) -->
+          <div class="relative md:order-2" aria-hidden="true">
+            <svg class="icon-illus" viewBox="0 0 360 200" fill="none" role="presentation">
+              <ellipse cx="180" cy="100" rx="120" ry="62" stroke="var(--color-border-strong)" stroke-width="1.5"/>
+              <ellipse cx="180" cy="100" rx="120" ry="62" stroke="var(--color-text-primary)" stroke-width="2" transform="rotate(-22 180 100)" stroke-dasharray="2 8" stroke-linecap="round"/>
+              <circle cx="180" cy="100" r="34" fill="var(--color-brand)"/>
+              <path d="M168 100l8 8 16-18" stroke="var(--color-on-brand)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M300 64c1.6-13 3.2-14 4.8 0 13 1.6 13 3.2 0 4.8-1.6 13-3.2 13-4.8 0-13 1.6-13-3.2 0-4.8z" fill="var(--color-text-primary)"/>
+              <circle cx="64" cy="70" r="6" fill="var(--color-text-primary)"/>
+              <circle cx="300" cy="150" r="5" fill="var(--color-brand)"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== حالات الاستخدام (3 كروت داكنة) ===================== -->
+      <section id="cases" class="px-4 md:px-8 pb-16" aria-labelledby="cases-title">
+        <header class="mb-8">
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <span class="brand-mark text-sm">حالات الاستخدام</span>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-sm bg-muted text-xs font-medium text-muted-foreground">
+              <span class="size-2 rounded-full" style="background:var(--color-warning-fg)" aria-hidden="true"></span>
+              الأرقام عيّنة توضيحية
+            </span>
+            <span class="h-px flex-1 bg-border" aria-hidden="true"></span>
+          </div>
+          <h2 id="cases-title" class="text-2xl font-bold text-foreground leading-tight">كيف تستخدم الفِرق «نبض» يوميًّا</h2>
+          <p class="mt-2 text-base text-muted-foreground max-w-prose">ثلاثة فِرق، حاجةٌ واحدة: قرارٌ مبنيٌّ على رقمٍ موثوق في وقته.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- فريق المنتج -->
+          <article class="bg-foreground border border-inverted rounded-lg p-6 flex flex-col gap-4 text-start">
+            <h3 class="inline-flex items-center gap-2 text-sm font-medium text-inverted-muted">
+              <span class="inline-flex items-center justify-center size-6 rounded-md bg-brand text-on-brand" aria-hidden="true">
+                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </span>
+              فريق المنتج
+            </h3>
+            <p class="text-2xl font-bold text-brand-strong leading-tight"><bdi class="tabular-nums">+18%</bdi></p>
+            <p class="text-sm text-inverted-muted leading-relaxed">تتبُّع تبنّي الميزات أسبوعيًّا ربط القرارات بالاستخدام الفعلي، فارتفع تبنّي الميزة الجديدة. <span class="text-faint">(عيّنة توضيحية)</span></p>
+            <a href="#" class="more-link more-dark inline-flex items-center gap-1 mt-auto text-sm font-medium text-inverted transition-colors rounded-sm focus-visible:ring">
+              اقرأ الحالة
+              <svg class="size-4 arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6 5 12l6 6M5 12h14"/></svg>
+            </a>
+          </article>
+
+          <!-- فريق التسويق -->
+          <article class="bg-foreground border border-inverted rounded-lg p-6 flex flex-col gap-4 text-start">
+            <h3 class="inline-flex items-center gap-2 text-sm font-medium text-inverted-muted">
+              <span class="inline-flex items-center justify-center size-6 rounded-md bg-brand text-on-brand" aria-hidden="true">
+                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-7-4 18-5-7z"/></svg>
+              </span>
+              فريق التسويق
+            </h3>
+            <p class="text-2xl font-bold text-brand-strong leading-tight"><bdi class="tabular-nums">2×</bdi></p>
+            <p class="text-sm text-inverted-muted leading-relaxed">لوحةٌ موحّدة للحملات جمعت المصادر المبعثرة، فتضاعفت سرعة رصد القناة الأفضل أداءً. <span class="text-faint">(عيّنة توضيحية)</span></p>
+            <a href="#" class="more-link more-dark inline-flex items-center gap-1 mt-auto text-sm font-medium text-inverted transition-colors rounded-sm focus-visible:ring">
+              اقرأ الحالة
+              <svg class="size-4 arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6 5 12l6 6M5 12h14"/></svg>
+            </a>
+          </article>
+
+          <!-- فريق العمليات -->
+          <article class="bg-foreground border border-inverted rounded-lg p-6 flex flex-col gap-4 text-start">
+            <h3 class="inline-flex items-center gap-2 text-sm font-medium text-inverted-muted">
+              <span class="inline-flex items-center justify-center size-6 rounded-md bg-brand text-on-brand" aria-hidden="true">
+                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M21 12h-3M6 12H3M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1M18.4 18.4l-2.1-2.1M7.7 7.7 5.6 5.6"/></svg>
+              </span>
+              فريق العمليات
+            </h3>
+            <p class="text-2xl font-bold text-brand-strong leading-tight"><bdi class="tabular-nums">−32%</bdi></p>
+            <p class="text-sm text-inverted-muted leading-relaxed">تنبيهات العتبات نبّهت قبل تفاقم الخلل، فانخفض زمن اكتشاف العطل وتقلّص التوقّف. <span class="text-faint">(عيّنة توضيحية)</span></p>
+            <a href="#" class="more-link more-dark inline-flex items-center gap-1 mt-auto text-sm font-medium text-inverted transition-colors rounded-sm focus-visible:ring">
+              اقرأ الحالة
+              <svg class="size-4 arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6 5 12l6 6M5 12h14"/></svg>
+            </a>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== التذييل ===================== -->
+    <footer class="bg-foreground text-inverted px-4 md:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- العلامة + CTA -->
+        <div class="text-start">
+          <a href="#" class="inline-flex items-center gap-2 text-lg font-bold text-inverted rounded-sm focus-visible:ring" aria-label="نبض — أعلى الصفحة">
+            <span class="inline-flex items-center justify-center size-8 rounded-md bg-brand shrink-0" aria-hidden="true">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="var(--color-on-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l2-6 4 14 3-9 2 1h4"/></svg>
+            </span>
+            نبض
+          </a>
+          <p class="mt-4 text-sm text-inverted-muted max-w-xs leading-relaxed">لوحة تحليلاتٍ واحدة لكل مصادر بياناتك — حيّة، وقابلة للمشاركة.</p>
+          <a href="#" class="inline-flex items-center gap-2 h-10 px-4 mt-6 rounded-md bg-brand text-on-brand font-semibold transition-colors focus-visible:ring">
+            ابدأ مجانًا
+            <svg class="size-4 arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6 5 12l6 6M5 12h14"/></svg>
+          </a>
+        </div>
+
+        <!-- روابط: المنتج -->
+        <nav class="text-start" aria-label="روابط المنتج">
+          <h2 class="text-sm font-semibold text-inverted mb-4">المنتج</h2>
+          <ul class="list-none p-2 m-0 flex flex-col gap-3" role="list">
+            <li><a href="#features" class="text-sm text-inverted-muted hover:underline transition-colors rounded-sm focus-visible:ring">المزايا</a></li>
+            <li><a href="#cases" class="text-sm text-inverted-muted hover:underline transition-colors rounded-sm focus-visible:ring">حالات الاستخدام</a></li>
+            <li><a href="#" class="text-sm text-inverted-muted hover:underline transition-colors rounded-sm focus-visible:ring">الأسعار</a></li>
+            <li><a href="#" class="text-sm text-inverted-muted hover:underline transition-colors rounded-sm focus-visible:ring">المدوّنة</a></li>
+          </ul>
+        </nav>
+
+        <!-- روابط: الشركة -->
+        <nav class="text-start" aria-label="روابط الشركة">
+          <h2 class="text-sm font-semibold text-inverted mb-4">الشركة</h2>
+          <ul class="list-none p-2 m-0 flex flex-col gap-3" role="list">
+            <li><a href="#" class="text-sm text-inverted-muted hover:underline transition-colors rounded-sm focus-visible:ring">من نحن</a></li>
+            <li><a href="#" class="text-sm text-inverted-muted hover:underline transition-colors rounded-sm focus-visible:ring">تواصل معنا</a></li>
+            <li><a href="#" class="text-sm text-inverted-muted hover:underline transition-colors rounded-sm focus-visible:ring">الخصوصية</a></li>
+            <li><a href="#" class="text-sm text-inverted-muted hover:underline transition-colors rounded-sm focus-visible:ring">الشروط</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-4 mt-8 pt-8 border-t border-inverted">
+        <p class="text-xs text-inverted-muted">© <bdi class="tabular-nums">2026</bdi> نبض. جميع الحقوق محفوظة.</p>
+        <p class="text-xs text-inverted-muted">صُنع للفِرق التي تقرّر بالأرقام.</p>
+      </div>
+    </footer>
+
+  </div>
+</div>
