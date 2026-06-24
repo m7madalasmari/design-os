@@ -108,6 +108,15 @@
 ### Performance Risks
 - 
 
+## Accessibility Notes
+
+- Keyboard / focus:
+- Contrast:
+- ARIA / semantic HTML:
+- Reduced motion:
+- RTL accessibility:
+- Status:
+
 ## Forbidden (this page)
 - *(colors/values outside tokens · undocumented components · invented content · arbitrary values outside Pixel Clone · directional utilities in RTL · >1 primary)*
 
