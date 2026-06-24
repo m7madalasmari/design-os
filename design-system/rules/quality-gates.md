@@ -3,7 +3,7 @@
 > المرجع التفصيلي لكل البوّابات الحاجبة. [ROLES](../../ROLES.md) يصف *إجراء التشغيل*؛ هذا الملف يصف *كل بوّابة*: ماذا تفحص · متى · مالكها · ماذا تحجب. **بوّابة فاشلة تحجب الـpipeline — ليست flag يُوازَن.** القيد: مراجعة موثّقة (يدوية/grep)، لا أداة آلية إلزامية خارج SPA.
 
 ## نظرة عامة (التسلسل)
-البداية → **DS Gate** (قبل التنفيذ) → بناء → **Component Quality Gate** (لكل مكوّن) → **Anti-Generic Gate** (الصفحة) → QA → **Typography Gate** + **Accessibility Gate** (قبل التسليم) → DoD → تسليم.
+البداية → **DS Gate** (قبل التنفيذ) → بناء → **Component Quality Gate** + **Visual Polish Gate** (لكل مكوّن) → **Anti-Generic Gate** (الصفحة) → QA → **Typography Gate** + **Accessibility Gate** (قبل التسليم) → DoD → تسليم. **(ست بوّابات.)**
 
 ---
 
@@ -27,6 +27,10 @@
 ## 5. Accessibility Gate — *قبل قبول التسليم* (أرضية صلبة)
 يفحص: WCAG-AA (تباين · كيبورد · تركيز/focus-visible · ARIA · reduced-motion · focus-trap للمودال/الدرج · RTL a11y). لا يُقايَض بالبراند أو المطابقة.
 المالك: **Accessibility**. المرجع: [06](../../design-protocols/06-accessibility.md).
+
+## 6. Visual Polish Gate — *لكل مكوّن، مراجعة بصرية للمُخرَج* (جديد v2.2)
+يفحص **جودة التنفيذ البصري** على الـpreview المُصيَّر: لا مظهر native/default (أزرار/select/input)، لا حدّ أسود/ثقيل، لا حدّ مزدوج، لا focus دائم، overlay مُوكَّن، close ghost، كثافة جدول متوازنة، حالات/fixtures مصقولة. **«وجود المكوّن ≠ جودته البصرية».**
+المالك: **Visual & Experience + Design System**. المرجع: [visual-polish-gate](visual-polish-gate.md) · [component-visual-baseline](../foundations/component-visual-baseline.md). فحص مساعد: غياب native-control reset في أي preview = انحدار.
 
 ---
 

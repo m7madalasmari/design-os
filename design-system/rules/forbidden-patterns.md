@@ -117,5 +117,35 @@
 
 ---
 
+## ز. ممنوعات الجودة البصرية (native / default look) — تُفحَص في [visual-polish-gate](visual-polish-gate.md)
+
+### 19. حدود ثقيلة أو سوداء بلا سبب دلالي
+**الممنوع:** `border: …px solid black`/حدّ ثقيل دائم على أزرار/بطاقات/حقول.
+**لماذا:** يبدو native/غير ناضج ويكسر الهدوء (المبدأ 3).
+**البديل:** `--color-border-subtle`/`-default` فقط، للفصل/التسلسل لا الزينة.
+
+### 20. عناصر تحكّم بمظهر المتصفّح الافتراضي (native controls)
+**الممنوع:** `<button>`/`<select>`/`<input>`/`<textarea>` تُصيَّر بمظهر النظام (حدّ/سهم/chrome) لأن `appearance` لم يُعَد ضبطه؛ **select بسهم المتصفّح**؛ أزرار تشبه default.
+**لماذا:** يكسر الأرضية البصرية ويُفقد النظام نضجه ([component-visual-baseline §0](../foundations/component-visual-baseline.md)).
+**البديل:** native-control reset (`appearance:none`) ثم بناء المظهر من التوكنز؛ سهم select مخصّص.
+
+### 21. حدود مزدوجة
+**الممنوع:** عنصر داخل wrapper ذي حدّ يحمل حدًّا مستقلًّا (input داخل search wrapper).
+**البديل:** الحدّ على الـwrapper فقط؛ الحقل الداخلي بلا حدّ.
+
+### 22. حلقة تركيز ظاهرة دائمًا
+**الممنوع:** `--shadow-focus`/outline ظاهر في الحالة العادية (لا عند `:focus-visible`).
+**البديل:** التركيز يظهر **عند `:focus-visible` فقط**.
+
+### 23. overlay غير مُوكَّن
+**الممنوع:** `rgba(…)` خام لخلفية مودال/درج.
+**البديل:** `--color-bg-overlay` (توكن).
+
+### 24. حالات/فكسچرات بدائية (debug-looking)
+**الممنوع:** بطاقات حالات متطابقة بلا صقل، skeleton بالكاد مرئي، أيقونات عشوائية، CTA native — تبدو debug demo.
+**البديل:** حالات مصقولة (أيقونة tokenized + heading + CTA variant صحيح)، skeleton واضح ([component-visual-baseline §9](../foundations/component-visual-baseline.md)).
+
+---
+
 ### كيفية الاستشهاد بالرفض
 عند رفض عمل، استشهد بالرقم: «مرفوض — ممنوع #11 (لون خارج التوكنز) و #14 (أزرار بلا أولوية)». يجعل المراجعة موضوعية لا ذوقية.

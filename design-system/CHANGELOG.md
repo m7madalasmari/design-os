@@ -4,6 +4,15 @@
 
 ---
 
+## v2.2.0 — 2026-06-24 — Visual Polish Gate (6th gate) + native-control fix
+A **visual** review of the v2.1.0 users-page preview exposed that the gates checked structure/a11y/tokens but **not visual execution** — the preview rendered **native/default controls** (browser button borders, native `<select>` arrow, double-bordered search) because the shim omitted the native-control reset (violating the system's own button/select/search specs). Adds a sixth gate. Additive; one fixture fixed.
+- **New `foundations/component-visual-baseline.md`:** mandatory **native-control reset** (`appearance:none`) + subtle borders + focus-visible-only + tokenized overlay + icon weight + mature spacing.
+- **New `rules/visual-polish-gate.md` (6th gate):** visual review of the **rendered output** for Buttons/Inputs/Modal/Select/Table/States — no native/default look, black/heavy or double borders, always-visible focus, un-tokenized overlays, debug-looking fixtures.
+- **`forbidden-patterns.md` #19–#24:** heavy/black strokes · native/default controls · double borders · always-visible focus · un-tokenized overlays · debug-looking fixtures.
+- **`component-quality-gate.md`** now checks **visual execution** ("component present ≠ visually good"); **`quality-gates.md`** = **6 gates**; **`qa-checklist.md`** §11; `ROLES.md`/`AGENTS.md` updated to six gates.
+- **Fixed `playground/users-management/preview.html`:** native-control reset, styled select (custom chevron), search without double border, ghost close button, tokenized overlay, more-visible skeleton.
+- **Visual regression report:** root `dogfood-v2.1.0-visual-regression-report.md` — corrects the earlier (wrong) "pass" verdict via actual visual comparison.
+
 ## v2.1.1 — 2026-06-24 — close high-impact gaps from users-page dogfood
 Targeted closure of the 3 high-impact gaps surfaced by the v2.1.0 users-page dogfood + 2 small contracts. Additive, back-compatible. **Components 27 → 29.**
 - **`components/avatar.md` (new):** initials/image/icon-fallback/status-dot · sizes xs–lg · circle/rounded · image-failed → initials → icon fallback · a11y (decorative when the name is beside it — never repeat the name) · semantic, low-emphasis colors only. Closes the ad-hoc `.avatar` gap.

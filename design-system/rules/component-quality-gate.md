@@ -16,6 +16,7 @@
 - **لا ازدحام، لا حدود بلا داعٍ، لا زخرفة بلا غرض** (← [Visual & Experience / Output stance](../../ROLES.md)).
 - **مستجيب** عبر نقاط الكسر.
 - **يحقّق معايير القبول البصري** في §10 من spec المكوّن.
+- **جودة التنفيذ البصري (لا الوجود فقط):** لا مظهر native/default — يجتاز [visual-polish-gate](visual-polish-gate.md) و[component-visual-baseline](../foundations/component-visual-baseline.md). **«وجود المكوّن ≠ جودته البصرية»**: مكوّن بحالات كاملة لكن يبدو native = يفشل.
 
 ## 2. معايير إلزامية لكل مكوّن (أمثلة محورية)
 

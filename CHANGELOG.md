@@ -4,6 +4,13 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v2.2.0 — 2026-06-24 — Visual Polish Gate (6th gate)
+**MINOR.** A **visual** review of the v2.1.0 users-page preview found **native/default-looking controls** that every prior gate missed — the gates checked structure/a11y/tokens, **not visual execution**. Root cause: the preview shim omitted the native-control reset (violating the system's own button/select/search specs). Adds the 6th gate; corrects the earlier (wrong) "pass". design-system → v2.2.0.
+- **New:** `foundations/component-visual-baseline.md` (mandatory native-control reset, subtle borders, focus-visible-only, tokenized overlay) + `rules/visual-polish-gate.md` (6th gate, visual review of rendered output).
+- `forbidden-patterns.md` **#19–#24** (heavy/black strokes · native controls · double borders · always-visible focus · un-tokenized overlays · debug fixtures); `component-quality-gate.md` now checks visual execution; `quality-gates.md` = **6 gates**; `qa-checklist.md` §11; ROLES/AGENTS.
+- **Fixed** the users-page preview (native reset + styled select + ghost close + visible skeleton).
+- Visual regression report: `dogfood-v2.1.0-visual-regression-report.md`.
+
 ## v2.1.1 — 2026-06-24 — close high-impact gaps from users-page dogfood
 Additive, back-compatible. Closes the 3 high-impact gaps from the v2.1.0 dogfood + 2 small contracts. **Components 27 → 29.** design-system → v2.1.1 (detail: `design-system/CHANGELOG.md`).
 - **avatar.md** (new component) — initials/image/icon-fallback/status-dot, sizes, circle/rounded, fallback chain, decorative-when-named a11y, semantic colors. Closes ad-hoc `.avatar`.
