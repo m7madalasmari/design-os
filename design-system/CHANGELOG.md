@@ -4,6 +4,11 @@
 
 ---
 
+## v2.2.1 — 2026-06-24 — modal/drawer initial-focus order (close ✕ ≠ first focus)
+Visual review of the v2.2.0 modal preview showed the close ✕ taking a `:focus-visible` ring **on open** — because it was the **first focusable element** in the DOM. PATCH: contract + fixture.
+- **`modal.md` §6.5 / `drawer.md`:** initial focus → **first meaningful field** (or dialog container `tabindex="-1"`), **NOT the close button**; the close ✕ **must not be the first tab stop** — place it **late in the DOM**, positioned visually top-`inline-end`.
+- **Fixed `playground/users-management/preview.html`:** moved ✕ to last-in-DOM (absolute top-inline-end); first focusable is now the select → no stray corner ring on open.
+
 ## v2.2.0 — 2026-06-24 — Visual Polish Gate (6th gate) + native-control fix
 A **visual** review of the v2.1.0 users-page preview exposed that the gates checked structure/a11y/tokens but **not visual execution** — the preview rendered **native/default controls** (browser button borders, native `<select>` arrow, double-bordered search) because the shim omitted the native-control reset (violating the system's own button/select/search specs). Adds a sixth gate. Additive; one fixture fixed.
 - **New `foundations/component-visual-baseline.md`:** mandatory **native-control reset** (`appearance:none`) + subtle borders + focus-visible-only + tokenized overlay + icon weight + mature spacing.

@@ -1,6 +1,6 @@
 # design-os — Version
 
-**Current: v2.2.0** (2026-06-24)
+**Current: v2.2.1** (2026-06-24)
 
 Bundles:
 - **Run layer (root)** — `RUNBOOK.md` (one-shot request→delivery flow) + `REQUEST.md` (intake) + `OUTPUT.md` (handover) + `ROLES.md` (the review council — two-level: 9 Operating Roles + checklists; run procedure Fast→Gates→rest→manifest; **three hard gates**: Design System + Component Quality + Accessibility) + `LOCAL-STABILITY.md` (local-ready checklist); **Auto Mode** wired into `AGENTS.md`/`00`.
@@ -16,4 +16,4 @@ Bundles:
 
 OS-level history is in [`CHANGELOG.md`](CHANGELOG.md); design-system detail in [`design-system/CHANGELOG.md`](design-system/CHANGELOG.md). Every change records: what · why · affected · re-QA?
 
-Git tag for this release: **`v2.2.0`**.
+Git tag for this release: **`v2.2.1`**.

@@ -93,7 +93,8 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
 @media(prefers-reduced-motion:no-preference){.pulse{animation:p 1.4s var(--ease-standard) infinite}@keyframes p{50%{opacity:.5}}}
 @media(prefers-reduced-motion:reduce){.transition{transition:none}.pulse{animation:none}}
 .overlay{position:fixed;inset:0;background:var(--color-bg-overlay);z-index:var(--z-overlay);display:flex;align-items:center;justify-content:center;padding:var(--space-md)}
-.modal{background:var(--color-bg-surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);z-index:var(--z-modal);width:100%;max-width:30rem;padding:var(--space-lg)}
+.modal{position:relative;background:var(--color-bg-surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);z-index:var(--z-modal);width:100%;max-width:30rem;padding:var(--space-lg)}
+.modal-close{position:absolute;inset-block-start:var(--space-md);inset-inline-end:var(--space-md)} /* close: NOT first focus (modal §6.5); visually top inline-end */
 .field{height:var(--size-control-md);border:1px solid var(--color-border-default);border-radius:var(--radius-md);background:var(--color-bg-surface);padding-inline:var(--space-sm);font:var(--font-size-sm)/1 var(--font-family-base);color:var(--color-text-primary);width:100%}
 .avatar{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--radius-full);background:var(--color-accent-subtle);color:var(--color-accent);font-weight:600}
 .dl{display:grid;grid-template-columns:9rem 1fr;gap:var(--space-sm) var(--space-md)}
@@ -276,10 +277,7 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
     <h2 class="sec-label">مودال تعديل الحالة (إجراء قصير مركّز → modal، بعقد a11y)</h2>
     <div class="overlay demo-static">
       <div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" aria-describedby="m-desc">
-        <div class="flex items-start between gap-3 mb-4">
-          <h3 id="m-title" class="text-lg fw-semibold text-fg">تعديل حالة المستخدم</h3>
-          <button type="button" class="inline-flex center size-9 rounded-md text-muted transition hover:bg-hover fv:ring pointer" aria-label="إغلاق"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 6 8 8M14 6l-8 8" stroke-linecap="round"/></svg></button>
-        </div>
+        <h3 id="m-title" class="text-lg fw-semibold text-fg mb-2">تعديل حالة المستخدم</h3>
         <p id="m-desc" class="text-sm text-muted mb-4">تغيير حالة «سارة الفهد». الإيقاف يمنع الدخول فورًا.</p>
         <label class="flex col gap-2 mb-4"><span class="text-sm fw-medium text-fg">الحالة</span>
           <span class="select-wrap">
@@ -291,6 +289,8 @@ thead th{font-weight:500;color:var(--color-text-secondary);font-size:var(--font-
           <button type="button" class="h-10 px-4 rounded-md bg-card border text-fg fw-medium text-sm transition hover:bg-hover fv:ring pointer">تراجع</button>
           <button type="button" class="h-10 px-4 rounded-md bg-primary text-on-accent fw-medium text-sm transition hover:bg-primary-hover fv:ring pointer">حفظ</button>
         </div>
+        <!-- close LAST in DOM → not the first focus target (modal §6.5); positioned top inline-end -->
+        <button type="button" class="modal-close inline-flex center size-9 rounded-md text-muted transition hover:bg-hover fv:ring pointer" aria-label="إغلاق"><svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 8 8M14 6l-8 8" stroke-linecap="round"/></svg></button>
       </div>
     </div>
   </section>

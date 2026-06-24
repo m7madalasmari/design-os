@@ -4,6 +4,9 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v2.2.1 — 2026-06-24 — modal/drawer initial-focus order
+**PATCH.** Visual review found the modal close ✕ taking focus (blue ring) **on open** because it was the first focusable element. Fixed contract + fixture: initial focus → first meaningful field (not close); close ✕ placed late in DOM (positioned visually top-inline-end). `modal.md` §6.5 + `drawer.md` + users-page preview.
+
 ## v2.2.0 — 2026-06-24 — Visual Polish Gate (6th gate)
 **MINOR.** A **visual** review of the v2.1.0 users-page preview found **native/default-looking controls** that every prior gate missed — the gates checked structure/a11y/tokens, **not visual execution**. Root cause: the preview shim omitted the native-control reset (violating the system's own button/select/search specs). Adds the 6th gate; corrects the earlier (wrong) "pass". design-system → v2.2.0.
 - **New:** `foundations/component-visual-baseline.md` (mandatory native-control reset, subtle borders, focus-visible-only, tokenized overlay) + `rules/visual-polish-gate.md` (6th gate, visual review of rendered output).
