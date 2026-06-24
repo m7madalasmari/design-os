@@ -4,6 +4,17 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v1.3.0 — 2026-06-24 — roles layer: run procedure, gates, anti-generic stance
+Hardening of the v1.2.0 roles layer after a live dogfood on the `consultation-requests` fixture. Additive; no protocol/token/component behavior changed; design-system untouched.
+- **`ROLES.md` — new "How to run a role sweep"** (replaces the prose *Runtime rule* — single source for sweep mechanics): ordered flow **Fast sweep → Gates → remaining roles → manifest**, with **defined Fast-sweep outputs** — Product & Strategy: intent/scope/primary action · UX & IA: structure/task flow/states · Visual & Experience: composition/rhythm/polish risk.
+- **Two explicit hard gates that block the pipeline:** **Design System Gate** (must pass before implementation is valid — tokens-only, all blocks mapped, anything new documented first; RUNBOOK step 7) and **Accessibility Gate** (must pass before delivery is acceptable — WCAG-AA floor; RUNBOOK step 9). Consistent with *Precedence* (hard floors, never traded). Named + wired in `AGENTS.md` and `RUNBOOK.md` (steps 7, 9).
+- **"Output stance (anti-generic)":** do not stack components — compose the experience around the primary task; reject generic/default UI; demand hierarchy, rhythm, depth, purposeful polish. Owned by UX & IA (structure) + Visual & Experience (polish); reinforced in both role specs. A flat stack of default cards fails the sweep even if each component is individually valid.
+- **"One finding, one owner"** sweep rule + **fixture-vs-consumer** scope note (Product & Strategy) — surfaced by the dogfood (a detail seen by several lenses is logged once; a demo/states block is legitimate in a `playground/` fixture but scope creep in a product page).
+- **`page-manifests/_TEMPLATE.md`** — new **Accessibility Notes** section (keyboard/focus · contrast · ARIA/semantic HTML · reduced motion · RTL accessibility · status) — an explicit manifest home for the Accessibility role.
+- **Dogfood result (for the record):** the sweep stayed fast (3-line fast / 9-line full, no debate) and caught two issues the fixture's embedded QA missed (tertiary text token ~3.3:1 used for visible labels; raw `style=` values vs a "zero arbitrary" claim) — validating that the layer adds value over the existing QA checklist. Fixture left as-is.
+- **Consistency:** `README.md` + `VERSION.md` + `LOCAL-STABILITY.md` → v1.3.0.
+- **MINOR** — additive (new manifest section, explicit gates, run procedure), backward compatible.
+
 ## v1.2.0 — 2026-06-24 — roles layer (the review council)
 Additive run-layer feature: an **accountability layer** over the protocols. The protocols (`00–09`) are the *rulebooks*; roles are *who owns each one*. No protocol behavior, token, or component changed; design-system untouched.
 - **New `ROLES.md`** — a **two-level** review council: a fast pass with each role's mindset, not extra agents and not a debate.
