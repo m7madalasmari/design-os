@@ -4,6 +4,12 @@ OS-level history. Design-system detail (tokens/components) in [`design-system/CH
 
 ---
 
+## v2.3.0 — 2026-06-24 — app shell (sidebar + app-header), multi-page proven
+**MINOR.** The **request-portal dogfood** (a real interactive multi-page app) proved **sidebar/app-shell + a data-app header are blocking** for multi-page apps — promoted from BACKLOG, specced, and the shell built on them. **Components 29 → 31.** design-system → v2.3.0.
+- **New:** `components/sidebar.md` (nav, active `aria-current`, collapse, RTL `inline-start`, mobile drawer) + `components/app-header.md` (data-app topbar: title/search/notifications/account, sticky, ghost icon buttons).
+- INDEX **"App shell"** group; README +line (31); **BACKLOG:** both **shipped** — the biggest deferred question is resolved.
+- **Dogfood:** `playground/request-portal/` (interactive shell + 4 pages, vanilla JS) + `dogfood-request-portal-report.md`. design-os scales to a full multi-page app via the shell + library reuse; all **six gates** held (zero raw inline style, native-control reset, RTL sidebar).
+
 ## v2.2.1 — 2026-06-24 — modal/drawer initial-focus order
 **PATCH.** Visual review found the modal close ✕ taking focus (blue ring) **on open** because it was the first focusable element. Fixed contract + fixture: initial focus → first meaningful field (not close); close ✕ placed late in DOM (positioned visually top-inline-end). `modal.md` §6.5 + `drawer.md` + users-page preview.
 

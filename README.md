@@ -2,7 +2,7 @@
 
 Reusable, Tailwind-first **operating template** for building UI: an agent contract (`design-protocols/`) + a design system (`design-system/`) + page manifests. Copy it into any project; the agent reads `AGENTS.md` and follows the protocol.
 
-**Version:** v2.2.1 · See [`VERSION.md`](VERSION.md) · [`CHANGELOG.md`](CHANGELOG.md)
+**Version:** v2.3.0 · See [`VERSION.md`](VERSION.md) · [`CHANGELOG.md`](CHANGELOG.md)
 **Deep install:** [`PROJECT-INSTALL.md`](PROJECT-INSTALL.md) · **Fast path:** [`QUICKSTART.md`](QUICKSTART.md)
 
 ---

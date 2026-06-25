@@ -5,7 +5,7 @@
 ## Definition
 design-os is **locally ready** when an agent can take a real request, run it end-to-end via the protocols, and deliver a correct, system-compliant, accessible result — repeatedly — without the operator re-explaining the system, and with a clean, tagged tree.
 
-## Checklist  (status as of v2.2.1)
+## Checklist  (status as of v2.3.0)
 - [x] **Protocol sequence complete** — `00–09` with **no gap** (`06` added in v1.1.7).
 - [x] **`06` Accessibility exists** — baseline a11y protocol + QA, wired into AGENTS/RUNBOOK/07.
 - [x] **Premium Visual Baseline active** — font (IBM Plex Sans Arabic chain), icon-system (Lucide), native-control prevention, visual-acceptance criteria (v1.1.6).
@@ -18,7 +18,7 @@ design-os is **locally ready** when an agent can take a real request, run it end
 - [x] **One-shot RUNBOOK working** — `RUNBOOK.md` + Auto Mode + `REQUEST`/`OUTPUT`; exercised by the Greenfield run.
 - [x] **≥ 3 successful local stress tests** — `invoices` (System Fidelity), `consultation-requests` (Greenfield), `design-system-preview` (gallery). All passed DoD, zero arbitrary values, RTL pass.
 - [x] **No untracked files** — clean working tree.
-- [x] **Clean release tag** — `v2.2.1`.
+- [x] **Clean release tag** — `v2.3.0`.
 
 **Verdict:** **locally ready ✅** — full gallery coverage (27/27) since v1.1.8. Remaining future work (backlog components, GitHub publish) is tracked, not blocking.
 

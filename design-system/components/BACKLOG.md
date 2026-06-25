@@ -3,12 +3,14 @@
 > Documented-but-not-yet-specced components, prioritized. Adding any of these = a future `design-system` version (spec + INDEX + gallery). Check [`INDEX.md`](INDEX.md) before building; nothing here is approved for use until it has a spec.
 
 ## ✅ Shipped (out of backlog)
-- **avatar** → [`avatar.md`](avatar.md) (v2.1.1 — surfaced by users-page dogfood).
+- **sidebar / app-shell nav** → [`sidebar.md`](sidebar.md) (v2.3.0 — request-portal dogfood proved it blocking for multi-page apps).
+- **data-app header** → [`app-header.md`](app-header.md) (v2.3.0 — same dogfood).
+- **avatar** → [`avatar.md`](avatar.md) (v2.1.1 — users-page dogfood).
 - **detail-view / description-list** → [`detail-view.md`](detail-view.md) (v2.1.1 — was a loose composition; now a contract).
-- Non-component v2.1.1 closures: **inline-`style=` gate** (forbidden #18 + checks), **filter-bar responsive contract**, **modal/drawer footer order**.
+- Non-component closures: **inline-`style=` gate** (forbidden #18 + checks, v2.1.1), **filter-bar responsive contract** (v2.1.1), **modal/drawer footer order** (v2.1.1), **Visual Polish Gate** (6th gate, v2.2.0).
 
 ## Still deferred (need another test to prove necessity)
-sidebar/app-shell · data-app header · dark-mode tokens · textarea/radio/switch standalone · breadcrumb · Request Portal · GitHub Review — **and the rows below.**
+**textarea** (used in portal form via input rules; promote to *High next* — standalone auto-resize/counter) · breadcrumb (deeper paths) · radio/switch standalone · dark-mode tokens · data-viz · GitHub publish — **and the rows below.**
 
 ## Priority summary
 | # | Component | Priority | Form | Gallery later |

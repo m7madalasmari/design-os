@@ -44,6 +44,12 @@
 | [Skeleton](skeleton.md) | ✅ / ✗ | loading (pulse); variants: text-line · avatar · card · table-row · block | placeholders `aria-hidden` + parent `aria-busy`; not final content | `bg-muted rounded-sm animate-pulse motion-reduce:animate-none` |
 | [Alert](alert.md) | ✅ / ✗ | info · success · warning · danger; static · dismissible · with-action | `role=alert` (critical) / `role=status`; icon+text (not color alone); close `inline-end` | `flex items-start gap-2 p-3 rounded-md border bg-info-soft text-info border-info-border` |
 
+## App shell (multi-page apps)
+| Component | Spec / Impl | Required states | RTL / a11y | Expected Tailwind usage |
+|---|---|---|---|---|
+| [Sidebar](sidebar.md) | ✅ / ✗ | expanded · collapsed · item default/hover/**active**/focus/disabled · mobile-drawer | `inline-start` (يمين); `<nav aria-label>`; active `aria-current=page`; collapse `aria-expanded`; mobile focus-trap | `260px`/`64px`; item `rounded-md`; active `bg-primary-subtle text-primary` |
+| [App Header](app-header.md) | ✅ / ✗ | default · sticky · scrolled · menu-open · mobile | `<header>`; title `inline-start`, account `inline-end`; **ghost** icon buttons; `aria-expanded` toggle | sticky `z=var(--z-sticky)`; `border-b`; ghost icon buttons |
+
 ## Layers & navigation
 | Component | Spec / Impl | Required states | RTL / a11y | Expected Tailwind usage |
 |---|---|---|---|---|

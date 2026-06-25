@@ -37,12 +37,13 @@
 | [ux-writing.md](foundations/ux-writing.md) | نبرة الكتابة، صياغة الأزرار والأخطاء والحالات الفارغة، المصطلحات |
 
 ### 2. المكوّنات — `/components`
-مكتبة المكوّنات المعتمدة (29 مكوّنًا). **لا يُستخدم أي مكوّن غير موجود هنا.** الجرد الكامل مع الحالات/Tailwind في [components/INDEX.md](components/INDEX.md).
+مكتبة المكوّنات المعتمدة (31 مكوّنًا). **لا يُستخدم أي مكوّن غير موجود هنا.** الجرد الكامل مع الحالات/Tailwind في [components/INDEX.md](components/INDEX.md).
 
 **حقول وأفعال:** [button](components/button.md) · [input](components/input.md) · [search-input](components/search-input.md) · [select](components/select.md) · [checkbox](components/checkbox.md) · [rating](components/rating.md) · [scale](components/scale.md) · [stepper](components/stepper.md) · [form](components/form.md) (تركيب)
 **حاويات وعناوين:** [card](components/card.md) · [page-header](components/page-header.md) · [section-header](components/section-header.md) · [detail-view](components/detail-view.md) (تركيب)
 **بيانات:** [table](components/table.md) · [empty-state](components/empty-state.md) · [filter-bar](components/filter-bar.md) · [status-badge](components/status-badge.md) · [avatar](components/avatar.md) · [pagination](components/pagination.md)
 **تغذية راجعة وتحميل:** [spinner](components/spinner.md) · [skeleton](components/skeleton.md) · [alert](components/alert.md)
+**هيكل التطبيق (app shell):** [sidebar](components/sidebar.md) · [app-header](components/app-header.md)
 **طبقات وتنقّل:** [modal](components/modal.md) · [drawer](components/drawer.md) · [toast](components/toast.md) · [tabs](components/tabs.md)
 **تسويقي (غير تطبيق-بيانات):** [nav-bar](components/nav-bar.md) · [hero](components/hero.md) · [site-footer](components/site-footer.md)
 

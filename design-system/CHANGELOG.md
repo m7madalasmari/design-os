@@ -4,6 +4,13 @@
 
 ---
 
+## v2.3.0 — 2026-06-24 — app shell: sidebar + app-header (multi-page proven)
+The **request-portal dogfood** (a real interactive multi-page app) proved that **sidebar/app-shell + a data-app header are BLOCKING** for any multi-page app — `layout.md` described the *pattern* but there were no component specs. Promoted from BACKLOG, specced, then the shell was built on them. Additive. **Components 29 → 31.**
+- **New `components/sidebar.md`:** app navigation — expanded/collapsed, item states (default/hover/**active** `aria-current`/focus/disabled), RTL `inline-start` (right), mobile drawer, a11y (`<nav>`), token bindings, visual baseline (active = bg+color not heavy border).
+- **New `components/app-header.md`:** data-app topbar — page title (matches active nav) + search + notifications + account; sticky; RTL; **ghost** icon buttons; a11y landmarks. Distinct from the marketing `nav-bar.md`.
+- **INDEX:** new **"App shell"** group (31 total); **README** +app-shell line + count 29→31; **BACKLOG:** sidebar/app-shell + data-app header marked **shipped** (deferred question resolved).
+- **Dogfood:** `playground/request-portal/` (interactive shell + 4 pages — dashboard/requests/detail/new — vanilla JS, no build) + report `dogfood-request-portal-report.md`. **Verdict:** design-os scales from one page to a full multi-page app via the new shell + full library reuse, keeping all **six gates** (incl. zero raw inline style, native-control reset, ghost icon buttons, RTL `inline-start` sidebar).
+
 ## v2.2.1 — 2026-06-24 — modal/drawer initial-focus order (close ✕ ≠ first focus)
 Visual review of the v2.2.0 modal preview showed the close ✕ taking a `:focus-visible` ring **on open** — because it was the **first focusable element** in the DOM. PATCH: contract + fixture.
 - **`modal.md` §6.5 / `drawer.md`:** initial focus → **first meaningful field** (or dialog container `tabindex="-1"`), **NOT the close button**; the close ✕ **must not be the first tab stop** — place it **late in the DOM**, positioned visually top-`inline-end`.
